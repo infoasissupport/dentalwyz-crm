@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dentalwyz dental clinic management — clinic, branch, user, notification and profile settings.">
+  <title>Settings | Dentalwyz</title>
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/responsive.css" rel="stylesheet">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app-shell">
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar offcanvas-lg offcanvas-start" id="appSidebar" tabindex="-1" aria-label="Sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-header">
+          <a href="dashboard.html" class="brand" aria-label="Dentalwyz home">
+            <img src="../assets/images/logo.svg" alt="" class="brand-logo" width="40" height="40">
+            <span class="brand-text">dental<span>wyz</span></span>
+          </a>
+          <button type="button" class="btn-close d-lg-none" data-bs-dismiss="offcanvas" data-bs-target="#appSidebar" aria-label="Close menu"></button>
+        </div>
+        <nav class="sidebar-nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="dashboard.html"><i class="bi bi-house-door" aria-hidden="true"></i><span>Dashboard</span></a></li>
+            <li><a class="nav-link" href="appointments.html"><i class="bi bi-calendar3" aria-hidden="true"></i><span>Appointments</span></a></li>
+            <li><a class="nav-link" href="patients.html"><i class="bi bi-people" aria-hidden="true"></i><span>Patients</span></a></li>
+            <li><a class="nav-link" href="doctors.html"><i class="bi bi-person-badge" aria-hidden="true"></i><span>Doctors</span></a></li>
+            <li><a class="nav-link" href="documents.html"><i class="bi bi-folder2-open" aria-hidden="true"></i><span>Documents</span></a></li>
+            <li><a class="nav-link" href="invoices.html"><i class="bi bi-file-earmark-text" aria-hidden="true"></i><span>Invoices</span></a></li>
+            <li><a class="nav-link" href="payments.html"><i class="bi bi-credit-card-2-front" aria-hidden="true"></i><span>Payments</span></a></li>
+            <li><a class="nav-link" href="transactions.html"><i class="bi bi-arrow-left-right" aria-hidden="true"></i><span>Transactions</span></a></li>
+            <li><a class="nav-link" href="treatment.html"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i><span>Treatment</span></a></li>
+            <li><a class="nav-link" href="lab.html"><i class="bi bi-eyedropper" aria-hidden="true"></i><span>Lab</span></a></li>
+            <li><a class="nav-link" href="pharmacy.html"><i class="bi bi-capsule" aria-hidden="true"></i><span>Pharmacy</span></a></li>
+            <li><a class="nav-link" href="inventory.html"><i class="bi bi-box-seam" aria-hidden="true"></i><span>Inventory</span></a></li>
+            <li><a class="nav-link" href="reports.html"><i class="bi bi-bar-chart-line" aria-hidden="true"></i><span>Reports</span></a></li>
+          </ul>
+          <hr class="sidebar-divider">
+          <ul class="nav-list">
+            <li><a class="nav-link active" aria-current="page" href="settings.html"><i class="bi bi-gear" aria-hidden="true"></i><span>Settings</span></a></li>
+            <li><a class="nav-link" href="help-support.html"><i class="bi bi-question-circle" aria-hidden="true"></i><span>Help &amp; Support</span></a></li>
+          </ul>
+        </nav>
+        <div class="sidebar-wave" aria-hidden="true"></div>
+      </div>
+    </aside>
+
+    <div class="main">
+      <!-- ============ TOP HEADER ============ -->
+      <header class="topbar">
+        <button type="button" class="icon-btn d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#appSidebar" aria-controls="appSidebar" aria-label="Open menu"><i class="bi bi-list" aria-hidden="true"></i></button>
+        <button type="button" class="icon-btn d-none d-lg-inline-flex" data-action="sidebar-collapse" aria-expanded="true" aria-label="Collapse sidebar"><i class="bi bi-layout-sidebar" aria-hidden="true"></i></button>
+
+        <form class="topbar-search" id="globalSearchForm" role="search">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <label for="globalSearch" class="visually-hidden">Search patient, appointment, invoice</label>
+          <input type="search" class="form-control" id="globalSearch" placeholder="Search patient, appointment, invoice..." autocomplete="off">
+        </form>
+
+        <div class="topbar-actions">
+          <button type="button" class="icon-btn d-md-none" data-action="toggle-search" aria-expanded="false" aria-label="Toggle search"><i class="bi bi-search" aria-hidden="true"></i></button>
+
+          <button type="button" class="topbar-chip date-chip" id="headerDate" aria-label="Choose date">
+            <i class="bi bi-calendar3 chip-icon" aria-hidden="true"></i>
+            <span class="chip-text">
+              <span class="chip-title" data-current-date>01 Oct 2026</span>
+              <span class="chip-sub" data-current-day>Thursday</span>
+            </span>
+            <input type="date" id="headerDatePicker" class="date-picker-input" tabindex="-1" aria-hidden="true">
+          </button>
+
+          <div class="dropdown">
+            <button type="button" class="icon-btn" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" aria-label="Notifications">
+              <i class="bi bi-bell" aria-hidden="true"></i><span class="notif-dot" aria-hidden="true" data-notif-dot hidden></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end notif-menu">
+              <div class="notif-menu-header">
+                <strong>Notifications <span class="badge-soft tone-blue ms-1"><span data-stat="notifications" data-stat-where="unread=yes">0</span> new</span></strong>
+                <button type="button" class="btn btn-link btn-sm p-0" data-action="mark-all-read">Mark all read</button>
+              </div>
+              <ul class="notif-list" id="notifList" data-collection="notifications" data-limit="8">
+                <template data-template>
+                  <li class="notif-item" data-record data-bind-data-unread="{unread}" tabindex="0" role="link"><span class="avatar avatar-sm" data-tone-from="icon"><i class="bi" data-bind-class="bi {icon}" aria-hidden="true"></i></span><div><p data-field="text"></p><time data-derive="ago"></time></div></li>
+                </template>
+              </ul>
+              <p class="notif-empty" data-empty-for="#notifList">No notifications yet. New appointments, patients, invoices and payments show up here.</p>
+              <div class="notif-menu-footer"><a href="settings.html#pane-notifications" class="panel-link">Notification settings</a></div>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button type="button" class="topbar-chip branch-chip" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Switch branch">
+              <img src="../assets/images/clinic.svg" alt="" class="chip-img" width="36" height="36">
+              <span class="chip-text">
+                <span class="chip-title" data-current-branch>ABC Clinic</span>
+                <span class="chip-sub" data-current-location>Calicut</span>
+              </span>
+              <i class="bi bi-chevron-down small" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end branch-menu" data-collection="branches" data-where="status=Active" data-sort="name">
+              <li><h6 class="dropdown-header">Switch branch</h6></li>
+              <template data-template><li data-record><a class="dropdown-item" href="#" data-bind-data-branch="{name}" data-bind-data-branch-location="{location}"><i class="bi bi-hospital" aria-hidden="true"></i><span data-field="name"></span> <small class="text-muted" data-field="location"></small><i class="bi bi-check2" aria-hidden="true"></i></a></li></template>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="settings.html#pane-branch"><i class="bi bi-sliders" aria-hidden="true"></i>Manage branches</a></li>
+            </ul>
+          </div>
+
+          <div class="dropdown">
+            <button type="button" class="topbar-chip profile-chip" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+              <span class="avatar avatar-sm tone-blue" data-setting-initials="pfName">MD</span>
+              <span class="chip-text d-none d-xl-block">
+                <span class="chip-title" data-setting-text="pfName">Dr. Max D'Souza</span>
+                <span class="chip-sub">Administrator</span>
+              </span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><h6 class="dropdown-header">Signed in as admin</h6></li>
+              <li><a class="dropdown-item" href="settings.html#pane-profile"><i class="bi bi-person-circle" aria-hidden="true"></i>My profile</a></li>
+              <li><a class="dropdown-item" href="settings.html#pane-clinic"><i class="bi bi-gear" aria-hidden="true"></i>Account settings</a></li>
+              <li><a class="dropdown-item" href="settings.html#pane-notifications"><i class="bi bi-bell" aria-hidden="true"></i>Notification settings</a></li>
+              <li><a class="dropdown-item" href="help-support.html"><i class="bi bi-life-preserver" aria-hidden="true"></i>Help &amp; Support</a></li>
+              <li><a class="dropdown-item" href="#" data-action="reset-demo"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Reset demo data</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="../index.html" data-action="logout"><i class="bi bi-box-arrow-right" aria-hidden="true"></i>Log out</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- ============ PAGE CONTENT ============ -->
+      <main class="content" id="main-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Settings</h1>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Settings</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="page-actions">
+            <a href="help-support.html" class="btn btn-light"><i class="bi bi-life-preserver" aria-hidden="true"></i>Help &amp; Support</a>
+          </div>
+        </div>
+
+        <div class="layout-settings">
+          <!-- Settings navigation -->
+          <div class="card-panel">
+              <div class="nav flex-column nav-pills settings-nav" id="settingsTabs" role="tablist" aria-orientation="vertical" aria-label="Settings sections">
+                <button class="nav-link active" id="tab-clinic" data-bs-toggle="pill" data-bs-target="#pane-clinic" type="button" role="tab" aria-controls="pane-clinic" aria-selected="true"><i class="bi bi-hospital" aria-hidden="true"></i>Clinic settings</button>
+                <button class="nav-link" id="tab-branch" data-bs-toggle="pill" data-bs-target="#pane-branch" type="button" role="tab" aria-controls="pane-branch" aria-selected="false"><i class="bi bi-diagram-3" aria-hidden="true"></i>Branch settings</button>
+                <button class="nav-link" id="tab-users" data-bs-toggle="pill" data-bs-target="#pane-users" type="button" role="tab" aria-controls="pane-users" aria-selected="false"><i class="bi bi-people" aria-hidden="true"></i>User settings</button>
+                <button class="nav-link" id="tab-notifications" data-bs-toggle="pill" data-bs-target="#pane-notifications" type="button" role="tab" aria-controls="pane-notifications" aria-selected="false"><i class="bi bi-bell" aria-hidden="true"></i>Notification settings</button>
+                <button class="nav-link" id="tab-profile" data-bs-toggle="pill" data-bs-target="#pane-profile" type="button" role="tab" aria-controls="pane-profile" aria-selected="false"><i class="bi bi-person-circle" aria-hidden="true"></i>Profile settings</button>
+              </div>
+            </div>
+
+          <!-- Settings panes -->
+          <div class="tab-content" id="settingsTabContent" data-persist>
+
+              <!-- ===== Clinic settings ===== -->
+              <div class="tab-pane fade show active" id="pane-clinic" role="tabpanel" aria-labelledby="tab-clinic" tabindex="0">
+                <section class="card-panel" aria-labelledby="clinicTitle">
+                  <div class="panel-header">
+                    <h2 class="panel-title" id="clinicTitle"><i class="bi bi-hospital" aria-hidden="true"></i>Clinic settings</h2>
+                    <span class="badge-soft tone-green"><i class="bi bi-patch-check" aria-hidden="true"></i>GST registered</span>
+                  </div>
+                  <form novalidate data-success="Clinic settings saved">
+                    <p class="form-section-title">Clinic profile</p>
+                    <div class="grid-12">
+                      <div class="span-6">
+                        <label for="csName" class="form-label">Clinic name *</label>
+                        <input type="text" class="form-control" id="csName" name="clinicName" required value="Max Dental Studio">
+                        <div class="invalid-feedback">Clinic name is required.</div>
+                      </div>
+                      <div class="span-6">
+                        <label for="csReg" class="form-label">Registration no. *</label>
+                        <input type="text" class="form-control" id="csReg" name="registration" required value="KL/DC/2019/04512">
+                        <div class="invalid-feedback">Enter the clinic registration number.</div>
+                      </div>
+                      <div>
+                        <label for="csLogo" class="form-label">Clinic logo</label>
+                        <div class="d-flex align-items-center gap-3 flex-wrap flex-sm-nowrap">
+                          <img src="../assets/images/logo.svg" alt="Current clinic logo" width="64" height="64">
+                          <div class="dropzone flex-grow-1" data-dropzone>
+                            <i class="bi bi-cloud-arrow-up" aria-hidden="true"></i>
+                            <span class="fw-semibold" data-file-label>Drop a new logo here or click to browse</span>
+                            <span class="form-text">PNG, SVG or JPG · max 2 MB · 512 × 512 px recommended</span>
+                            <input type="file" id="csLogo" accept="image/png,image/svg+xml,image/jpeg">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="span-6">
+                        <label for="csGstin" class="form-label">GSTIN *</label>
+                        <input type="text" class="form-control text-uppercase" id="csGstin" name="gstin" required pattern="[0-9]{2}[A-Za-z]{5}[0-9]{4}[A-Za-z][0-9A-Za-z]Z[0-9A-Za-z]" value="32ABCDE1234F1Z5">
+                        <div class="invalid-feedback">Enter a valid 15-character GSTIN (e.g. 32ABCDE1234F1Z5).</div>
+                      </div>
+                      <div class="span-6">
+                        <label for="csEmail" class="form-label">Clinic email *</label>
+                        <input type="email" class="form-control" id="csEmail" name="email" required value="contact@maxdental.in">
+                        <div class="invalid-feedback">Enter a valid email address.</div>
+                      </div>
+                      <div class="span-6">
+                        <label for="csPhone" class="form-label">Phone *</label>
+                        <input type="tel" class="form-control" id="csPhone" name="phone" required pattern="[0-9+\s\-]{8,}" value="+91 495 272 1100">
+                        <div class="invalid-feedback">Enter a valid phone number.</div>
+                      </div>
+                      <div class="span-6">
+                        <label for="csWebsite" class="form-label">Website</label>
+                        <input type="url" class="form-control" id="csWebsite" name="website" value="https://maxdental.in">
+                        <div class="invalid-feedback">Enter a full URL starting with https://</div>
+                      </div>
+                      <div>
+                        <label for="csAddress" class="form-label">Address *</label>
+                        <textarea class="form-control" id="csAddress" name="address" rows="2" required>2nd Floor, Mavoor Road, Calicut, Kerala 673004</textarea>
+                        <div class="invalid-feedback">Address is required.</div>
+                      </div>
+                    </div>
+
+                    <p class="form-section-title mt-4">Regional &amp; scheduling</p>
+                    <div class="grid-12">
+                      <div class="span-6">
+                        <label for="csTimezone" class="form-label">Timezone</label>
+                        <select class="form-select" id="csTimezone" name="timezone">
+                          <option selected>(GMT+05:30) India Standard Time — Asia/Kolkata</option>
+                          <option>(GMT+04:00) Gulf Standard Time — Asia/Dubai</option>
+                          <option>(GMT+03:00) Arabia Standard Time — Asia/Riyadh</option>
+                          <option>(GMT+08:00) Singapore Time — Asia/Singapore</option>
+                        </select>
+                      </div>
+                      <div class="span-6">
+                        <label for="csCurrency" class="form-label">Currency</label>
+                        <select class="form-select" id="csCurrency" name="currency">
+                          <option selected>Indian Rupee (₹ INR)</option>
+                          <option>UAE Dirham (AED)</option>
+                          <option>US Dollar ($ USD)</option>
+                        </select>
+                      </div>
+                      <div class="span-half span-4">
+                        <label for="csOpen" class="form-label">Opens at *</label>
+                        <input type="time" class="form-control" id="csOpen" name="openTime" required value="09:00">
+                        <div class="invalid-feedback">Set an opening time.</div>
+                      </div>
+                      <div class="span-half span-4">
+                        <label for="csClose" class="form-label">Closes at *</label>
+                        <input type="time" class="form-control" id="csClose" name="closeTime" required value="20:00">
+                        <div class="invalid-feedback">Set a closing time.</div>
+                      </div>
+                      <div class="span-4">
+                        <label for="csSlot" class="form-label">Appointment slot</label>
+                        <select class="form-select" id="csSlot" name="slot">
+                          <option>10 minutes</option>
+                          <option selected>15 minutes</option>
+                          <option>20 minutes</option>
+                          <option>30 minutes</option>
+                          <option>45 minutes</option>
+                          <option>60 minutes</option>
+                        </select>
+                      </div>
+                      <div class="span-6">
+                        <label for="csWeekly" class="form-label">Weekly holiday</label>
+                        <select class="form-select" id="csWeekly" name="holiday">
+                          <option selected>Sunday</option>
+                          <option>Monday</option>
+                          <option>No weekly holiday</option>
+                        </select>
+                      </div>
+                      <div class="span-6">
+                        <label for="csInvoicePrefix" class="form-label">Invoice prefix</label>
+                        <input type="text" class="form-control" id="csInvoicePrefix" name="invoicePrefix" value="INV-">
+                        <div class="form-text">Next invoice: INV-0158</div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-wrap justify-content-end gap-2 mt-4">
+                      <button type="reset" class="btn btn-light" data-toast="Unsaved changes discarded" data-toast-type="info"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Reset</button>
+                      <button type="submit" class="btn btn-primary"><i class="bi bi-check2" aria-hidden="true"></i>Save changes</button>
+                    </div>
+                  </form>
+                </section>
+              </div>
+
+              <!-- ===== Branch settings ===== -->
+              <div class="tab-pane fade" id="pane-branch" role="tabpanel" aria-labelledby="tab-branch" tabindex="0">
+                <section class="card-panel mb-3" aria-labelledby="branchTitle">
+                  <div class="panel-header">
+                    <h2 class="panel-title" id="branchTitle"><i class="bi bi-diagram-3" aria-hidden="true"></i>Branches <span class="count">(<span data-count-for="#branchTable">0</span>)</span></h2>
+                    <div class="panel-tools">
+                      <div class="search-box">
+                        <i class="bi bi-search" aria-hidden="true"></i>
+                        <label for="branchSearch" class="visually-hidden">Search branches</label>
+                        <input type="search" id="branchSearch" class="form-control form-control-sm" placeholder="Search branch..." data-search-target="#branchTable">
+                      </div>
+                      <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#branchModal"><i class="bi bi-plus-circle" aria-hidden="true"></i>Add branch</button>
+                    </div>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table table-app table-hover" id="branchTable" data-list data-collection="branches" data-sort="name" data-notify="Branch added: {name}, {location}" data-notify-icon="bi-hospital">
+                      <thead>
+                        <tr><th scope="col">Branch</th><th scope="col">Location</th><th scope="col">Manager</th><th scope="col">Phone</th><th scope="col">Chairs</th><th scope="col">Status</th><th scope="col" class="text-center action-col" data-no-export>Action</th></tr>
+                      </thead>
+                      <tbody>
+                        <template data-template>
+                          <tr data-record>
+                          <td><div class="person"><span class="avatar" data-tone-from="name"><i class="bi bi-hospital" aria-hidden="true"></i></span><div><span class="person-name" data-field="name" data-primary></span><span class="person-sub" data-field="address"></span></div><span class="badge-soft tone-green" data-new-only hidden>New</span></div>
+                            <span data-field="email" hidden></span></td>
+                          <td data-field="location"></td>
+                          <td data-field="manager"></td>
+                          <td data-field="phone"></td>
+                          <td data-field="chairs"></td>
+                          <td>
+                            <div class="d-flex align-items-center gap-2">
+                              <div class="form-check form-switch m-0">
+                                <input class="form-check-input" type="checkbox" role="switch" aria-label="Branch active" checked data-status-on="Active" data-status-off="Inactive">
+                              </div>
+                              <span class="badge-status" data-field="status"></span>
+                            </div>
+                          </td>
+                          <td class="text-center action-col">
+                            <div class="action-group">
+                              <button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#viewBranchModal" aria-label="View branch"><i class="bi bi-eye" aria-hidden="true"></i></button>
+                              <button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#branchModal" data-mode="edit" aria-label="Edit branch"><i class="bi bi-pencil" aria-hidden="true"></i></button>
+                              <button type="button" class="btn-icon danger" data-bs-toggle="modal" data-bs-target="#deleteModal" aria-label="Delete branch"><i class="bi bi-trash3" aria-hidden="true"></i></button>
+                            </div>
+                          </td>
+                        </tr>
+                        </template>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="empty-state" data-empty-for="#branchTable" hidden><i class="bi bi-hospital" aria-hidden="true"></i>No branches match your search.</div>
+                </section>
+
+                <section class="card-panel h-auto" aria-labelledby="branchPrefTitle">
+                  <div class="panel-header">
+                    <h2 class="panel-title" id="branchPrefTitle"><i class="bi bi-sliders" aria-hidden="true"></i>Branch preferences</h2>
+                  </div>
+                  <form novalidate data-success="Branch preferences saved">
+                    <div class="grid-2 align-items-end">
+                      <div>
+                        <label for="defaultBranch" class="form-label">Default branch</label>
+                        <select class="form-select" id="defaultBranch" name="defaultBranch" data-branch-select data-options="branches" data-options-where="status=Active"></select>
+                        <div class="form-text">Changing this switches the branch shown in the header.</div>
+                      </div>
+                      <div>
+                        <label for="patientSharing" class="form-label">Patient records</label>
+                        <select class="form-select" id="patientSharing" name="patientSharing">
+                          <option selected>Shared across all branches</option>
+                          <option>Separate for each branch</option>
+                        </select>
+                        <div class="form-text">Shared records let patients visit any branch.</div>
+                      </div>
+                    </div>
+                    <div class="setting-row mt-2">
+                      <div><h3>Inter-branch stock transfer</h3><p>Allow inventory items to be moved between branches.</p></div>
+                      <div class="form-check form-switch m-0">
+                        <input class="form-check-input" type="checkbox" role="switch" id="bpTransfer" checked data-toast="Inter-branch stock transfer">
+                        <label class="visually-hidden" for="bpTransfer">Inter-branch stock transfer</label>
+                      </div>
+                    </div>
+                    <div class="setting-row">
+                      <div><h3>Consolidated reports</h3><p>Combine revenue and appointment reports from all branches.</p></div>
+                      <div class="form-check form-switch m-0">
+                        <input class="form-check-input" type="checkbox" role="switch" id="bpReports" checked data-toast="Consolidated reports">
+                        <label class="visually-hidden" for="bpReports">Consolidated reports</label>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-3">
+                      <button type="submit" class="btn btn-primary"><i class="bi bi-check2" aria-hidden="true"></i>Save preferences</button>
+                    </div>
+                  </form>
+                </section>
+              </div>
+
+              <!-- ===== User settings ===== -->
+              <div class="tab-pane fade" id="pane-users" role="tabpanel" aria-labelledby="tab-users" tabindex="0">
+                <section class="card-panel mb-3" aria-labelledby="userTitle">
+                  <div class="panel-header">
+                    <h2 class="panel-title" id="userTitle"><i class="bi bi-people" aria-hidden="true"></i>Users &amp; roles <span class="count">(<span data-count-for="#userTable">0</span>)</span></h2>
+                    <div class="panel-tools">
+                      <div class="search-box">
+                        <i class="bi bi-search" aria-hidden="true"></i>
+                        <label for="userSearch" class="visually-hidden">Search users</label>
+                        <input type="search" id="userSearch" class="form-control form-control-sm" placeholder="Search user..." data-search-target="#userTable">
+                      </div>
+                      <label for="userRoleFilter" class="visually-hidden">Filter by role</label>
+                      <select id="userRoleFilter" class="form-select form-select-sm filter-select" data-filter-target="#userTable" data-filter-field="role">
+                        <option value="all">All roles</option>
+                        <option>Admin</option>
+                        <option>Doctor</option>
+                        <option>Receptionist</option>
+                        <option>Accountant</option>
+                      </select>
+                      <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#userModal"><i class="bi bi-person-plus" aria-hidden="true"></i>Add user</button>
+                    </div>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table table-app table-hover" id="userTable" data-list data-collection="users" data-notify="User invited: {name} ({role})" data-notify-icon="bi-person-plus">
+                      <thead>
+                        <tr><th scope="col">Name</th><th scope="col">Role</th><th scope="col">Branch</th><th scope="col">Last login</th><th scope="col">Status</th><th scope="col" class="text-center action-col" data-no-export>Action</th></tr>
+                      </thead>
+                      <tbody>
+                        <template data-template>
+                          <tr data-record>
+                          <td><div class="person"><span class="avatar" data-tone-from="name"><i class="bi bi-person" aria-hidden="true"></i></span><div><span class="person-name" data-field="name" data-primary></span><span class="person-sub" data-field="email"></span></div><span class="badge-soft tone-green" data-new-only hidden>New</span></div>
+                            <span data-field="phone" hidden></span></td>
+                          <td><span class="badge-soft tone-blue" data-field="role"></span></td>
+                          <td data-field="branch"></td>
+                          <td data-field="lastLogin" data-default="Never"></td>
+                          <td>
+                            <div class="d-flex align-items-center gap-2">
+                              <div class="form-check form-switch m-0">
+                                <input class="form-check-input" type="checkbox" role="switch" aria-label="User account active" checked data-status-on="Active" data-status-off="Inactive">
+                              </div>
+                              <span class="badge-status" data-field="status"></span>
+                            </div>
+                          </td>
+                          <td class="text-center action-col">
+                            <div class="action-group">
+                              <button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#viewUserModal" aria-label="View user"><i class="bi bi-eye" aria-hidden="true"></i></button>
+                              <button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#userModal" data-mode="edit" aria-label="Edit user"><i class="bi bi-pencil" aria-hidden="true"></i></button>
+                              <button type="button" class="btn-icon danger" data-bs-toggle="modal" data-bs-target="#deleteModal" aria-label="Delete user"><i class="bi bi-trash3" aria-hidden="true"></i></button>
+                            </div>
+                          </td>
+                        </tr>
+                        </template>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="empty-state" data-empty-for="#userTable" hidden><i class="bi bi-person-x" aria-hidden="true"></i>No users match your search.</div>
+                </section>
+
+                <section class="card-panel h-auto" aria-labelledby="permTitle">
+                  <div class="panel-header">
+                    <h2 class="panel-title" id="permTitle"><i class="bi bi-shield-lock" aria-hidden="true"></i>Roles &amp; permissions</h2>
+                    <span class="small text-muted">Changes apply immediately to every user with that role.</span>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table table-app table-compact">
+                      <caption class="visually-hidden">Module access by role</caption>
+                      <thead>
+                        <tr><th scope="col">Module</th><th scope="col" class="text-center">Admin</th><th scope="col" class="text-center">Doctor</th><th scope="col" class="text-center">Receptionist</th><th scope="col" class="text-center">Accountant</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row" class="fw-semibold">Appointments</th>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmApAdm" checked disabled><label class="visually-hidden" for="pmApAdm">Admin: Appointments (always on)</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmApDoc" checked data-toast="Doctor · Appointments access"><label class="visually-hidden" for="pmApDoc">Doctor: Appointments</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmApRec" checked data-toast="Receptionist · Appointments access"><label class="visually-hidden" for="pmApRec">Receptionist: Appointments</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmApAcc" data-toast="Accountant · Appointments access"><label class="visually-hidden" for="pmApAcc">Accountant: Appointments</label></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="fw-semibold">Patients &amp; treatment</th>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmPtAdm" checked disabled><label class="visually-hidden" for="pmPtAdm">Admin: Patients and treatment (always on)</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmPtDoc" checked data-toast="Doctor · Patients &amp; treatment access"><label class="visually-hidden" for="pmPtDoc">Doctor: Patients and treatment</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmPtRec" checked data-toast="Receptionist · Patients &amp; treatment access"><label class="visually-hidden" for="pmPtRec">Receptionist: Patients and treatment</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmPtAcc" data-toast="Accountant · Patients &amp; treatment access"><label class="visually-hidden" for="pmPtAcc">Accountant: Patients and treatment</label></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="fw-semibold">Billing &amp; payments</th>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmBiAdm" checked disabled><label class="visually-hidden" for="pmBiAdm">Admin: Billing and payments (always on)</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmBiDoc" data-toast="Doctor · Billing &amp; payments access"><label class="visually-hidden" for="pmBiDoc">Doctor: Billing and payments</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmBiRec" checked data-toast="Receptionist · Billing &amp; payments access"><label class="visually-hidden" for="pmBiRec">Receptionist: Billing and payments</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmBiAcc" checked data-toast="Accountant · Billing &amp; payments access"><label class="visually-hidden" for="pmBiAcc">Accountant: Billing and payments</label></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="fw-semibold">Lab &amp; pharmacy</th>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmLbAdm" checked disabled><label class="visually-hidden" for="pmLbAdm">Admin: Lab and pharmacy (always on)</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmLbDoc" checked data-toast="Doctor · Lab &amp; pharmacy access"><label class="visually-hidden" for="pmLbDoc">Doctor: Lab and pharmacy</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmLbRec" data-toast="Receptionist · Lab &amp; pharmacy access"><label class="visually-hidden" for="pmLbRec">Receptionist: Lab and pharmacy</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmLbAcc" data-toast="Accountant · Lab &amp; pharmacy access"><label class="visually-hidden" for="pmLbAcc">Accountant: Lab and pharmacy</label></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="fw-semibold">Inventory</th>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmInAdm" checked disabled><label class="visually-hidden" for="pmInAdm">Admin: Inventory (always on)</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmInDoc" data-toast="Doctor · Inventory access"><label class="visually-hidden" for="pmInDoc">Doctor: Inventory</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmInRec" checked data-toast="Receptionist · Inventory access"><label class="visually-hidden" for="pmInRec">Receptionist: Inventory</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmInAcc" checked data-toast="Accountant · Inventory access"><label class="visually-hidden" for="pmInAcc">Accountant: Inventory</label></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="fw-semibold">Reports</th>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmRpAdm" checked disabled><label class="visually-hidden" for="pmRpAdm">Admin: Reports (always on)</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmRpDoc" checked data-toast="Doctor · Reports access"><label class="visually-hidden" for="pmRpDoc">Doctor: Reports</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmRpRec" data-toast="Receptionist · Reports access"><label class="visually-hidden" for="pmRpRec">Receptionist: Reports</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmRpAcc" checked data-toast="Accountant · Reports access"><label class="visually-hidden" for="pmRpAcc">Accountant: Reports</label></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="fw-semibold">Settings</th>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmStAdm" checked disabled><label class="visually-hidden" for="pmStAdm">Admin: Settings (always on)</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmStDoc" data-toast="Doctor · Settings access"><label class="visually-hidden" for="pmStDoc">Doctor: Settings</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmStRec" data-toast="Receptionist · Settings access"><label class="visually-hidden" for="pmStRec">Receptionist: Settings</label></td>
+                          <td class="text-center"><input class="form-check-input" type="checkbox" id="pmStAcc" data-toast="Accountant · Settings access"><label class="visually-hidden" for="pmStAcc">Accountant: Settings</label></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              </div>
+
+              <!-- ===== Notification settings ===== -->
+              <div class="tab-pane fade" id="pane-notifications" role="tabpanel" aria-labelledby="tab-notifications" tabindex="0">
+                <section class="card-panel" aria-labelledby="notifTitle">
+                  <div class="panel-header">
+                    <h2 class="panel-title" id="notifTitle"><i class="bi bi-bell" aria-hidden="true"></i>Notification settings</h2>
+                    <span class="badge-soft tone-blue"><i class="bi bi-chat-dots" aria-hidden="true"></i>SMS credits: 4,250</span>
+                  </div>
+                  <form novalidate data-success="Notification preferences saved">
+                    <p class="form-section-title"><i class="bi bi-phone me-1" aria-hidden="true"></i>SMS</p>
+                    <div class="setting-row">
+                      <div><h3>Appointment reminders</h3><p>Send an SMS reminder to patients before their appointment.</p></div>
+                      <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" role="switch" id="nSmsRem" checked data-toast="Appointment reminders (SMS)"><label class="visually-hidden" for="nSmsRem">Appointment reminders by SMS</label></div>
+                    </div>
+                    <div class="setting-row">
+                      <div><h3>Booking confirmation</h3><p>Confirm new and rescheduled appointments by SMS.</p></div>
+                      <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" role="switch" id="nSmsConf" checked data-toast="Booking confirmation (SMS)"><label class="visually-hidden" for="nSmsConf">Booking confirmation by SMS</label></div>
+                    </div>
+                    <div class="setting-row">
+                      <div><h3>Payment receipts</h3><p>Send the amount paid and balance after each payment.</p></div>
+                      <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" role="switch" id="nSmsPay" data-toast="Payment receipts (SMS)"><label class="visually-hidden" for="nSmsPay">Payment receipts by SMS</label></div>
+                    </div>
+
+                    <p class="form-section-title mt-4"><i class="bi bi-whatsapp me-1" aria-hidden="true"></i>WhatsApp</p>
+                    <div class="setting-row">
+                      <div><h3>Appointment reminders</h3><p>Reminder with clinic location and a reschedule link.</p></div>
+                      <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" role="switch" id="nWaRem" checked data-toast="Appointment reminders (WhatsApp)"><label class="visually-hidden" for="nWaRem">Appointment reminders on WhatsApp</label></div>
+                    </div>
+                    <div class="setting-row">
+                      <div><h3>Invoices &amp; prescriptions</h3><p>Share the invoice PDF and prescription after the visit.</p></div>
+                      <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" role="switch" id="nWaInv" checked data-toast="Invoices &amp; prescriptions (WhatsApp)"><label class="visually-hidden" for="nWaInv">Invoices and prescriptions on WhatsApp</label></div>
+                    </div>
+                    <div class="setting-row">
+                      <div><h3>Birthday &amp; recall greetings</h3><p>Birthday wishes and 6-month check-up recalls.</p></div>
+                      <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" role="switch" id="nWaRecall" data-toast="Birthday &amp; recall greetings (WhatsApp)"><label class="visually-hidden" for="nWaRecall">Birthday and recall greetings on WhatsApp</label></div>
+                    </div>
+
+                    <p class="form-section-title mt-4"><i class="bi bi-envelope me-1" aria-hidden="true"></i>Email (staff)</p>
+                    <div class="setting-row">
+                      <div><h3>Daily summary</h3><p>Appointments, collections and pending dues at 9:00 PM IST.</p></div>
+                      <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" role="switch" id="nEmDaily" checked data-toast="Daily summary (Email)"><label class="visually-hidden" for="nEmDaily">Daily summary email</label></div>
+                    </div>
+                    <div class="setting-row">
+                      <div><h3>Low stock alerts</h3><p>Notify when inventory falls below the reorder level.</p></div>
+                      <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" role="switch" id="nEmStock" checked data-toast="Low stock alerts (Email)"><label class="visually-hidden" for="nEmStock">Low stock alert emails</label></div>
+                    </div>
+                    <div class="setting-row">
+                      <div><h3>Lab case updates</h3><p>Email when a lab case is dispatched or marked ready.</p></div>
+                      <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" role="switch" id="nEmLab" data-toast="Lab case updates (Email)"><label class="visually-hidden" for="nEmLab">Lab case update emails</label></div>
+                    </div>
+
+                    <p class="form-section-title mt-4">Timing</p>
+                    <div class="grid-2">
+                      <div>
+                        <label for="nTiming" class="form-label">Send appointment reminders</label>
+                        <select class="form-select" id="nTiming" name="reminderTiming">
+                          <option>1 hour before</option>
+                          <option>2 hours before</option>
+                          <option selected>24 hours before</option>
+                          <option>48 hours before</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label for="nSender" class="form-label">SMS sender ID</label>
+                        <input type="text" class="form-control text-uppercase" id="nSender" name="senderId" required maxlength="6" pattern="[A-Za-z]{6}" value="MAXDNT">
+                        <div class="invalid-feedback">Sender ID must be exactly 6 letters.</div>
+                      </div>
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-end gap-2 mt-4">
+                      <button type="button" class="btn btn-light" data-toast="Test SMS sent to +91 98470 10001" data-toast-type="info"><i class="bi bi-send" aria-hidden="true"></i>Send test SMS</button>
+                      <button type="submit" class="btn btn-primary"><i class="bi bi-check2" aria-hidden="true"></i>Save preferences</button>
+                    </div>
+                  </form>
+                </section>
+              </div>
+
+              <!-- ===== Profile settings ===== -->
+              <div class="tab-pane fade" id="pane-profile" role="tabpanel" aria-labelledby="tab-profile" tabindex="0">
+                <section class="card-panel mb-3 h-auto" aria-labelledby="profileTitle">
+                  <div class="panel-header">
+                    <h2 class="panel-title" id="profileTitle"><i class="bi bi-person-circle" aria-hidden="true"></i>Profile settings</h2>
+                  </div>
+                  <div class="profile-head">
+                    <span class="avatar avatar-xl tone-blue">MD</span>
+                    <div>
+                      <h3>Dr. Max D'Souza</h3>
+                      <p class="text-muted small mb-1">Administrator · Max Dental Studio</p>
+                      <span class="badge-status">Active</span>
+                    </div>
+                  </div>
+                  <form novalidate data-success="Profile updated successfully">
+                    <div class="grid-2">
+                      <div>
+                        <label for="pfName" class="form-label">Full name *</label>
+                        <input type="text" class="form-control" id="pfName" name="name" required value="Dr. Max D'Souza">
+                        <div class="invalid-feedback">Name is required.</div>
+                      </div>
+                      <div>
+                        <label for="pfEmail" class="form-label">Email *</label>
+                        <input type="email" class="form-control" id="pfEmail" name="email" required value="admin@maxdental.in">
+                        <div class="invalid-feedback">Enter a valid email address.</div>
+                      </div>
+                      <div>
+                        <label for="pfPhone" class="form-label">Phone *</label>
+                        <input type="tel" class="form-control" id="pfPhone" name="phone" required pattern="[0-9+\s\-]{8,}" value="+91 98470 10001">
+                        <div class="invalid-feedback">Enter a valid phone number.</div>
+                      </div>
+                      <div>
+                        <label for="pfDesignation" class="form-label">Designation</label>
+                        <input type="text" class="form-control" id="pfDesignation" name="designation" value="Chief Dental Surgeon (BDS, MDS)">
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-3">
+                      <button type="submit" class="btn btn-primary"><i class="bi bi-check2" aria-hidden="true"></i>Save profile</button>
+                    </div>
+                  </form>
+                </section>
+
+                <section class="card-panel mb-3 h-auto" aria-labelledby="securityTitle">
+                  <div class="panel-header">
+                    <h2 class="panel-title" id="securityTitle"><i class="bi bi-shield-lock" aria-hidden="true"></i>Password &amp; security</h2>
+                  </div>
+                  <form novalidate data-success="Password changed successfully" data-reset-on-success>
+                    <div class="grid-3">
+                      <div>
+                        <label for="pwCurrent" class="form-label">Current password *</label>
+                        <div class="input-group has-validation">
+                          <input type="password" class="form-control" id="pwCurrent" name="currentPassword" required autocomplete="current-password">
+                          <button type="button" class="btn btn-light" data-action="toggle-password" data-target="#pwCurrent" aria-label="Show password"><i class="bi bi-eye" aria-hidden="true"></i></button>
+                          <div class="invalid-feedback">Enter your current password.</div>
+                        </div>
+                      </div>
+                      <div>
+                        <label for="pwNew" class="form-label">New password *</label>
+                        <div class="input-group has-validation">
+                          <input type="password" class="form-control" id="pwNew" name="newPassword" required minlength="8" autocomplete="new-password" aria-describedby="pwHelp">
+                          <button type="button" class="btn btn-light" data-action="toggle-password" data-target="#pwNew" aria-label="Show password"><i class="bi bi-eye" aria-hidden="true"></i></button>
+                          <div class="invalid-feedback">Use at least 8 characters.</div>
+                        </div>
+                      </div>
+                      <div>
+                        <label for="pwConfirm" class="form-label">Confirm password *</label>
+                        <div class="input-group has-validation">
+                          <input type="password" class="form-control" id="pwConfirm" name="confirmPassword" required minlength="8" autocomplete="new-password" data-match="#pwNew">
+                          <button type="button" class="btn btn-light" data-action="toggle-password" data-target="#pwConfirm" aria-label="Show password"><i class="bi bi-eye" aria-hidden="true"></i></button>
+                          <div class="invalid-feedback">Re-enter the new password.</div>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="form-text mt-2 mb-0" id="pwHelp">Use 8 or more characters with a mix of letters, numbers and symbols.</p>
+                    <div class="d-flex justify-content-end mt-3">
+                      <button type="submit" class="btn btn-primary"><i class="bi bi-key" aria-hidden="true"></i>Update password</button>
+                    </div>
+                  </form>
+                  <div class="setting-row mt-3">
+                    <div><h3>Two-factor authentication</h3><p>Ask for a one-time code sent to +91 98470 10001 when signing in.</p></div>
+                    <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" role="switch" id="pf2fa" checked data-toast="Two-factor authentication"><label class="visually-hidden" for="pf2fa">Two-factor authentication</label></div>
+                  </div>
+                  <div class="setting-row">
+                    <div><h3>Login alerts</h3><p>Email me when my account is used on a new device.</p></div>
+                    <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" role="switch" id="pfAlerts" checked data-toast="Login alerts"><label class="visually-hidden" for="pfAlerts">Login alerts</label></div>
+                  </div>
+                </section>
+
+                <section class="card-panel h-auto" aria-labelledby="dangerTitle">
+                  <div class="panel-header">
+                    <h2 class="panel-title" id="dangerTitle"><i class="bi bi-exclamation-octagon text-danger" aria-hidden="true"></i>Danger zone</h2>
+                  </div>
+                  <div class="setting-row">
+                    <div><h3>Sign out of all devices</h3><p>Ends every active session except this one (3 devices signed in).</p></div>
+                    <button type="button" class="btn btn-light" data-toast="Signed out of all other devices" data-toast-type="warning"><i class="bi bi-phone" aria-hidden="true"></i>Sign out everywhere</button>
+                  </div>
+                  <div class="setting-row">
+                    <div><h3>Log out</h3><p>Sign out of Dentalwyz on this browser.</p></div>
+                    <a href="../index.html" class="btn btn-danger"><i class="bi bi-box-arrow-right" aria-hidden="true"></i>Log out</a>
+                  </div>
+                </section>
+              </div>
+
+            </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- ============ MODALS ============ -->
+
+  <!-- Add / Edit branch -->
+  <div class="modal fade" id="branchModal" tabindex="-1" aria-labelledby="branchModalTitle" aria-hidden="true" data-edit-title="Edit Branch">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <form class="modal-content" novalidate data-add-to="#branchTable" data-success="Branch added successfully" data-success-edit="Branch updated successfully">
+        <div class="modal-header">
+          <h2 class="modal-title" id="branchModalTitle"><span class="title-icon tone-blue"><i class="bi bi-hospital" aria-hidden="true"></i></span><span data-modal-title>Add Branch</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="grid-12">
+            <div class="span-6"><label for="brName" class="form-label">Branch name *</label><input type="text" class="form-control" id="brName" name="name" required placeholder="e.g. Branch 4"><div class="invalid-feedback">Branch name is required.</div></div>
+            <div class="span-6"><label for="brLocation" class="form-label">City *</label><input type="text" class="form-control" id="brLocation" name="location" required placeholder="e.g. Thrissur"><div class="invalid-feedback">Enter the city.</div></div>
+            <div><label for="brAddress" class="form-label">Address *</label><input type="text" class="form-control" id="brAddress" name="address" required placeholder="Street, area, PIN code"><div class="invalid-feedback">Address is required.</div></div>
+            <div class="span-6"><label for="brManager" class="form-label">Branch manager *</label><select class="form-select" id="brManager" name="manager" required data-options="doctors"><option value="">Select manager</option><option>Dr. Max D'Souza</option></select><div class="invalid-feedback">Choose a manager.</div></div>
+            <div class="span-6"><label for="brPhone" class="form-label">Phone *</label><input type="tel" class="form-control" id="brPhone" name="phone" required pattern="[0-9+\s\-]{8,}" placeholder="+91 487 233 4400"><div class="invalid-feedback">Enter a valid phone number.</div></div>
+            <div class="span-6"><label for="brEmail" class="form-label">Branch email</label><input type="email" class="form-control" id="brEmail" name="email" placeholder="thrissur@maxdental.in"><div class="invalid-feedback">Enter a valid email address.</div></div>
+            <div class="span-half span-3"><label for="brChairs" class="form-label">Chairs *</label><input type="number" class="form-control" id="brChairs" name="chairs" required min="1" max="50" value="2"><div class="invalid-feedback">1 to 50.</div></div>
+            <div class="span-half span-3"><label for="brStatus" class="form-label">Status</label><select class="form-select" id="brStatus" name="status"><option>Active</option><option>Inactive</option></select></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check2" aria-hidden="true"></i>Save Branch</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Preview branch -->
+  <div class="modal fade" id="viewBranchModal" tabindex="-1" aria-labelledby="viewBranchTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="viewBranchTitle"><span class="title-icon tone-blue"><i class="bi bi-hospital" aria-hidden="true"></i></span>Branch Details</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="profile-head">
+            <span class="avatar avatar-lg tone-blue"><i class="bi bi-hospital" aria-hidden="true"></i></span>
+            <div><h3 data-field="name">Branch</h3><span class="badge-status" data-field="status">Active</span></div>
+          </div>
+          <dl class="detail-list">
+            <div><dt>City</dt><dd data-field="location">—</dd></div>
+            <div><dt>Manager</dt><dd data-field="manager">—</dd></div>
+            <div><dt>Phone</dt><dd data-field="phone">—</dd></div>
+            <div><dt>Chairs</dt><dd data-field="chairs">—</dd></div>
+            <div><dt>Email</dt><dd data-field="email">—</dd></div>
+            <div><dt>Timezone</dt><dd>IST (GMT+05:30)</dd></div>
+            <div class="span-2"><dt>Address</dt><dd data-field="address">—</dd></div>
+          </dl>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-action="print"><i class="bi bi-printer" aria-hidden="true"></i>Print</button>
+          <button type="button" class="btn btn-primary" data-switch-modal="#branchModal" data-mode="edit"><i class="bi bi-pencil" aria-hidden="true"></i>Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit user -->
+  <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalTitle" aria-hidden="true" data-edit-title="Edit User">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <form class="modal-content" novalidate data-add-to="#userTable" data-success="User added. An invite has been emailed." data-success-edit="User updated successfully">
+        <div class="modal-header">
+          <h2 class="modal-title" id="userModalTitle"><span class="title-icon tone-blue"><i class="bi bi-person-plus" aria-hidden="true"></i></span><span data-modal-title>Add User</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="form-section-title">Account</p>
+          <div class="grid-2">
+            <div><label for="usName" class="form-label">Full name *</label><input type="text" class="form-control" id="usName" name="name" required placeholder="e.g. Dr. Lakshmi Nair"><div class="invalid-feedback">Name is required.</div></div>
+            <div><label for="usEmail" class="form-label">Email *</label><input type="email" class="form-control" id="usEmail" name="email" required placeholder="name@maxdental.in"><div class="invalid-feedback">Enter a valid email address.</div></div>
+            <div><label for="usPhone" class="form-label">Phone *</label><input type="tel" class="form-control" id="usPhone" name="phone" required pattern="[0-9+\s\-]{8,}" placeholder="+91 98470 12345"><div class="invalid-feedback">Enter a valid phone number.</div></div>
+            <div><label for="usRole" class="form-label">Role *</label><select class="form-select" id="usRole" name="role" required><option value="">Select role</option><option>Admin</option><option>Doctor</option><option>Receptionist</option><option>Accountant</option></select><div class="invalid-feedback">Choose a role.</div></div>
+            <div><label for="usBranch" class="form-label">Branch *</label><select class="form-select" id="usBranch" name="branch" required data-options="branches"><option value="">Select branch</option><option>All branches</option></select><div class="invalid-feedback">Choose a branch.</div></div>
+            <div><label for="usStatus" class="form-label">Status</label><select class="form-select" id="usStatus" name="status"><option>Active</option><option>Inactive</option></select></div>
+          </div>
+          <fieldset class="mt-4">
+            <legend class="form-section-title">Permissions</legend>
+            <div class="grid-12 gap-tight">
+              <div class="form-check span-sm-half span-4"><input class="form-check-input" type="checkbox" id="upAppointments" checked><label class="form-check-label" for="upAppointments">Appointments</label></div>
+              <div class="form-check span-sm-half span-4"><input class="form-check-input" type="checkbox" id="upPatients" checked><label class="form-check-label" for="upPatients">Patients &amp; treatment</label></div>
+              <div class="form-check span-sm-half span-4"><input class="form-check-input" type="checkbox" id="upBilling"><label class="form-check-label" for="upBilling">Billing &amp; payments</label></div>
+              <div class="form-check span-sm-half span-4"><input class="form-check-input" type="checkbox" id="upLab"><label class="form-check-label" for="upLab">Lab &amp; pharmacy</label></div>
+              <div class="form-check span-sm-half span-4"><input class="form-check-input" type="checkbox" id="upInventory"><label class="form-check-label" for="upInventory">Inventory</label></div>
+              <div class="form-check span-sm-half span-4"><input class="form-check-input" type="checkbox" id="upReports"><label class="form-check-label" for="upReports">Reports</label></div>
+              <div class="form-check span-sm-half span-4"><input class="form-check-input" type="checkbox" id="upSettings"><label class="form-check-label" for="upSettings">Settings</label></div>
+              <div class="form-check span-sm-half span-8"><input class="form-check-input" type="checkbox" id="upInvite" checked><label class="form-check-label" for="upInvite">Email a sign-in invite to this user</label></div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check2" aria-hidden="true"></i>Save User</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Preview user -->
+  <div class="modal fade" id="viewUserModal" tabindex="-1" aria-labelledby="viewUserTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="viewUserTitle"><span class="title-icon tone-blue"><i class="bi bi-person-badge" aria-hidden="true"></i></span>User Details</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="profile-head">
+            <span class="avatar avatar-lg tone-blue" data-avatar="name">D</span>
+            <div><h3 data-field="name">User</h3><span class="badge-status" data-field="status">Active</span></div>
+          </div>
+          <dl class="detail-list">
+            <div><dt>Role</dt><dd data-field="role">—</dd></div>
+            <div><dt>Branch</dt><dd data-field="branch">—</dd></div>
+            <div><dt>Email</dt><dd data-field="email">—</dd></div>
+            <div><dt>Phone</dt><dd data-field="phone">—</dd></div>
+            <div class="span-2"><dt>Last login</dt><dd data-field="lastLogin">—</dd></div>
+          </dl>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-toast="Password reset link sent" data-bind-data-toast="Password reset link sent to {email}" data-close-modal><i class="bi bi-key" aria-hidden="true"></i>Reset password</button>
+          <button type="button" class="btn btn-primary" data-switch-modal="#userModal" data-mode="edit"><i class="bi bi-pencil" aria-hidden="true"></i>Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete confirmation -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content text-center">
+        <div class="modal-body p-4">
+          <span class="confirm-icon tone-red"><i class="bi bi-trash3" aria-hidden="true"></i></span>
+          <h2 class="h5" id="deleteModalTitle">Delete this record?</h2>
+          <p class="text-muted mb-0"><strong data-record-label>This item</strong> will be permanently removed. This cannot be undone.</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Keep it</button>
+          <button type="button" class="btn btn-danger" data-action="confirm-delete" data-success="Deleted">Yes, delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/demo-data.js"></script>
+  <script src="../assets/js/script.js"></script>
+</body>
+</html>

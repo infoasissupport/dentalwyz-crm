@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dentalwyz — doctor profile, today's appointments and patient consultation.">
+  <title>Doctor Details | Dentalwyz</title>
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/responsive.css" rel="stylesheet">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app-shell">
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar offcanvas-lg offcanvas-start" id="appSidebar" tabindex="-1" aria-label="Sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-header">
+          <a href="dashboard.html" class="brand" aria-label="Dentalwyz home">
+            <img src="../assets/images/logo.svg" alt="" class="brand-logo" width="40" height="40">
+            <span class="brand-text">dental<span>wyz</span></span>
+          </a>
+          <button type="button" class="btn-close d-lg-none" data-bs-dismiss="offcanvas" data-bs-target="#appSidebar" aria-label="Close menu"></button>
+        </div>
+        <nav class="sidebar-nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="dashboard.html"><i class="bi bi-house-door" aria-hidden="true"></i><span>Dashboard</span></a></li>
+            <li><a class="nav-link" href="appointments.html"><i class="bi bi-calendar3" aria-hidden="true"></i><span>Appointments</span></a></li>
+            <li><a class="nav-link" href="patients.html"><i class="bi bi-people" aria-hidden="true"></i><span>Patients</span></a></li>
+            <li><a class="nav-link active" aria-current="page" href="doctors.html"><i class="bi bi-person-badge" aria-hidden="true"></i><span>Doctors</span></a></li>
+            <li><a class="nav-link" href="documents.html"><i class="bi bi-folder2-open" aria-hidden="true"></i><span>Documents</span></a></li>
+            <li><a class="nav-link" href="invoices.html"><i class="bi bi-file-earmark-text" aria-hidden="true"></i><span>Invoices</span></a></li>
+            <li><a class="nav-link" href="payments.html"><i class="bi bi-credit-card-2-front" aria-hidden="true"></i><span>Payments</span></a></li>
+            <li><a class="nav-link" href="transactions.html"><i class="bi bi-arrow-left-right" aria-hidden="true"></i><span>Transactions</span></a></li>
+            <li><a class="nav-link" href="treatment.html"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i><span>Treatment</span></a></li>
+            <li><a class="nav-link" href="lab.html"><i class="bi bi-eyedropper" aria-hidden="true"></i><span>Lab</span></a></li>
+            <li><a class="nav-link" href="pharmacy.html"><i class="bi bi-capsule" aria-hidden="true"></i><span>Pharmacy</span></a></li>
+            <li><a class="nav-link" href="inventory.html"><i class="bi bi-box-seam" aria-hidden="true"></i><span>Inventory</span></a></li>
+            <li><a class="nav-link" href="reports.html"><i class="bi bi-bar-chart-line" aria-hidden="true"></i><span>Reports</span></a></li>
+          </ul>
+          <hr class="sidebar-divider">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="settings.html"><i class="bi bi-gear" aria-hidden="true"></i><span>Settings</span></a></li>
+            <li><a class="nav-link" href="help-support.html"><i class="bi bi-question-circle" aria-hidden="true"></i><span>Help &amp; Support</span></a></li>
+          </ul>
+        </nav>
+        <div class="sidebar-wave" aria-hidden="true"></div>
+      </div>
+    </aside>
+
+    <div class="main">
+      <!-- ============ TOP HEADER ============ -->
+      <header class="topbar">
+        <button type="button" class="icon-btn d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#appSidebar" aria-controls="appSidebar" aria-label="Open menu"><i class="bi bi-list" aria-hidden="true"></i></button>
+        <button type="button" class="icon-btn d-none d-lg-inline-flex" data-action="sidebar-collapse" aria-expanded="true" aria-label="Collapse sidebar"><i class="bi bi-layout-sidebar" aria-hidden="true"></i></button>
+
+        <form class="topbar-search" id="globalSearchForm" role="search">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <label for="globalSearch" class="visually-hidden">Search patient, appointment, invoice</label>
+          <input type="search" class="form-control" id="globalSearch" placeholder="Search patient, appointment, invoice..." autocomplete="off">
+        </form>
+
+        <div class="topbar-actions">
+          <button type="button" class="icon-btn d-md-none" data-action="toggle-search" aria-expanded="false" aria-label="Toggle search"><i class="bi bi-search" aria-hidden="true"></i></button>
+
+          <button type="button" class="topbar-chip date-chip" id="headerDate" aria-label="Choose date">
+            <i class="bi bi-calendar3 chip-icon" aria-hidden="true"></i>
+            <span class="chip-text">
+              <span class="chip-title" data-current-date>01 Oct 2026</span>
+              <span class="chip-sub" data-current-day>Thursday</span>
+            </span>
+            <input type="date" id="headerDatePicker" class="date-picker-input" tabindex="-1" aria-hidden="true">
+          </button>
+
+          <div class="dropdown">
+            <button type="button" class="icon-btn" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" aria-label="Notifications">
+              <i class="bi bi-bell" aria-hidden="true"></i><span class="notif-dot" aria-hidden="true" data-notif-dot hidden></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end notif-menu">
+              <div class="notif-menu-header">
+                <strong>Notifications <span class="badge-soft tone-blue ms-1"><span data-stat="notifications" data-stat-where="unread=yes">0</span> new</span></strong>
+                <button type="button" class="btn btn-link btn-sm p-0" data-action="mark-all-read">Mark all read</button>
+              </div>
+              <ul class="notif-list" id="notifList" data-collection="notifications" data-limit="8">
+                <template data-template>
+                  <li class="notif-item" data-record data-bind-data-unread="{unread}" tabindex="0" role="link"><span class="avatar avatar-sm" data-tone-from="icon"><i class="bi" data-bind-class="bi {icon}" aria-hidden="true"></i></span><div><p data-field="text"></p><time data-derive="ago"></time></div></li>
+                </template>
+              </ul>
+              <p class="notif-empty" data-empty-for="#notifList">No notifications yet. New appointments, patients, invoices and payments show up here.</p>
+              <div class="notif-menu-footer"><a href="settings.html#pane-notifications" class="panel-link">Notification settings</a></div>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button type="button" class="topbar-chip branch-chip" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Switch branch">
+              <img src="../assets/images/clinic.svg" alt="" class="chip-img" width="36" height="36">
+              <span class="chip-text">
+                <span class="chip-title" data-current-branch>ABC Clinic</span>
+                <span class="chip-sub" data-current-location>Calicut</span>
+              </span>
+              <i class="bi bi-chevron-down small" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end branch-menu" data-collection="branches" data-where="status=Active" data-sort="name">
+              <li><h6 class="dropdown-header">Switch branch</h6></li>
+              <template data-template><li data-record><a class="dropdown-item" href="#" data-bind-data-branch="{name}" data-bind-data-branch-location="{location}"><i class="bi bi-hospital" aria-hidden="true"></i><span data-field="name"></span> <small class="text-muted" data-field="location"></small><i class="bi bi-check2" aria-hidden="true"></i></a></li></template>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="settings.html#pane-branch"><i class="bi bi-sliders" aria-hidden="true"></i>Manage branches</a></li>
+            </ul>
+          </div>
+
+          <div class="dropdown">
+            <button type="button" class="topbar-chip profile-chip" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+              <span class="avatar avatar-sm tone-blue" data-setting-initials="pfName">MD</span>
+              <span class="chip-text d-none d-xl-block">
+                <span class="chip-title" data-setting-text="pfName">Dr. Max D'Souza</span>
+                <span class="chip-sub">Administrator</span>
+              </span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><h6 class="dropdown-header">Signed in as admin</h6></li>
+              <li><a class="dropdown-item" href="settings.html#pane-profile"><i class="bi bi-person-circle" aria-hidden="true"></i>My profile</a></li>
+              <li><a class="dropdown-item" href="settings.html#pane-clinic"><i class="bi bi-gear" aria-hidden="true"></i>Account settings</a></li>
+              <li><a class="dropdown-item" href="settings.html#pane-notifications"><i class="bi bi-bell" aria-hidden="true"></i>Notification settings</a></li>
+              <li><a class="dropdown-item" href="help-support.html"><i class="bi bi-life-preserver" aria-hidden="true"></i>Help &amp; Support</a></li>
+              <li><a class="dropdown-item" href="#" data-action="reset-demo"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Reset demo data</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="../index.html" data-action="logout"><i class="bi bi-box-arrow-right" aria-hidden="true"></i>Log out</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- ============ PAGE CONTENT ============ -->
+      <main class="content" id="main-content">
+        <div data-context="doctors" data-context-param="doctor" data-context-title="{name} — Doctor Details | Dentalwyz">
+          <div data-context-missing hidden>
+            <div class="page-header">
+              <div>
+                <h1 class="page-title">Doctor Details</h1>
+                <nav aria-label="Breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li><li class="breadcrumb-item"><a href="doctors.html">Doctors</a></li><li class="breadcrumb-item active" aria-current="page">Not found</li></ol></nav>
+              </div>
+            </div>
+            <section class="card-panel">
+              <div class="empty-state"><i class="bi bi-person-x" aria-hidden="true"></i>This doctor is no longer in the directory.
+                <div class="mt-3"><a href="doctors.html" class="btn btn-primary btn-sm"><i class="bi bi-arrow-left" aria-hidden="true"></i>Back to Doctors</a></div></div>
+            </section>
+          </div>
+
+          <div data-context-found>
+            <div class="page-header">
+              <div>
+                <h1 class="page-title">Doctor Details</h1>
+                <nav aria-label="Breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="doctors.html">Doctors</a></li>
+                    <li class="breadcrumb-item active" aria-current="page" data-context-record><span data-field="name">Doctor</span></li>
+                  </ol>
+                </nav>
+              </div>
+              <div class="page-actions">
+                <a href="doctors.html" class="btn btn-light"><i class="bi bi-arrow-left" aria-hidden="true"></i>Back to Doctors</a>
+                <div class="dropdown">
+                  <button type="button" class="btn btn-light" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-people" aria-hidden="true"></i>Switch doctor</button>
+                  <ul class="dropdown-menu dropdown-menu-end" data-collection="doctors" data-sort="name">
+                    <template data-template><li data-record><a class="dropdown-item" href="doctors.html" data-bind-href="doctor-details.html?doctor={id}"><i class="bi bi-person-badge" aria-hidden="true"></i><span data-field="name"></span> <small class="text-muted" data-field="specialization"></small></a></li></template>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#doctorEditModal" data-mode="edit" data-record-ref="#doctorProfile"><i class="bi bi-pencil" aria-hidden="true"></i>Edit Doctor</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#visitModal" data-record-ref="#doctorProfile"><i class="bi bi-plus-circle" aria-hidden="true"></i>Add Appointment</button>
+              </div>
+            </div>
+
+            <section class="doctor-hero" id="doctorProfile" data-record data-context-record aria-label="Doctor profile">
+              <div class="doctor-hero-main">
+                <span class="avatar avatar-xl" data-avatar="name" data-tone-from="name">D</span>
+                <div>
+                  <div class="d-flex flex-wrap align-items-center gap-2">
+                    <h2 class="doctor-name" data-field="name" data-prefix="Dr. " data-primary>Doctor</h2>
+                    <span class="badge-status" data-field="status">Available</span>
+                  </div>
+                  <p class="doctor-spec" data-field="specialization">—</p>
+                  <ul class="doctor-facts">
+                    <li><i class="bi bi-mortarboard" aria-hidden="true"></i><span data-field="qualification">—</span></li>
+                    <li><i class="bi bi-briefcase" aria-hidden="true"></i><span data-field="experience">—</span> yrs experience</li>
+                    <li><i class="bi bi-telephone" aria-hidden="true"></i><span data-field="phone">—</span></li>
+                    <li><i class="bi bi-envelope" aria-hidden="true"></i><span data-field="email">—</span></li>
+                    <li><i class="bi bi-clock" aria-hidden="true"></i><span data-field="days">—</span> · <span data-field="hours">—</span></li>
+                    <li><i class="bi bi-currency-rupee" aria-hidden="true"></i>Fee <strong data-field="fee" data-format="currency">—</strong></li>
+                    <li><i class="bi bi-patch-check" aria-hidden="true"></i>Reg. <span data-field="regNo">—</span> · <span data-field="patients" data-derive="agg" data-agg="patients" data-agg-match="doctor=name" data-default="0"></span> patients</li>
+                  </ul>
+                  <span hidden><span data-field="skills"></span><span data-field="bio"></span></span>
+                </div>
+              </div>
+              <div class="doctor-today">
+                <span class="label">Today's appointments</span>
+                <strong class="doctor-today-num"><span data-status-count-for="#todayList" data-status-value="all">0</span></strong>
+                <span class="doctor-today-meta"><span data-status-count-for="#todayList" data-status-value="checked-in">0</span> waiting · <span data-status-count-for="#todayList" data-status-value="completed">0</span> done</span>
+              </div>
+            </section>
+
+            <div class="grid-2 mb-3">
+              <section class="card-panel spotlight" data-spotlight-for="#todayList" data-spotlight-status="in-consultation" aria-label="Now consulting">
+                <div class="panel-header mb-2"><h2 class="panel-title"><span class="live-dot" aria-hidden="true"></span>Now consulting</h2><span class="badge-status" data-field="status">—</span></div>
+                <div data-spotlight-filled>
+                  <div class="person"><span class="avatar avatar-lg tone-blue" data-avatar="name">—</span><div><span class="person-name" data-field="name">—</span><span class="person-sub"><span data-field="pid">—</span> · <span data-field="age">—</span> yrs · <span data-field="gender">—</span></span></div></div>
+                  <div class="spotlight-meta"><span><i class="bi bi-clock" aria-hidden="true"></i><span data-field="time">—</span></span><span><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i><span data-field="treatment">—</span></span><span><i class="bi bi-exclamation-triangle" aria-hidden="true"></i>Allergies: <span data-field="allergies">—</span></span></div>
+                  <div class="spotlight-actions"><button type="button" class="btn btn-continue btn-sm" data-bs-toggle="modal" data-bs-target="#consultModal" data-mode="edit"><i class="bi bi-arrow-right-circle" aria-hidden="true"></i>Continue consultation</button><button type="button" class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#patientPreviewModal"><i class="bi bi-person-vcard" aria-hidden="true"></i>Patient details</button></div>
+                </div>
+                <p class="text-muted small mb-0" data-spotlight-empty hidden>No patient in the chair. Start the next patient from the list below.</p>
+              </section>
+              <section class="card-panel spotlight next" data-spotlight-for="#todayList" data-spotlight-status="checked-in,confirmed,scheduled" aria-label="Next patient">
+                <div class="panel-header mb-2"><h2 class="panel-title"><span class="live-dot" aria-hidden="true"></span>Next patient</h2><span class="badge-status" data-field="status">—</span></div>
+                <div data-spotlight-filled>
+                  <div class="person"><span class="avatar avatar-lg tone-blue" data-avatar="name">—</span><div><span class="person-name" data-field="name">—</span><span class="person-sub"><span data-field="pid">—</span> · <span data-field="age">—</span> yrs · <span data-field="gender">—</span></span></div></div>
+                  <div class="spotlight-meta"><span><i class="bi bi-clock" aria-hidden="true"></i><span data-field="time">—</span></span><span><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i><span data-field="treatment">—</span></span><span><i class="bi bi-exclamation-triangle" aria-hidden="true"></i>Allergies: <span data-field="allergies">—</span></span></div>
+                  <div class="spotlight-actions"><button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#consultModal" data-mode="edit"><i class="bi bi-play-circle" aria-hidden="true"></i>Start consultation</button><button type="button" class="btn btn-light btn-sm" data-set-status="Checked In"><i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>Check in</button><button type="button" class="btn btn-light btn-sm" data-toast="Patient called to the chair (display &amp; SMS)" data-toast-type="info"><i class="bi bi-megaphone" aria-hidden="true"></i>Call to chair</button></div>
+                </div>
+                <p class="text-muted small mb-0" data-spotlight-empty hidden>Nobody is waiting. All of today's patients have been seen.</p>
+              </section>
+            </div>
+
+            <section class="card-panel" aria-labelledby="todayTitle">
+              <div class="panel-header">
+                <h2 class="panel-title" id="todayTitle"><i class="bi bi-calendar-check" aria-hidden="true"></i>Today's Appointments <span class="count">(<span data-status-count-for="#todayList" data-status-value="all">0</span>)</span></h2>
+                <div class="panel-tools">
+                  <div class="search-box">
+                    <i class="bi bi-search" aria-hidden="true"></i>
+                    <label for="todaySearch" class="visually-hidden">Search today's patients</label>
+                    <input type="search" id="todaySearch" class="form-control form-control-sm" placeholder="Search patient, ID, reason..." data-search-target="#todayList">
+                  </div>
+                  <button type="button" class="btn btn-light btn-sm" data-action="print"><i class="bi bi-printer" aria-hidden="true"></i>Print list</button>
+                  <a href="appointments.html" class="btn btn-light btn-sm"><i class="bi bi-calendar-week" aria-hidden="true"></i>All appointments</a>
+                </div>
+              </div>
+              <div class="nav nav-tabs-app mb-3" role="group" aria-label="Filter by status" data-filter-group>
+                <button type="button" class="nav-link active" aria-pressed="true" data-filter-target="#todayList" data-filter-field="status" data-filter-value="all">All <span class="view-switch-count"><span data-status-count-for="#todayList" data-status-value="all">0</span></span></button>
+                <button type="button" class="nav-link" aria-pressed="false" data-filter-target="#todayList" data-filter-field="status" data-filter-value="Scheduled">Scheduled <span class="view-switch-count"><span data-status-count-for="#todayList" data-status-value="scheduled">0</span></span></button>
+                <button type="button" class="nav-link" aria-pressed="false" data-filter-target="#todayList" data-filter-field="status" data-filter-value="Confirmed">Confirmed <span class="view-switch-count"><span data-status-count-for="#todayList" data-status-value="confirmed">0</span></span></button>
+                <button type="button" class="nav-link" aria-pressed="false" data-filter-target="#todayList" data-filter-field="status" data-filter-value="Checked In">Checked In <span class="view-switch-count"><span data-status-count-for="#todayList" data-status-value="checked-in">0</span></span></button>
+                <button type="button" class="nav-link" aria-pressed="false" data-filter-target="#todayList" data-filter-field="status" data-filter-value="In Consultation">In Consultation <span class="view-switch-count"><span data-status-count-for="#todayList" data-status-value="in-consultation">0</span></span></button>
+                <button type="button" class="nav-link" aria-pressed="false" data-filter-target="#todayList" data-filter-field="status" data-filter-value="Completed">Completed <span class="view-switch-count"><span data-status-count-for="#todayList" data-status-value="completed">0</span></span></button>
+                <button type="button" class="nav-link" aria-pressed="false" data-filter-target="#todayList" data-filter-field="status" data-filter-value="Cancelled">Cancelled <span class="view-switch-count"><span data-status-count-for="#todayList" data-status-value="cancelled">0</span></span></button>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-app table-hover appt-table table-cards" id="todayList" data-list data-collection="appointments" data-where="date=today;doctor=@name" data-sort="time" data-join="patients:phone" data-where-label="today, this doctor">
+                  <thead>
+                    <tr><th scope="col">#</th><th scope="col">Time</th><th scope="col">Patient</th><th scope="col">Age</th><th scope="col">Gender</th><th scope="col">Appointment Type</th><th scope="col">Reason / Treatment</th><th scope="col">Status</th><th scope="col" class="action-col" data-no-export>Action</th></tr>
+                  </thead>
+                  <tbody>
+                    <template data-template>
+                      <tr data-record>
+                        <td class="cell-index" data-row-index>1</td>
+                        <td data-label="Time" data-field="time"></td>
+                        <td class="cell-wide" data-label="Patient">
+                          <button type="button" class="person person-link" data-bs-toggle="modal" data-bs-target="#patientPreviewModal" data-bind-aria-label="Open patient details for {name}">
+                            <span class="avatar" data-avatar="name" data-tone-from="name"></span>
+                            <span><span class="person-name" data-field="name" data-primary></span><span class="person-sub"><span data-field="pid" data-default="New patient"></span> · <span data-field="phone"></span></span></span>
+                          </button>
+                          <span data-field="bloodGroup" data-default="—" hidden></span><span data-field="address" data-default="—" hidden></span><span data-field="allergies" data-default="None recorded" hidden></span><span data-field="history" data-default="No medical notes yet" hidden></span><span data-field="lastvisit" data-derive="agg" data-agg="appointments" data-agg-match="phone=phone" data-agg-field="date" data-agg-fn="latest" data-agg-where="date=past;status=Completed" data-default="First visit" hidden></span><span data-field="doctor" hidden></span><span data-field="date" data-stamp hidden></span><span data-field="duration" hidden></span>
+                          <span data-field="complaint" data-default="" hidden></span><span data-field="symptoms" data-default="" hidden></span><span data-field="diagnosis" data-default="" hidden></span><span data-field="procedure" data-default="" hidden></span><span data-field="tooth" data-default="" hidden></span><span data-field="prescription" data-default="" hidden></span><span data-field="notes" data-default="" hidden></span><span data-field="followup" data-default="" hidden></span>
+                        </td>
+                        <td data-label="Age" data-field="age"></td>
+                        <td data-label="Gender" data-field="gender"></td>
+                        <td data-label="Type"><span class="badge-status badge-type" data-field="type"></span></td>
+                        <td data-label="Reason / Treatment" class="cell-wrap" data-field="treatment"></td>
+                        <td data-label="Status"><span class="badge-status" data-field="status"></span></td>
+                        <td class="action-col">
+                          <div class="action-group">
+                            <button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#patientPreviewModal" data-bind-aria-label="View {name}"><i class="bi bi-eye" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-primary btn-sm consult-btn consult-start" data-bs-toggle="modal" data-bs-target="#consultModal" data-mode="edit"><i class="bi bi-play-circle" aria-hidden="true"></i>Start</button>
+                            <button type="button" class="btn btn-sm consult-btn consult-continue btn-continue" data-bs-toggle="modal" data-bs-target="#consultModal" data-mode="edit"><i class="bi bi-arrow-right-circle" aria-hidden="true"></i>Continue</button>
+                            <button type="button" class="btn btn-light btn-sm consult-btn consult-view" data-bs-toggle="modal" data-bs-target="#consultModal" data-mode="edit"><i class="bi bi-journal-text" aria-hidden="true"></i>Notes</button>
+                            <span class="consult-btn consult-none" data-field="status"></span>
+                            <div class="dropdown">
+                              <button type="button" class="btn-icon neutral" data-bs-toggle="dropdown" aria-expanded="false" data-bind-aria-label="More actions for {name}"><i class="bi bi-three-dots" aria-hidden="true"></i></button>
+                              <ul class="dropdown-menu dropdown-menu-end">
+                                <li><h6 class="dropdown-header">Status</h6></li>
+                                <li><a class="dropdown-item" href="#" data-set-status="Confirmed"><i class="bi bi-calendar-check" aria-hidden="true"></i>Confirm</a></li>
+                                <li><a class="dropdown-item" href="#" data-set-status="Checked In"><i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>Check in</a></li>
+                                <li><a class="dropdown-item" href="#" data-set-status="Completed"><i class="bi bi-check2-circle" aria-hidden="true"></i>Mark completed</a></li>
+                                <li><a class="dropdown-item" href="#" data-set-status="No Show" data-toast-type="warning"><i class="bi bi-person-x" aria-hidden="true"></i>Mark no-show</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#" data-toast="Patient called to the chair" data-bind-data-toast="{name} called to the chair (display &amp; SMS)" data-toast-type="info"><i class="bi bi-megaphone" aria-hidden="true"></i>Call to chair</a></li>
+                                <li><a class="dropdown-item" href="invoices.html#invoiceModal" data-bind-href="invoices.html?prefill-patient={name}&amp;prefill-doctor={doctor}&amp;prefill-treatment={treatment}#invoiceModal"><i class="bi bi-receipt" aria-hidden="true"></i>Create invoice</a></li>
+                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#rescheduleModal" data-mode="edit"><i class="bi bi-calendar-event" aria-hidden="true"></i>Reschedule</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#cancelModal"><i class="bi bi-x-circle" aria-hidden="true"></i>Cancel appointment</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </template>
+                  </tbody>
+                </table>
+              </div>
+              <div class="empty-state" data-empty-for="#todayList" hidden><i class="bi bi-calendar-x" aria-hidden="true"></i>No appointments for this doctor today, or none match this filter.
+                <div class="mt-3"><button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#visitModal" data-record-ref="#doctorProfile"><i class="bi bi-plus-lg" aria-hidden="true"></i>Add appointment</button></div></div>
+            </section>
+
+            <section class="card-panel mt-3" aria-labelledby="upcomingTitle">
+              <div class="panel-header">
+                <h2 class="panel-title" id="upcomingTitle"><i class="bi bi-calendar-range" aria-hidden="true"></i>Upcoming for this doctor <span class="count">(<span data-count-for="#upcomingList">0</span>)</span></h2>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-app table-hover table-compact" id="upcomingList" data-list data-collection="appointments" data-where="date=future;doctor=@name;status!=Cancelled|No Show" data-sort="date,time" data-page-size="10">
+                  <thead><tr><th scope="col">Date</th><th scope="col">Time</th><th scope="col">Patient</th><th scope="col">Treatment</th><th scope="col">Status</th><th scope="col" class="action-col" data-no-export>Action</th></tr></thead>
+                  <tbody>
+                    <template data-template>
+                      <tr data-record>
+                        <td data-field="date"></td><td data-field="time"></td>
+                        <td><span class="person-name" data-field="name" data-primary></span><span class="person-sub" data-field="phone"></span><span hidden><span data-field="pid"></span><span data-field="age"></span><span data-field="gender"></span><span data-field="doctor"></span><span data-field="type"></span><span data-field="duration"></span><span data-field="complaint"></span><span data-field="notes"></span></span></td>
+                        <td data-field="treatment"></td>
+                        <td><span class="badge-status" data-field="status"></span></td>
+                        <td class="action-col"><div class="action-group"><button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#patientPreviewModal" data-bind-aria-label="View {name}"><i class="bi bi-eye" aria-hidden="true"></i></button><button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#rescheduleModal" data-mode="edit" aria-label="Reschedule"><i class="bi bi-calendar-event" aria-hidden="true"></i></button><button type="button" class="btn-icon" data-set-status="Confirmed" aria-label="Confirm"><i class="bi bi-check2" aria-hidden="true"></i></button></div></td>
+                      </tr>
+                    </template>
+                  </tbody>
+                </table>
+              </div>
+              <div class="empty-state" data-empty-for="#upcomingList" hidden><i class="bi bi-calendar-x" aria-hidden="true"></i>No upcoming appointments booked for this doctor.</div>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- ============ MODALS ============ -->
+
+  <!-- Consultation -->
+  <div class="modal fade" id="consultModal" tabindex="-1" aria-labelledby="consultTitle" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-fullscreen-lg-down modal-dialog-scrollable">
+      <form class="modal-content" novalidate data-edit-form data-success-edit="Consultation saved">
+        <div class="modal-header">
+          <h2 class="modal-title" id="consultTitle"><span class="title-icon tone-purple"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i></span>Consultation · <span data-field="name">Patient</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="consult-layout">
+            <aside class="consult-summary" aria-label="Patient summary">
+              <div class="person"><span class="avatar avatar-lg tone-blue" data-avatar="name">P</span><div><span class="person-name" data-field="name">Patient</span><span class="person-sub" data-field="pid">—</span></div></div>
+              <dl class="summary-list">
+                <div><dt>Age / Gender</dt><dd><span data-field="age">—</span> yrs · <span data-field="gender">—</span></dd></div>
+                <div><dt>Phone</dt><dd data-field="phone">—</dd></div>
+                <div><dt>Previous visit</dt><dd data-field="lastvisit">—</dd></div>
+                <div><dt>Today</dt><dd><span data-field="time">—</span> · <span data-field="type">—</span></dd></div>
+                <div><dt>Reason</dt><dd data-field="treatment">—</dd></div>
+                <div><dt>Medical notes</dt><dd data-field="history">—</dd></div>
+              </dl>
+              <div class="allergy-box"><i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i><span>Allergies: <span data-field="allergies">—</span></span></div>
+              <button type="button" class="btn btn-light btn-sm w-100 mt-3" data-switch-modal="#patientPreviewModal"><i class="bi bi-clock-history" aria-hidden="true"></i>Full patient history</button>
+            </aside>
+
+            <div class="grid-12">
+              <div><label for="cComplaint" class="form-label">Chief complaint *</label><textarea class="form-control" id="cComplaint" name="complaint" rows="2" required placeholder="In the patient's words"></textarea><div class="invalid-feedback">Record the chief complaint.</div>
+                <div class="chip-row"><button type="button" class="chip" data-append-to="#cComplaint" data-append="Toothache">Toothache</button><button type="button" class="chip" data-append-to="#cComplaint" data-append="Sensitivity to cold">Sensitivity to cold</button><button type="button" class="chip" data-append-to="#cComplaint" data-append="Bleeding gums">Bleeding gums</button><button type="button" class="chip" data-append-to="#cComplaint" data-append="Swelling">Swelling</button><button type="button" class="chip" data-append-to="#cComplaint" data-append="Broken tooth">Broken tooth</button><button type="button" class="chip" data-append-to="#cComplaint" data-append="Routine check-up">Routine check-up</button></div></div>
+              <div><label for="cSymptoms" class="form-label">Symptoms</label><input type="text" class="form-control" id="cSymptoms" name="symptoms" placeholder="Pick or type">
+                <div class="chip-row"><button type="button" class="chip" data-append-to="#cSymptoms" data-append="Pain on chewing">Pain on chewing</button><button type="button" class="chip" data-append-to="#cSymptoms" data-append="Night pain">Night pain</button><button type="button" class="chip" data-append-to="#cSymptoms" data-append="Sensitivity to cold">Sensitivity to cold</button><button type="button" class="chip" data-append-to="#cSymptoms" data-append="Swelling">Swelling</button><button type="button" class="chip" data-append-to="#cSymptoms" data-append="Bad breath">Bad breath</button><button type="button" class="chip" data-append-to="#cSymptoms" data-append="Loose tooth">Loose tooth</button><button type="button" class="chip" data-append-to="#cSymptoms" data-append="Mild soreness">Mild soreness</button></div></div>
+              <div class="span-8"><label for="cDiagnosis" class="form-label">Diagnosis *</label><input type="text" class="form-control" id="cDiagnosis" name="diagnosis" required placeholder="Provisional / final diagnosis"><div class="invalid-feedback">Enter a diagnosis.</div>
+                <div class="chip-row"><button type="button" class="chip" data-append-to="#cDiagnosis" data-append="Dental caries">Dental caries</button><button type="button" class="chip" data-append-to="#cDiagnosis" data-append="Irreversible pulpitis">Irreversible pulpitis</button><button type="button" class="chip" data-append-to="#cDiagnosis" data-append="Gingivitis">Gingivitis</button><button type="button" class="chip" data-append-to="#cDiagnosis" data-append="Periapical abscess">Periapical abscess</button><button type="button" class="chip" data-append-to="#cDiagnosis" data-append="Impacted third molar">Impacted third molar</button><button type="button" class="chip" data-append-to="#cDiagnosis" data-append="Malocclusion Class II">Malocclusion Class II</button></div></div>
+              <div class="span-4"><label for="cTooth" class="form-label">Tooth no. (FDI)</label><input type="text" class="form-control" id="cTooth" name="tooth" placeholder="e.g. 36"></div>
+              <div><label for="cProcedure" class="form-label">Treatment / procedure</label><select class="form-select" id="cProcedure" name="procedure" data-options="procedures" data-option-field="procedure" data-options-empty="off"><option value="">Select procedure</option><option>Consultation only</option><option>Scaling &amp; polishing</option><option>Composite filling</option><option>Root canal treatment</option><option>Extraction</option><option>Crown preparation</option><option>Orthodontic adjustment</option><option>Teeth whitening</option></select></div>
+              <div><label for="cRx" class="form-label">Prescription</label><textarea class="form-control" id="cRx" name="prescription" rows="3" placeholder="One medicine per line"></textarea>
+                <div class="chip-row"><button type="button" class="chip" data-append-to="#cRx" data-append="Amoxicillin 500 mg — 1-0-1 × 5 days">Amoxicillin 500 mg</button><button type="button" class="chip" data-append-to="#cRx" data-append="Paracetamol 650 mg — 1-1-1 × 3 days">Paracetamol 650 mg</button><button type="button" class="chip" data-append-to="#cRx" data-append="Metronidazole 400 mg — 1-1-1 × 5 days">Metronidazole 400 mg</button><button type="button" class="chip" data-append-to="#cRx" data-append="Chlorhexidine 0.2% mouthwash — twice daily × 7 days">Chlorhexidine 0.2% mouthwash</button><button type="button" class="chip" data-append-to="#cRx" data-append="Sensodyne Repair toothpaste — twice daily">Sensodyne Repair toothpaste</button></div></div>
+              <div class="span-8"><label for="cNotes" class="form-label">Doctor notes</label><textarea class="form-control" id="cNotes" name="notes" rows="2" placeholder="Findings, procedure details, advice"></textarea></div>
+              <div class="span-4"><label for="cFollow" class="form-label">Next follow-up</label><input type="date" class="form-control" id="cFollow" name="followup"></div>
+            </div>
+          </div>
+          <input type="hidden" name="status" value="In Consultation">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light me-auto" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-light" data-action="print"><i class="bi bi-printer" aria-hidden="true"></i>Print</button>
+          <button type="submit" class="btn btn-soft" formnovalidate data-submit-status="In Consultation" data-success="Consultation saved — patient stays In Consultation"><i class="bi bi-save" aria-hidden="true"></i>Save Consultation</button>
+          <button type="submit" class="btn btn-primary" data-submit-status="Completed" data-success="Consultation completed — appointment marked Completed"><i class="bi bi-check2-circle" aria-hidden="true"></i>Save &amp; Complete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Patient preview -->
+  <div class="modal fade" id="patientPreviewModal" tabindex="-1" aria-labelledby="patientPreviewTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="patientPreviewTitle"><span class="title-icon tone-blue"><i class="bi bi-person-vcard" aria-hidden="true"></i></span>Patient Details</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="profile-head">
+            <span class="avatar avatar-lg tone-blue" data-avatar="name">P</span>
+            <div><h3 data-field="name">Patient</h3><span class="person-sub"><span data-field="pid">—</span> · <span data-field="phone">—</span></span></div>
+            <span class="badge-status ms-auto" data-field="status">—</span>
+          </div>
+          <ul class="nav nav-tabs-app mb-3" role="tablist">
+            <li class="nav-item" role="presentation"><button class="nav-link active" id="ppTabInfo" data-bs-toggle="tab" data-bs-target="#ppInfo" type="button" role="tab" aria-controls="ppInfo" aria-selected="true">Basic info</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link" id="ppTabVisits" data-bs-toggle="tab" data-bs-target="#ppVisits" type="button" role="tab" aria-controls="ppVisits" aria-selected="false">Appointments</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link" id="ppTabTreat" data-bs-toggle="tab" data-bs-target="#ppTreat" type="button" role="tab" aria-controls="ppTreat" aria-selected="false">Treatments</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link" id="ppTabNotes" data-bs-toggle="tab" data-bs-target="#ppNotes" type="button" role="tab" aria-controls="ppNotes" aria-selected="false">Consultation notes</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link" id="ppTabBill" data-bs-toggle="tab" data-bs-target="#ppBill" type="button" role="tab" aria-controls="ppBill" aria-selected="false">Billing</button></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="ppInfo" role="tabpanel" aria-labelledby="ppTabInfo" tabindex="0">
+              <dl class="detail-list">
+                <div><dt>Age / Gender</dt><dd><span data-field="age">—</span> yrs · <span data-field="gender">—</span></dd></div>
+                <div><dt>Blood group</dt><dd data-field="bloodGroup">—</dd></div>
+                <div><dt>Phone</dt><dd data-field="phone">—</dd></div>
+                <div><dt>Previous visit</dt><dd data-field="lastvisit">—</dd></div>
+                <div class="span-2"><dt>Address</dt><dd data-field="address">—</dd></div>
+                <div><dt>Allergies</dt><dd class="text-danger" data-field="allergies">—</dd></div>
+                <div><dt>Medical notes</dt><dd data-field="history">—</dd></div>
+                <div><dt>Today</dt><dd><span data-field="time">—</span> · <span data-field="doctor">—</span></dd></div>
+                <div><dt>Reason</dt><dd data-field="treatment">—</dd></div>
+              </dl>
+              <h4 class="form-section-title mt-4">Today's consultation</h4>
+              <dl class="detail-list">
+                <div><dt>Chief complaint</dt><dd data-field="complaint">—</dd></div>
+                <div><dt>Diagnosis</dt><dd data-field="diagnosis">—</dd></div>
+                <div><dt>Procedure</dt><dd><span data-field="procedure">—</span> <span class="text-muted">· tooth <span data-field="tooth">—</span></span></dd></div>
+                <div><dt>Next follow-up</dt><dd data-field="followup">—</dd></div>
+                <div class="span-2"><dt>Prescription</dt><dd class="pre-line" data-field="prescription">—</dd></div>
+                <div class="span-2"><dt>Doctor notes</dt><dd data-field="notes">—</dd></div>
+              </dl>
+            </div>
+            <div class="tab-pane fade" id="ppVisits" role="tabpanel" aria-labelledby="ppTabVisits" tabindex="0" data-related-wrap>
+              <div class="table-responsive" data-related-hide-empty>
+                <table class="table table-app table-compact">
+                  <caption class="visually-hidden">Appointments</caption>
+                  <thead><tr><th scope="col">Date</th><th scope="col">Doctor</th><th scope="col">Reason</th><th scope="col">Status</th></tr></thead>
+                  <tbody data-related="appointments" data-related-match="phone=phone" data-related-sort="-date,time">
+                    <template data-template><tr><td><span data-field="date"></span> <span class="person-sub" data-field="time"></span></td><td data-field="doctor"></td><td data-field="treatment"></td><td><span class="badge-status" data-field="status"></span></td></tr></template>
+                  </tbody>
+                </table>
+              </div>
+              <p class="text-muted small mb-0" data-related-empty hidden>First visit — no earlier appointments.</p>
+            </div>
+            <div class="tab-pane fade" id="ppTreat" role="tabpanel" aria-labelledby="ppTabTreat" tabindex="0">
+              <div data-related-wrap>
+                <div class="table-responsive" data-related-hide-empty>
+                  <table class="table table-app table-compact">
+                    <caption class="visually-hidden">Procedures done</caption>
+                    <thead><tr><th scope="col">Date</th><th scope="col">Procedure</th><th scope="col">Tooth</th><th scope="col">Doctor</th></tr></thead>
+                    <tbody data-related="appointments" data-related-match="phone=phone" data-related-where="status=Completed" data-related-sort="-date">
+                      <template data-template><tr><td data-field="date"></td><td><span data-field="procedure" data-default=""></span> <span class="person-sub" data-field="treatment"></span></td><td data-field="tooth"></td><td data-field="doctor"></td></tr></template>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="text-muted small" data-related-empty hidden>No previous treatments.</p>
+              </div>
+              <div data-related-wrap>
+                <p class="form-section-title mt-3" data-related-hide-empty>Treatment plans</p>
+                <ul class="timeline" data-related="plans" data-related-match="patient=name" data-related-sort="-date">
+                  <template data-template><li class="timeline-item"><span class="timeline-time" data-field="plan"></span><div><span class="person-name"><span data-field="treatment"></span> · <span data-field="tooth"></span></span><span class="person-sub"><span data-field="done"></span>/<span data-field="sessions"></span> sessions · <span data-field="cost"></span> · <span data-field="status"></span></span></div></li></template>
+                </ul>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="ppNotes" role="tabpanel" aria-labelledby="ppTabNotes" tabindex="0" data-related-wrap>
+              <ul class="timeline" data-related="appointments" data-related-match="phone=phone" data-related-where="status=Completed|In Consultation" data-related-sort="-date">
+                <template data-template><li class="timeline-item"><span class="timeline-time" data-field="date"></span><div><span class="person-name"><span data-field="diagnosis" data-default=""></span> <span class="text-muted" data-field="treatment"></span></span><span class="person-sub"><span data-field="doctor"></span> · <span data-field="notes" data-default="No notes recorded."></span></span></div></li></template>
+              </ul>
+              <p class="text-muted small mb-0" data-related-empty hidden>No previous consultation notes.</p>
+            </div>
+            <div class="tab-pane fade" id="ppBill" role="tabpanel" aria-labelledby="ppTabBill" tabindex="0" data-related-wrap>
+              <div class="table-responsive" data-related-hide-empty>
+                <table class="table table-app table-compact">
+                  <caption class="visually-hidden">Invoices</caption>
+                  <thead><tr><th scope="col">Invoice</th><th scope="col">Date</th><th scope="col">Item</th><th scope="col">Amount</th><th scope="col">Balance</th><th scope="col">Status</th></tr></thead>
+                  <tbody data-related="invoices" data-related-match="patient=name" data-related-sort="-date">
+                    <template data-template><tr><td><a data-field="invoice" data-bind-href="invoices.html?open={id}"></a></td><td data-field="date"></td><td data-field="treatment"></td><td data-field="amount"></td><td data-field="balance"></td><td><span class="badge-status" data-field="status"></span></td></tr></template>
+                  </tbody>
+                </table>
+              </div>
+              <p class="text-muted small mb-0" data-related-empty hidden>No invoices yet. The first invoice is created after the consultation.</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-light" data-action="print"><i class="bi bi-printer" aria-hidden="true"></i>Print</button>
+          <a href="patients.html" class="btn btn-light" data-bind-href="patients.html?find={phone}"><i class="bi bi-person-lines-fill" aria-hidden="true"></i>Full profile</a>
+          <a href="invoices.html#invoiceModal" class="btn btn-light" data-bind-href="invoices.html?prefill-patient={name}&amp;prefill-doctor={doctor}&amp;prefill-treatment={treatment}#invoiceModal"><i class="bi bi-receipt" aria-hidden="true"></i>Create invoice</a>
+          <button type="button" class="btn btn-primary" data-switch-modal="#consultModal" data-mode="edit"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i>Open consultation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add appointment for this doctor -->
+  <div class="modal fade" id="visitModal" tabindex="-1" aria-labelledby="visitModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <form class="modal-content" novalidate data-add-to="#todayList" data-also-add="patients" data-also-match="phone" data-also-fields="name,phone,age,gender,doctor" data-also-stamp="registered" data-success="Appointment added to today's list">
+        <div class="modal-header">
+          <h2 class="modal-title" id="visitModalTitle"><span class="title-icon tone-blue"><i class="bi bi-calendar-plus" aria-hidden="true"></i></span><span data-modal-title>Add Appointment</span> · <span data-field="name">Doctor</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="small text-muted">Adds a visit to today's list for <strong data-field="name">this doctor</strong>. For another day, use <a href="appointments.html#appointmentModal">Appointments</a>.</p>
+          <div class="grid-12">
+            <div class="span-6">
+              <label for="vPhone" class="form-label">Find patient (mobile or name) *</label>
+              <div class="suggest" data-suggest>
+                <div class="suggest-field">
+                  <input type="tel" class="form-control" id="vPhone" name="phone" required pattern="[0-9+\s\-]{8,}" placeholder="Type a mobile number or name" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="vPhoneSuggest" aria-describedby="vPhoneHelp" data-suggest-input>
+                  <button type="button" class="suggest-clear" data-action="clear-suggest" aria-label="Clear mobile number" hidden><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+                  <div class="invalid-feedback">Enter a valid mobile number, or pick an existing patient.</div>
+                </div>
+                <ul class="suggest-list" data-collection="patients" data-sort="name" data-limit="100" id="vPhoneSuggest" role="listbox" aria-label="Existing patients" hidden>
+                  <template data-template>
+                    <li class="suggest-item" data-record role="option" aria-selected="false" data-suggest-item data-bind-id="vPhoneSuggest-{id}">
+                      <div class="suggest-head"><span class="suggest-avatar"><i class="bi bi-person" aria-hidden="true"></i></span><strong data-fill="name" data-field="name"></strong><span class="suggest-id" data-fill="pid" data-field="pid"></span></div>
+                      <div class="suggest-meta"><span>Age: <span data-fill="age" data-field="age"></span>Y / <span data-fill="gender" data-field="gender"></span></span><span>Location: <span data-field="address"></span></span><span>Phone: <span data-fill="phone" data-field="phone"></span></span><span data-fill="doctor" data-field="doctor" hidden></span></div>
+                    </li>
+                  </template>
+                  <li class="suggest-empty" data-suggest-empty hidden><i class="bi bi-person-plus" aria-hidden="true"></i> No existing patient found. A new patient record will be created.</li>
+                </ul>
+              </div>
+              <div class="form-text" id="vPhoneHelp">Existing patient? Type 3+ digits or 2+ letters to auto-fill their details.</div>
+            </div>
+            <div class="span-6"><label for="vName" class="form-label">Patient name *</label><input type="text" class="form-control" id="vName" name="name" required><div class="invalid-feedback">Patient name is required.</div><input type="hidden" name="pid"><input type="hidden" name="doctor" data-bind-value="{name}"></div>
+            <div class="span-3 span-half"><label for="vAge" class="form-label">Age *</label><input type="number" class="form-control" id="vAge" name="age" required min="1" max="110"><div class="invalid-feedback">Enter age (1–110).</div></div>
+            <div class="span-3 span-half"><label for="vGender" class="form-label">Gender *</label><select class="form-select" id="vGender" name="gender" required><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select><div class="invalid-feedback">Select gender.</div></div>
+            <div class="span-6"><label for="vReason" class="form-label">Treatment *</label><select class="form-select" id="vReason" name="treatment" required data-options="procedures" data-option-field="procedure" data-option-attr-duration="duration" data-option-fill="duration:duration"><option value="">Select treatment</option></select><div class="invalid-feedback">Choose the treatment.</div></div>
+            <div class="span-6"><label for="vComplaint" class="form-label">Reason for visit</label><input type="text" class="form-control" id="vComplaint" name="complaint" placeholder="e.g. Toothache since 2 days"></div>
+            <div class="span-3"><label for="vType" class="form-label">Type</label><select class="form-select" id="vType" name="type"><option>New</option><option selected>Follow-up</option><option>Review</option><option>Emergency</option></select></div>
+<div class="span-3"><span class="form-label d-block" id="vTimeLabel">Time *</span><div class="time-picker" data-time-picker role="group" aria-labelledby="vTimeLabel"><select class="form-select" data-time-part="hour" aria-label="Hour"><option>01</option><option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option><option selected>09</option><option>10</option><option>11</option><option>12</option></select><select class="form-select" data-time-part="minute" aria-label="Minute"><option selected>00</option><option>05</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><select class="form-select" data-time-part="period" aria-label="AM or PM"><option selected>AM</option><option>PM</option></select><input type="hidden" name="time" value="9:00 AM"></div></div>
+            <div class="span-3"><label for="vDuration" class="form-label">Duration</label><select class="form-select" id="vDuration" name="duration"><option>10 min</option><option>15 min</option><option>20 min</option><option selected>30 min</option><option>45 min</option><option>60 min</option><option>90 min</option></select></div>
+            <div class="span-3"><label for="vStatus" class="form-label">Status</label><select class="form-select" id="vStatus" name="status"><option>Scheduled</option><option>Confirmed</option><option>Checked In</option></select></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check2" aria-hidden="true"></i>Add to today</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit doctor -->
+  <div class="modal fade" id="doctorEditModal" tabindex="-1" aria-labelledby="doctorEditTitle" aria-hidden="true" data-edit-title="Edit Doctor">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <form class="modal-content" novalidate data-edit-form data-success-edit="Doctor profile updated">
+        <div class="modal-header">
+          <h2 class="modal-title" id="doctorEditTitle"><span class="title-icon tone-blue"><i class="bi bi-person-badge" aria-hidden="true"></i></span><span data-modal-title>Edit Doctor</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="grid-12">
+            <div class="span-6"><label for="dName" class="form-label">Name *</label><div class="input-group"><span class="input-group-text">Dr.</span><input type="text" class="form-control" id="dName" name="name" required><div class="invalid-feedback">Name is required.</div></div></div>
+            <div class="span-6"><label for="dSpec" class="form-label">Specialization</label><select class="form-select" id="dSpec" name="specialization"><option>General Dentist</option><option>Endodontist</option><option>Oral Surgeon</option><option>Orthodontist</option><option>Periodontist</option><option>Prosthodontist</option><option>Pedodontist</option></select></div>
+            <div class="span-8"><label for="dQual" class="form-label">Qualification</label><input type="text" class="form-control" id="dQual" name="qualification"></div>
+            <div class="span-4"><label for="dExp" class="form-label">Experience (yrs)</label><input type="number" class="form-control" id="dExp" name="experience" min="0" max="60"></div>
+            <div class="span-6"><label for="dPhone" class="form-label">Phone *</label><input type="tel" class="form-control" id="dPhone" name="phone" required pattern="[0-9+\s\-]{8,}"><div class="invalid-feedback">Enter a valid phone number.</div></div>
+            <div class="span-6"><label for="dEmail" class="form-label">Email *</label><input type="email" class="form-control" id="dEmail" name="email" required><div class="invalid-feedback">Enter a valid email.</div></div>
+            <div class="span-4"><label for="dDays" class="form-label">Working days</label><input type="text" class="form-control" id="dDays" name="days"></div>
+            <div class="span-4"><label for="dHours" class="form-label">Working hours</label><input type="text" class="form-control" id="dHours" name="hours"></div>
+            <div class="span-4"><label for="dFee" class="form-label">Consultation fee (₹)</label><input type="number" class="form-control" id="dFee" name="fee" min="0"></div>
+            <div class="span-4"><label for="dStatus" class="form-label">Status</label><select class="form-select" id="dStatus" name="status"><option>Available</option><option>On Leave</option><option>Unavailable</option></select></div>
+            <div class="span-8"><label for="dReg" class="form-label">Registration no.</label><input type="text" class="form-control" id="dReg" name="regNo" placeholder="KDC-00000"></div>
+            <div><label for="dSkills" class="form-label">Treatments offered</label><input type="text" class="form-control" id="dSkills" name="skills"></div>
+            <div><label for="dBio" class="form-label">About</label><textarea class="form-control" id="dBio" name="bio" rows="2"></textarea></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check2" aria-hidden="true"></i>Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Reschedule appointment -->
+  <div class="modal fade" id="rescheduleModal" tabindex="-1" aria-labelledby="rescheduleTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <form class="modal-content" novalidate data-edit-form data-success-edit="Appointment rescheduled — the patient will be notified by SMS">
+        <div class="modal-header">
+          <h2 class="modal-title" id="rescheduleTitle"><span class="title-icon tone-amber"><i class="bi bi-calendar-event" aria-hidden="true"></i></span>Reschedule <span data-field="name">appointment</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="small text-muted">Currently <strong><span data-field="date">—</span> at <span data-field="time">—</span></strong> with <span data-field="doctor">—</span> · <span data-field="treatment">—</span></p>
+          <div class="grid-2">
+            <div><label for="rsDate" class="form-label">New date *</label><input type="date" class="form-control" id="rsDate" name="date" required><div class="invalid-feedback">Pick the new date.</div></div>
+            <div><span class="form-label d-block" id="rsTimeLabel">New time *</span><div class="time-picker" data-time-picker role="group" aria-labelledby="rsTimeLabel"><select class="form-select" data-time-part="hour" aria-label="Hour"><option>01</option><option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option><option selected>09</option><option>10</option><option>11</option><option>12</option></select><select class="form-select" data-time-part="minute" aria-label="Minute"><option selected>00</option><option>05</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>35</option><option>40</option><option>45</option><option>50</option><option>55</option></select><select class="form-select" data-time-part="period" aria-label="AM or PM"><option selected>AM</option><option>PM</option></select><input type="hidden" name="time" value="9:00 AM"></div></div>
+            <div class="span-full"><label for="rsDoctor" class="form-label">Doctor *</label><select data-options="doctors" data-options-where="status!=Inactive" class="form-select" id="rsDoctor" name="doctor" required><option value="">Select doctor</option></select><div class="invalid-feedback">Choose a doctor.</div></div>
+          </div>
+          <input type="hidden" name="status" value="Scheduled">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary" data-submit-status="Scheduled"><i class="bi bi-check2" aria-hidden="true"></i>Reschedule</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Cancel appointment (keeps the record, status Cancelled) -->
+  <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content text-center">
+        <div class="modal-body p-4">
+          <span class="confirm-icon tone-amber"><i class="bi bi-calendar-x" aria-hidden="true"></i></span>
+          <h2 class="h5" id="cancelModalTitle">Cancel appointment?</h2>
+          <p class="text-muted mb-0">The appointment for <strong data-record-label>this patient</strong> will be marked as cancelled. It stays in the history and can be rescheduled later.</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Keep it</button>
+          <button type="button" class="btn btn-warning" data-set-status="Cancelled" data-toast-type="warning" data-close-modal>Yes, cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/demo-data.js"></script>
+  <script src="../assets/js/script.js"></script>
+</body>
+</html>

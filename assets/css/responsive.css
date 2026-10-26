@@ -1,0 +1,153 @@
+/* ==========================================================================
+   Dentalwyz — Responsive behaviour
+   Breakpoints follow Bootstrap 5: sm 576 · md 768 · lg 992 · xl 1200 · xxl 1400
+   ========================================================================== */
+
+/* ---------- Large desktop tweaks ---------- */
+@media (max-width: 1599.98px) {
+  .stat-value { font-size: 1.4rem; }
+  .stat-icon { width: 52px; height: 52px; font-size: 1.45rem; }
+  .stat-card { gap: 0.8rem; }
+  .timeline-time { width: 54px; font-size: 0.7rem; }
+}
+
+@media (max-width: 1399.98px) {
+  .stat-value { font-size: 1.4rem; }
+  .stat-icon { width: 52px; height: 52px; font-size: 1.45rem; }
+  .topbar-search { max-width: 420px; }
+}
+
+/* ---------- Laptop ---------- */
+@media (max-width: 1199.98px) {
+  .topbar-chip.date-chip .chip-sub { display: none; }
+  .donut { width: 140px; height: 140px; }
+}
+
+/* ---------- Tablet & below: sidebar becomes off-canvas ---------- */
+@media (max-width: 991.98px) {
+  .sidebar {
+    position: fixed;
+    top: 0; bottom: 0; left: 0;
+    width: var(--dw-sidebar-w);
+    z-index: 1045;
+  }
+  .sidebar-inner { border-radius: 0 var(--dw-radius-xl) var(--dw-radius-xl) 0; }
+  .main,
+  .sidebar-collapsed .main { margin-left: 0; padding: 12px; }
+  /* Mini mode is a desktop-only feature */
+  .sidebar-collapsed .brand-text,
+  .sidebar-collapsed .nav-list .nav-link span { display: inline; }
+  .sidebar-collapsed .nav-list .nav-link { justify-content: flex-start; padding: 0.62rem 0.9rem; }
+  .sidebar-collapsed .sidebar-header { justify-content: space-between; padding: 1.5rem 1.25rem 1.25rem 1.5rem; }
+  .topbar { top: 12px; }
+  .page-title { font-size: 1.35rem; }
+}
+
+/* ---------- Large phones / small tablets ---------- */
+@media (max-width: 767.98px) {
+  :root { --dw-gap: 12px; }
+  body { font-size: 0.85rem; }
+
+  .topbar { flex-wrap: wrap; padding: 0.6rem 0.75rem; gap: 0.5rem; }
+  .topbar-search { display: none; order: 10; flex-basis: 100%; max-width: none; }
+  .topbar.search-open .topbar-search { display: block; }
+  .topbar-actions { gap: 0.35rem; }
+  .topbar-chip { height: 44px; padding: 0 0.6rem; gap: 0.5rem; }
+  .topbar-chip .chip-sub { display: none; }
+  .date-chip .chip-text { display: none; }
+  .profile-chip .chip-text { display: none; }
+  .icon-btn { width: 42px; height: 42px; }
+  .chip-img { width: 30px; height: 30px; }
+  .notif-menu { width: calc(100vw - 24px); max-width: 360px; }
+
+
+  .card-panel { padding: 1rem; border-radius: var(--dw-radius); }
+  .stat-card { padding: 1rem; border-radius: var(--dw-radius); }
+  .stat-bars { display: none; }
+
+  .page-header { align-items: flex-start; }
+  .page-actions { width: 100%; }
+  .page-actions .btn { flex: 1 1 auto; }
+
+  .panel-tools { width: 100%; }
+  .panel-tools .search-box { flex: 1 1 100%; min-width: 0; }
+  .panel-tools .filter-select { flex: 1 1 auto; }
+
+  .donut-wrap { flex-direction: column; align-items: stretch; }
+  .donut { margin: 0 auto; }
+
+  .detail-list { grid-template-columns: 1fr; }
+
+  /* Doctor details: compact profile, appointment rows become cards */
+  .doctor-hero { padding: 1.1rem; }
+  .doctor-hero-main { flex-basis: 100%; align-items: flex-start; gap: 0.9rem; }
+  .doctor-hero-main .avatar-xl { width: 56px; height: 56px; font-size: 1.4rem; }
+  .doctor-name { font-size: 1.2rem; }
+  .doctor-facts { display: grid; gap: 0.3rem; font-size: 0.8rem; }
+  .doctor-today { flex-direction: row; justify-content: space-between; width: 100%; min-width: 0; padding: 0.75rem 1rem; gap: 0.75rem; }
+  .doctor-today-num { font-size: 1.9rem; }
+  /* Table viewports never grow taller than ~70% of the screen (row cards are tall on phones) */
+  .table-responsive { max-height: min(var(--table-max-h, 100000px), max(70vh, 280px)); }
+  .table-cards, .table-cards tbody { display: block; }
+  .table-cards thead { display: none; }
+  .table-cards tbody tr {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem 0.75rem;
+    padding: 0.9rem; margin-bottom: 0.6rem;
+    border: 1px solid var(--dw-border); border-radius: var(--dw-radius);
+    background: var(--dw-surface);
+  }
+  .table-cards tbody td { display: block; padding: 0; border: 0; white-space: normal; background: transparent !important; box-shadow: none !important; }
+  .table-cards td[data-label]::before { content: attr(data-label); display: block; font-size: 0.66rem; font-weight: 700; color: var(--dw-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .table-cards .cell-wide, .table-cards .action-col { grid-column: 1 / -1; }
+  .table-cards .cell-index { display: none; }
+  .table-cards .action-col { text-align: left !important; }
+  .appt-table [data-row-status="in-consultation"] { border-color: var(--dw-purple); background: var(--dw-purple-50); }
+  .appt-table [data-row-status="waiting"] { border-left: 4px solid var(--dw-amber); }
+  .appt-table [data-row-status="checked-in"] { border-left: 4px solid var(--dw-primary); }
+
+  /* View switch fills the width; calendar becomes a day-by-day agenda */
+  .view-switch { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+  .view-switch-btn { justify-content: center; padding: 0.55rem 0.5rem; }
+  .cal { border: 0; overflow: visible; }
+  .cal-head { display: none; }
+  .cal-grid { grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
+  .cal-day, .cal-day:nth-child(7n) { min-height: 0; border: 1px solid var(--dw-border); border-radius: 12px; }
+  .cal-day:not(.has-events):not(.is-today), .cal-day.is-muted { display: none; }
+  .cal-date-num { display: none; }
+  .cal-date-full { display: inline; }
+  .cal-add { opacity: 1; }
+  .cal-event { font-size: 0.8rem; padding: 0.45rem 0.6rem; }
+  .detail-list .span-2 { grid-column: auto; }
+
+  .modal-footer .btn { flex: 1 1 auto; }
+
+  .auth-page { grid-template-columns: 1fr; }
+  .auth-visual { display: none; }
+}
+
+/* ---------- Small phones ---------- */
+@media (max-width: 575.98px) {
+  .branch-chip .chip-text { display: none; }
+  .branch-chip .bi-chevron-down { display: none; }
+  .quick-grid { grid-template-columns: 1fr; }
+  .stat-value { font-size: 1.25rem; }
+  .toast-app { min-width: 0; width: calc(100vw - 2rem); }
+  .setting-row { flex-direction: column; align-items: flex-start; }
+  .big-figure { font-size: 1.5rem; }
+  /* Pager: info on top, then the rows-per-page select and Prev · Page X of Y · Next on one row */
+  .table-pager-controls { width: 100%; justify-content: space-between; }
+  .table-pager .pager-num, .table-pager .pager-gap { display: none; }
+  .table-pager-size span { display: none; }
+  .pager-status { display: inline; }
+}
+
+/* ---------- Touch screens ---------- */
+/* A swipe that reaches the end of a table viewport carries on scrolling the page */
+@media (pointer: coarse) {
+  .table-responsive { overscroll-behavior: auto; }
+}
+
+/* ---------- Motion preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}

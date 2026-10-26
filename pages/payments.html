@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dentalwyz dental clinic management — record and track patient payments, receipts and refunds.">
+  <title>Payments | Dentalwyz</title>
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/responsive.css" rel="stylesheet">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app-shell">
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar offcanvas-lg offcanvas-start" id="appSidebar" tabindex="-1" aria-label="Sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-header">
+          <a href="dashboard.html" class="brand" aria-label="Dentalwyz home">
+            <img src="../assets/images/logo.svg" alt="" class="brand-logo" width="40" height="40">
+            <span class="brand-text">dental<span>wyz</span></span>
+          </a>
+          <button type="button" class="btn-close d-lg-none" data-bs-dismiss="offcanvas" data-bs-target="#appSidebar" aria-label="Close menu"></button>
+        </div>
+        <nav class="sidebar-nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="dashboard.html"><i class="bi bi-house-door" aria-hidden="true"></i><span>Dashboard</span></a></li>
+            <li><a class="nav-link" href="appointments.html"><i class="bi bi-calendar3" aria-hidden="true"></i><span>Appointments</span></a></li>
+            <li><a class="nav-link" href="patients.html"><i class="bi bi-people" aria-hidden="true"></i><span>Patients</span></a></li>
+            <li><a class="nav-link" href="doctors.html"><i class="bi bi-person-badge" aria-hidden="true"></i><span>Doctors</span></a></li>
+            <li><a class="nav-link" href="documents.html"><i class="bi bi-folder2-open" aria-hidden="true"></i><span>Documents</span></a></li>
+            <li><a class="nav-link" href="invoices.html"><i class="bi bi-file-earmark-text" aria-hidden="true"></i><span>Invoices</span></a></li>
+            <li><a class="nav-link active" aria-current="page" href="payments.html"><i class="bi bi-credit-card-2-front" aria-hidden="true"></i><span>Payments</span></a></li>
+            <li><a class="nav-link" href="transactions.html"><i class="bi bi-arrow-left-right" aria-hidden="true"></i><span>Transactions</span></a></li>
+            <li><a class="nav-link" href="treatment.html"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i><span>Treatment</span></a></li>
+            <li><a class="nav-link" href="lab.html"><i class="bi bi-eyedropper" aria-hidden="true"></i><span>Lab</span></a></li>
+            <li><a class="nav-link" href="pharmacy.html"><i class="bi bi-capsule" aria-hidden="true"></i><span>Pharmacy</span></a></li>
+            <li><a class="nav-link" href="inventory.html"><i class="bi bi-box-seam" aria-hidden="true"></i><span>Inventory</span></a></li>
+            <li><a class="nav-link" href="reports.html"><i class="bi bi-bar-chart-line" aria-hidden="true"></i><span>Reports</span></a></li>
+          </ul>
+          <hr class="sidebar-divider">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="settings.html"><i class="bi bi-gear" aria-hidden="true"></i><span>Settings</span></a></li>
+            <li><a class="nav-link" href="help-support.html"><i class="bi bi-question-circle" aria-hidden="true"></i><span>Help &amp; Support</span></a></li>
+          </ul>
+        </nav>
+        <div class="sidebar-wave" aria-hidden="true"></div>
+      </div>
+    </aside>
+
+    <div class="main">
+      <!-- ============ TOP HEADER ============ -->
+      <header class="topbar">
+        <button type="button" class="icon-btn d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#appSidebar" aria-controls="appSidebar" aria-label="Open menu"><i class="bi bi-list" aria-hidden="true"></i></button>
+        <button type="button" class="icon-btn d-none d-lg-inline-flex" data-action="sidebar-collapse" aria-expanded="true" aria-label="Collapse sidebar"><i class="bi bi-layout-sidebar" aria-hidden="true"></i></button>
+
+        <form class="topbar-search" id="globalSearchForm" role="search">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <label for="globalSearch" class="visually-hidden">Search patient, appointment, invoice</label>
+          <input type="search" class="form-control" id="globalSearch" placeholder="Search patient, appointment, invoice..." autocomplete="off">
+        </form>
+
+        <div class="topbar-actions">
+          <button type="button" class="icon-btn d-md-none" data-action="toggle-search" aria-expanded="false" aria-label="Toggle search"><i class="bi bi-search" aria-hidden="true"></i></button>
+
+          <button type="button" class="topbar-chip date-chip" id="headerDate" aria-label="Choose date">
+            <i class="bi bi-calendar3 chip-icon" aria-hidden="true"></i>
+            <span class="chip-text">
+              <span class="chip-title" data-current-date>01 Oct 2026</span>
+              <span class="chip-sub" data-current-day>Thursday</span>
+            </span>
+            <input type="date" id="headerDatePicker" class="date-picker-input" tabindex="-1" aria-hidden="true">
+          </button>
+
+          <div class="dropdown">
+            <button type="button" class="icon-btn" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" aria-label="Notifications">
+              <i class="bi bi-bell" aria-hidden="true"></i><span class="notif-dot" aria-hidden="true" data-notif-dot hidden></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end notif-menu">
+              <div class="notif-menu-header">
+                <strong>Notifications <span class="badge-soft tone-blue ms-1"><span data-stat="notifications" data-stat-where="unread=yes">0</span> new</span></strong>
+                <button type="button" class="btn btn-link btn-sm p-0" data-action="mark-all-read">Mark all read</button>
+              </div>
+              <ul class="notif-list" id="notifList" data-collection="notifications" data-limit="8">
+                <template data-template>
+                  <li class="notif-item" data-record data-bind-data-unread="{unread}" tabindex="0" role="link"><span class="avatar avatar-sm" data-tone-from="icon"><i class="bi" data-bind-class="bi {icon}" aria-hidden="true"></i></span><div><p data-field="text"></p><time data-derive="ago"></time></div></li>
+                </template>
+              </ul>
+              <p class="notif-empty" data-empty-for="#notifList">No notifications yet. New appointments, patients, invoices and payments show up here.</p>
+              <div class="notif-menu-footer"><a href="settings.html#pane-notifications" class="panel-link">Notification settings</a></div>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button type="button" class="topbar-chip branch-chip" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Switch branch">
+              <img src="../assets/images/clinic.svg" alt="" class="chip-img" width="36" height="36">
+              <span class="chip-text">
+                <span class="chip-title" data-current-branch>ABC Clinic</span>
+                <span class="chip-sub" data-current-location>Calicut</span>
+              </span>
+              <i class="bi bi-chevron-down small" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end branch-menu" data-collection="branches" data-where="status=Active" data-sort="name">
+              <li><h6 class="dropdown-header">Switch branch</h6></li>
+              <template data-template><li data-record><a class="dropdown-item" href="#" data-bind-data-branch="{name}" data-bind-data-branch-location="{location}"><i class="bi bi-hospital" aria-hidden="true"></i><span data-field="name"></span> <small class="text-muted" data-field="location"></small><i class="bi bi-check2" aria-hidden="true"></i></a></li></template>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="settings.html#pane-branch"><i class="bi bi-sliders" aria-hidden="true"></i>Manage branches</a></li>
+            </ul>
+          </div>
+
+          <div class="dropdown">
+            <button type="button" class="topbar-chip profile-chip" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+              <span class="avatar avatar-sm tone-blue" data-setting-initials="pfName">MD</span>
+              <span class="chip-text d-none d-xl-block">
+                <span class="chip-title" data-setting-text="pfName">Dr. Max D'Souza</span>
+                <span class="chip-sub">Administrator</span>
+              </span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><h6 class="dropdown-header">Signed in as admin</h6></li>
+              <li><a class="dropdown-item" href="settings.html#pane-profile"><i class="bi bi-person-circle" aria-hidden="true"></i>My profile</a></li>
+              <li><a class="dropdown-item" href="settings.html#pane-clinic"><i class="bi bi-gear" aria-hidden="true"></i>Account settings</a></li>
+              <li><a class="dropdown-item" href="settings.html#pane-notifications"><i class="bi bi-bell" aria-hidden="true"></i>Notification settings</a></li>
+              <li><a class="dropdown-item" href="help-support.html"><i class="bi bi-life-preserver" aria-hidden="true"></i>Help &amp; Support</a></li>
+              <li><a class="dropdown-item" href="#" data-action="reset-demo"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Reset demo data</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="../index.html" data-action="logout"><i class="bi bi-box-arrow-right" aria-hidden="true"></i>Log out</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- ============ PAGE CONTENT ============ -->
+      <main class="content" id="main-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Payments</h1>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                <li class="breadcrumb-item">Billing</li>
+                <li class="breadcrumb-item active" aria-current="page">Payments</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="page-actions">
+            <button type="button" class="btn btn-light" data-action="export-csv" data-target="#paymentTable" data-filename="dentalwyz-payments.csv"><i class="bi bi-filetype-csv" aria-hidden="true"></i>Export CSV</button>
+            <a href="invoices.html" class="btn btn-light"><i class="bi bi-file-earmark-text" aria-hidden="true"></i>Invoices</a>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal"><i class="bi bi-plus-circle" aria-hidden="true"></i>Record Payment</button>
+          </div>
+        </div>
+
+        <!-- Stat cards -->
+        <section class="stats-grid mb-3" aria-label="Payment summary">
+          <article class="stat-card">
+              <span class="stat-icon tone-green"><i class="bi bi-cash-coin" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">Received today</p>
+                <p class="stat-value" data-stat="payments" data-stat-where="date=today;status=Completed" data-stat-fn="sum" data-stat-field="amount" data-format="currency">0</p>
+                <div class="stat-meta"><span class="text-muted fw-medium"><span data-stat="payments" data-stat-where="date=today;status=Completed" data-stat-suffix=" payment| payments">0</span></span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="30" width="8" height="16" rx="2" class="fill-green" opacity=".2"/><rect x="14" y="22" width="8" height="24" rx="2" class="fill-green" opacity=".3"/><rect x="26" y="14" width="8" height="32" rx="2" class="fill-green" opacity=".45"/><rect x="38" y="6" width="8" height="40" rx="2" class="fill-green" opacity=".6"/></svg>
+            </article>
+          <article class="stat-card">
+              <span class="stat-icon tone-blue"><i class="bi bi-calendar-check" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">This month</p>
+                <p class="stat-value" data-stat="payments" data-stat-where="date=this-month;status=Completed" data-stat-fn="sum" data-stat-field="amount" data-format="currency">0</p>
+                <div class="stat-meta"><span class="text-muted fw-medium"><span data-stat="payments" data-stat-where="date=this-month;status=Completed" data-stat-suffix=" payment| payments">0</span> received</span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="30" width="8" height="16" rx="2" class="fill-blue" opacity=".2"/><rect x="14" y="22" width="8" height="24" rx="2" class="fill-blue" opacity=".3"/><rect x="26" y="14" width="8" height="32" rx="2" class="fill-blue" opacity=".45"/><rect x="38" y="6" width="8" height="40" rx="2" class="fill-blue" opacity=".6"/></svg>
+            </article>
+          <article class="stat-card">
+              <span class="stat-icon tone-amber"><i class="bi bi-hourglass-split" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">Pending</p>
+                <p class="stat-value" data-stat="payments" data-stat-where="status=Pending" data-stat-fn="sum" data-stat-field="amount" data-format="currency">0</p>
+                <div class="stat-meta"><span class="text-muted fw-medium"><span data-stat="payments" data-stat-where="status=Pending" data-stat-suffix=" awaiting confirmation| awaiting confirmation">0</span></span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="30" width="8" height="16" rx="2" class="fill-amber" opacity=".2"/><rect x="14" y="22" width="8" height="24" rx="2" class="fill-amber" opacity=".3"/><rect x="26" y="14" width="8" height="32" rx="2" class="fill-amber" opacity=".45"/><rect x="38" y="6" width="8" height="40" rx="2" class="fill-amber" opacity=".6"/></svg>
+            </article>
+          <article class="stat-card">
+              <span class="stat-icon tone-red"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">Refunds &amp; failed</p>
+                <p class="stat-value" data-stat="payments" data-stat-where="status=Refunded|Failed" data-stat-fn="sum" data-stat-field="amount" data-format="currency">0</p>
+                <div class="stat-meta"><span class="text-muted fw-medium"><span data-stat="payments" data-stat-where="status=Refunded" data-stat-suffix=" refund| refunds">0</span> · <span data-stat="payments" data-stat-where="status=Failed">0</span> failed</span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="30" width="8" height="16" rx="2" class="fill-red" opacity=".2"/><rect x="14" y="22" width="8" height="24" rx="2" class="fill-red" opacity=".3"/><rect x="26" y="14" width="8" height="32" rx="2" class="fill-red" opacity=".45"/><rect x="38" y="6" width="8" height="40" rx="2" class="fill-red" opacity=".6"/></svg>
+            </article>
+        </section>
+
+        <div class="layout-wide-side">
+          <!-- Payment log -->
+            <section class="card-panel" aria-labelledby="paymentsTitle">
+              <div class="panel-header">
+                <h2 class="panel-title" id="paymentsTitle"><i class="bi bi-credit-card-2-front" aria-hidden="true"></i>Payment History <span class="count">(<span data-count-for="#paymentTable">0</span>)</span></h2>
+                <div class="panel-tools">
+                  <div class="search-box">
+                    <i class="bi bi-search" aria-hidden="true"></i>
+                    <label for="paymentSearch" class="visually-hidden">Search payments</label>
+                    <input type="search" id="paymentSearch" class="form-control form-control-sm" placeholder="Search payment, patient, invoice..." data-search-target="#paymentTable">
+                  </div>
+                  <label for="paymentMethodFilter" class="visually-hidden">Filter by payment method</label>
+                  <select id="paymentMethodFilter" class="form-select form-select-sm filter-select" data-filter-target="#paymentTable" data-filter-field="method">
+                    <option value="all">All methods</option>
+                    <option>Cash</option><option>UPI</option><option>Card</option><option>Bank Transfer</option><option>Insurance</option>
+                  </select>
+                  <label for="paymentStatusFilter" class="visually-hidden">Filter by status</label>
+                  <select id="paymentStatusFilter" class="form-select form-select-sm filter-select" data-filter-target="#paymentTable" data-filter-field="status">
+                    <option value="all">All status</option>
+                    <option>Completed</option><option>Pending</option><option>Failed</option><option>Refunded</option>
+                  </select>
+                  <label for="paymentPeriodFilter" class="visually-hidden">Filter by period</label>
+                  <select id="paymentPeriodFilter" class="form-select form-select-sm filter-select" data-filter-target="#paymentTable" data-filter-field="date">
+                    <option value="all">Any date</option><option value="today">Today</option><option value="this-week">This week</option><option value="this-month">This month</option><option value="last-month">Last month</option>
+                  </select>
+                  <button type="button" class="btn btn-sm btn-light" data-action="reset-filters" data-target="#paymentTable"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Reset</button>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-app table-hover" id="paymentTable" data-list data-collection="payments" data-join="invoices:invoice" data-sort="-date,-payment" data-notify="Payment {payment} of {amount} recorded for {patient}" data-notify-icon="bi-cash-coin">
+                  <thead>
+                    <tr><th scope="col">Payment ID</th><th scope="col">Patient</th><th scope="col">Invoice #</th><th scope="col">Date</th><th scope="col">Method</th><th scope="col">Amount</th><th scope="col">Status</th><th scope="col" class="text-center action-col" data-no-export>Actions</th></tr>
+                  </thead>
+                  <tbody>
+                <template data-template>
+                  <tr data-record>
+                    <td><span class="fw-semibold" data-field="payment" data-seq="PAY-1001" data-primary></span> <span class="badge-soft tone-green" data-new-only hidden>New</span>
+                      <span hidden><span data-field="reference"></span><span data-field="notes"></span><span data-field="treatment"></span><span data-field="balance"></span><span data-field="txn"></span></span></td>
+                    <td><div class="person"><span class="avatar avatar-sm" data-avatar="patient" data-tone-from="patient"></span><span class="person-name" data-field="patient"></span></div></td>
+                    <td><a href="invoices.html" class="fw-medium" data-field="invoice" data-bind-href="invoices.html?find={invoice}"></a></td>
+                    <td data-field="date"></td>
+                    <td><span class="d-inline-flex align-items-center gap-2"><i class="bi bi-wallet2 text-primary" aria-hidden="true"></i><span data-field="method"></span></span></td>
+                    <td class="fw-semibold" data-field="amount" data-format="currency"></td>
+                    <td><span class="badge-status" data-field="status" data-default="Completed"></span></td>
+                    <td class="text-center action-col">
+                      <div class="action-group">
+                        <button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#receiptModal" aria-label="View receipt"><i class="bi bi-eye" aria-hidden="true"></i></button>
+                        <button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#paymentModal" data-mode="edit" aria-label="Edit payment"><i class="bi bi-pencil" aria-hidden="true"></i></button>
+                        <div class="dropdown">
+                          <button type="button" class="btn-icon neutral" data-bs-toggle="dropdown" aria-expanded="false" aria-label="More actions"><i class="bi bi-three-dots" aria-hidden="true"></i></button>
+                          <ul class="dropdown-menu dropdown-menu-end">
+                            <li><h6 class="dropdown-header">Change status</h6></li>
+                            <li><a class="dropdown-item" href="#" data-set-status="Completed"><i class="bi bi-check2-circle" aria-hidden="true"></i>Mark received</a></li>
+                            <li><a class="dropdown-item" href="#" data-set-status="Failed" data-toast-type="warning"><i class="bi bi-x-octagon" aria-hidden="true"></i>Mark failed</a></li>
+                            <li><a class="dropdown-item" href="#" data-set-status="Refunded" data-toast-type="warning"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Refund payment</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" data-toast="Receipt sent" data-bind-data-toast="Receipt {payment} sent to {patient} via SMS &amp; email"><i class="bi bi-send" aria-hidden="true"></i>Send receipt</a></li>
+                            <li><a class="dropdown-item" href="#" data-action="download" data-bind-data-filename="{payment}-receipt.txt"><i class="bi bi-download" aria-hidden="true"></i>Download receipt</a></li>
+                            <li><a class="dropdown-item" href="invoices.html" data-bind-href="invoices.html?find={invoice}"><i class="bi bi-receipt" aria-hidden="true"></i>Open invoice</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash3" aria-hidden="true"></i>Delete payment</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </template>
+              </tbody>
+                </table>
+              </div>
+              <div class="empty-state" data-empty-for="#paymentTable" hidden><i class="bi bi-wallet2" aria-hidden="true"></i>No payments match your search or filters.
+                <div class="mt-3"><button type="button" class="btn btn-light btn-sm" data-action="reset-filters" data-target="#paymentTable"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Clear filters</button></div></div>
+            </section>
+
+          <!-- Method breakdown -->
+            <section class="card-panel" aria-labelledby="methodsTitle">
+              <div class="panel-header">
+                <h2 class="panel-title" id="methodsTitle"><i class="bi bi-pie-chart" aria-hidden="true"></i>Payment Methods</h2>
+              </div>
+              <p class="small text-muted mb-3">Share of completed collections, last 30 days</p>
+              <ul class="list-unstyled d-grid gap-3 mb-4" id="methodBreakdown" data-breakdown="payments" data-breakdown-field="method" data-breakdown-value="amount" data-breakdown-where="status=Completed;date=last-30-days" data-format="currency">
+                <li data-breakdown-key="UPI">
+                  <div class="d-flex align-items-center justify-content-between mb-1"><span class="d-inline-flex align-items-center gap-2 fw-semibold"><i class="bi bi-phone text-primary" aria-hidden="true"></i>UPI</span><span class="small"><strong data-bd="value">₹0</strong> <span class="text-muted">· <span data-bd="pct">0%</span> · <span data-bd="count">0</span></span></span></div>
+                  <div class="progress" role="progressbar" aria-label="UPI share" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar  w-pct-0" data-bar></div></div>
+                </li>
+                <li data-breakdown-key="Card">
+                  <div class="d-flex align-items-center justify-content-between mb-1"><span class="d-inline-flex align-items-center gap-2 fw-semibold"><i class="bi bi-credit-card text-primary" aria-hidden="true"></i>Card</span><span class="small"><strong data-bd="value">₹0</strong> <span class="text-muted">· <span data-bd="pct">0%</span> · <span data-bd="count">0</span></span></span></div>
+                  <div class="progress" role="progressbar" aria-label="Card share" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-purple w-pct-0" data-bar></div></div>
+                </li>
+                <li data-breakdown-key="Cash">
+                  <div class="d-flex align-items-center justify-content-between mb-1"><span class="d-inline-flex align-items-center gap-2 fw-semibold"><i class="bi bi-cash-stack text-primary" aria-hidden="true"></i>Cash</span><span class="small"><strong data-bd="value">₹0</strong> <span class="text-muted">· <span data-bd="pct">0%</span> · <span data-bd="count">0</span></span></span></div>
+                  <div class="progress" role="progressbar" aria-label="Cash share" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-green w-pct-0" data-bar></div></div>
+                </li>
+                <li data-breakdown-key="Bank Transfer">
+                  <div class="d-flex align-items-center justify-content-between mb-1"><span class="d-inline-flex align-items-center gap-2 fw-semibold"><i class="bi bi-bank text-primary" aria-hidden="true"></i>Bank Transfer</span><span class="small"><strong data-bd="value">₹0</strong> <span class="text-muted">· <span data-bd="pct">0%</span> · <span data-bd="count">0</span></span></span></div>
+                  <div class="progress" role="progressbar" aria-label="Bank Transfer share" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-amber w-pct-0" data-bar></div></div>
+                </li>
+                <li data-breakdown-key="Insurance">
+                  <div class="d-flex align-items-center justify-content-between mb-1"><span class="d-inline-flex align-items-center gap-2 fw-semibold"><i class="bi bi-shield-check text-primary" aria-hidden="true"></i>Insurance</span><span class="small"><strong data-bd="value">₹0</strong> <span class="text-muted">· <span data-bd="pct">0%</span> · <span data-bd="count">0</span></span></span></div>
+                  <div class="progress" role="progressbar" aria-label="Insurance share" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-teal w-pct-0" data-bar></div></div>
+                </li>
+              </ul>
+              <div class="info-tile mb-3">
+                <span class="label">Clinic UPI ID</span>
+                <span class="value">maxdental@okaxis</span>
+              </div>
+              <button type="button" class="btn btn-soft w-100" data-toast="UPI QR code sent to the front-desk display" data-toast-type="info"><i class="bi bi-qr-code" aria-hidden="true"></i>Show UPI QR at desk</button>
+            </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- ============ MODALS ============ -->
+
+  <!-- Record / edit payment -->
+  <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalTitle" aria-hidden="true" data-edit-title="Edit Payment">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <form class="modal-content" novalidate data-add-to="#paymentTable" data-success="Payment recorded successfully" data-success-edit="Payment updated successfully">
+        <div class="modal-header">
+          <h2 class="modal-title" id="paymentModalTitle"><span class="title-icon tone-green"><i class="bi bi-currency-rupee" aria-hidden="true"></i></span><span data-modal-title>Record Payment</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="form-section-title">Payment details</p>
+          <p class="form-text mt-0">Pick the patient, then the invoice — the amount fills in with the balance due. Completed payments update the invoice, the patient's dues and the ledger.</p>
+          <div class="grid-12">
+            <div class="span-4"><label for="payId" class="form-label">Payment ID *</label><input type="text" class="form-control" id="payId" name="payment" readonly placeholder="Assigned on save"></div>
+            <div class="span-4"><label for="payPatient" class="form-label">Patient *</label><select class="form-select" id="payPatient" name="patient" required data-options="patients" data-option-field="name"><option value="">Select patient</option></select><div class="invalid-feedback">Select a patient.</div></div>
+            <div class="span-4"><label for="payInvoice" class="form-label">Invoice # *</label><select class="form-select" id="payInvoice" name="invoice" required data-options="invoices" data-option-field="invoice" data-options-match="patient=patient" data-options-where="status!=Cancelled|Draft" data-options-sort="-date" data-option-attr-balance="balance" data-option-fill="balance:amount" data-options-empty="No invoices for this patient — create one first"><option value="">Select invoice</option></select><div class="invalid-feedback">Select the invoice being paid.</div></div>
+            <div class="span-4"><label for="payDate" class="form-label">Payment date *</label><input type="date" class="form-control" id="payDate" name="date" required data-default-days="0"><div class="invalid-feedback">Pick a date.</div></div>
+            <div class="span-4"><label for="payMethod" class="form-label">Method *</label><select class="form-select" id="payMethod" name="method" required><option value="">Select method</option><option>Cash</option><option>UPI</option><option>Card</option><option>Bank Transfer</option><option>Insurance</option></select><div class="invalid-feedback">Choose a payment method.</div></div>
+            <div class="span-4"><label for="payAmount" class="form-label">Amount (₹) *</label><input type="number" class="form-control" id="payAmount" name="amount" required min="1" step="0.01" placeholder="0"><div class="invalid-feedback">Enter an amount greater than zero.</div></div>
+            <div class="span-8"><label for="payReference" class="form-label">Reference / transaction no.</label><input type="text" class="form-control" id="payReference" name="reference" placeholder="UPI ref, card last 4 digits, NEFT UTR or claim no."></div>
+            <div class="span-4"><label for="payStatus" class="form-label">Status</label><select class="form-select" id="payStatus" name="status"><option>Completed</option><option>Pending</option><option>Failed</option><option>Refunded</option></select></div>
+            <div><label for="payNotes" class="form-label">Notes</label><textarea class="form-control" id="payNotes" name="notes" rows="2" placeholder="Advance, balance due, remarks"></textarea></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="reset" class="btn btn-light"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Reset</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check2" aria-hidden="true"></i>Save Payment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Receipt preview -->
+  <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="receiptModalTitle"><span class="title-icon tone-green"><i class="bi bi-receipt-cutoff" aria-hidden="true"></i></span>Payment Receipt</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <article class="invoice-doc">
+            <header class="doc-head">
+              <div class="d-flex align-items-start gap-2">
+                <img src="../assets/images/logo.svg" alt="Max Dental Studio logo" width="40" height="40">
+                <div>
+                  <h3 class="h6 mb-1">Max Dental Studio</h3>
+                  <p class="small-xs text-muted mb-0">ABC Clinic, Mavoor Road, Calicut, Kerala 673004<br>GSTIN: 32ABCDE1234F1Z5</p>
+                </div>
+              </div>
+              <div class="text-end">
+                <p class="doc-title">RECEIPT</p>
+                <p class="small mb-1" data-field="payment">PAY-0000</p>
+                <span class="badge-status" data-field="status">Completed</span>
+              </div>
+            </header>
+            <div class="text-center mb-3">
+              <p class="small text-muted mb-0">Amount received</p>
+              <p class="big-figure" data-field="amount">₹0</p>
+            </div>
+            <dl class="detail-list">
+              <div class="span-2"><dt>Received from</dt><dd data-field="patient">—</dd></div>
+              <div><dt>Invoice #</dt><dd data-field="invoice">—</dd></div>
+              <div><dt>Date</dt><dd data-field="date">—</dd></div>
+              <div><dt>Method</dt><dd data-field="method">—</dd></div>
+              <div><dt>Reference</dt><dd data-field="reference">—</dd></div>
+              <div><dt>Towards</dt><dd data-field="treatment">—</dd></div>
+              <div><dt>Invoice balance now</dt><dd data-field="balance">—</dd></div>
+              <div class="span-2"><dt>Notes</dt><dd data-field="notes">—</dd></div>
+            </dl>
+            <p class="small text-muted mt-3 mb-0">Received with thanks. This is a computer-generated receipt and does not require a signature.</p>
+          </article>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-toast="Receipt sent" data-bind-data-toast="Receipt {payment} sent to {patient} via SMS &amp; email"><i class="bi bi-send" aria-hidden="true"></i>Send</button>
+          <button type="button" class="btn btn-light" data-action="print"><i class="bi bi-printer" aria-hidden="true"></i>Print</button>
+          <button type="button" class="btn btn-light" data-action="download"><i class="bi bi-download" aria-hidden="true"></i>Download</button>
+          <button type="button" class="btn btn-primary" data-switch-modal="#paymentModal" data-mode="edit"><i class="bi bi-pencil" aria-hidden="true"></i>Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete confirmation -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content text-center">
+        <div class="modal-body p-4">
+          <span class="confirm-icon tone-red"><i class="bi bi-trash3" aria-hidden="true"></i></span>
+          <h2 class="h5" id="deleteModalTitle">Delete payment?</h2>
+          <p class="text-muted mb-0">Payment <strong data-record-label>this payment</strong> will be removed from the payment log. The linked invoice's paid amount and balance are recalculated.</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Keep it</button>
+          <button type="button" class="btn btn-danger" data-action="confirm-delete" data-success="Payment deleted">Yes, delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/demo-data.js"></script>
+  <script src="../assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sign in to Dentalwyz — dental clinic management for appointments, patients, billing and more.">
+  <title>Sign in | Dentalwyz</title>
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/responsive.css" rel="stylesheet">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to sign in</a>
+
+  <div class="auth-page">
+    <!-- Brand visual -->
+    <aside class="auth-visual" aria-label="About Dentalwyz">
+      <a href="index.html" class="brand" aria-label="Dentalwyz home">
+        <img src="assets/images/logo.svg" alt="" class="brand-logo" width="40" height="40">
+        <span class="brand-text">dental<span>wyz</span></span>
+      </a>
+      <div>
+        <h2>Smarter dental practice management</h2>
+        <p>Appointments, patient records, treatment plans, GST billing, lab cases and inventory for every branch of your clinic, in one place.</p>
+      </div>
+      <img src="assets/images/tooth-hero.svg" alt="" class="auth-art" width="360" height="277">
+      <ul class="auth-features">
+        <li><i class="bi bi-calendar-check" aria-hidden="true"></i>Smart scheduling</li>
+        <li><i class="bi bi-people" aria-hidden="true"></i>Patient records</li>
+        <li><i class="bi bi-receipt" aria-hidden="true"></i>GST invoices</li>
+        <li><i class="bi bi-whatsapp" aria-hidden="true"></i>WhatsApp reminders</li>
+        <li><i class="bi bi-diagram-3" aria-hidden="true"></i>Multi-branch</li>
+      </ul>
+    </aside>
+
+    <!-- Sign-in form -->
+    <main class="auth-form-wrap" id="main-content">
+      <div class="auth-card">
+        <a href="index.html" class="brand d-inline-flex d-md-none mb-4" aria-label="Dentalwyz home">
+          <img src="assets/images/logo.svg" alt="" class="brand-logo" width="40" height="40">
+          <span class="brand-text">dental<span>wyz</span></span>
+        </a>
+        <h1>Welcome back</h1>
+        <p class="text-muted mb-4">Sign in to Max Dental Studio to manage your clinic.</p>
+
+        <form novalidate data-success="Signed in successfully. Loading your dashboard…" data-redirect="pages/dashboard.html">
+          <div class="mb-3">
+            <label for="loginEmail" class="form-label">Email address *</label>
+            <input type="email" class="form-control" id="loginEmail" name="email" required autocomplete="username" value="admin@maxdental.in">
+            <div class="invalid-feedback">Enter a valid email address.</div>
+          </div>
+          <div class="mb-3">
+            <label for="loginPassword" class="form-label">Password *</label>
+            <div class="input-group has-validation">
+              <input type="password" class="form-control" id="loginPassword" name="password" required minlength="6" autocomplete="current-password" value="demo123">
+              <button type="button" class="btn btn-light" data-action="toggle-password" data-target="#loginPassword" aria-label="Show password"><i class="bi bi-eye" aria-hidden="true"></i></button>
+              <div class="invalid-feedback">Password must be at least 6 characters.</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="loginBranch" class="form-label">Branch</label>
+            <select class="form-select" id="loginBranch" name="branch" data-branch-select>
+              <option selected>ABC Clinic</option>
+              <option>Branch 2</option>
+              <option>Branch 3</option>
+            </select>
+          </div>
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-4">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="rememberMe" name="remember" checked>
+              <label class="form-check-label" for="rememberMe">Remember me</label>
+            </div>
+            <a href="#" class="fw-semibold" data-bs-toggle="modal" data-bs-target="#forgotModal">Forgot password?</a>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg w-100"><i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>Sign in</button>
+        </form>
+
+        <div class="info-tile mt-4">
+          <span class="label"><i class="bi bi-info-circle me-1" aria-hidden="true"></i>Demo mode</span>
+          <span class="value fw-normal">Credentials are pre-filled. Any valid email and a password of 6+ characters will sign you in.</span>
+        </div>
+        <p class="text-muted small text-center mt-4 mb-0">Need help? <a href="pages/help-support.html">Contact support</a> · <a href="tel:+914951234567">+91 495 123 4567</a></p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Forgot password -->
+  <div class="modal fade" id="forgotModal" tabindex="-1" aria-labelledby="forgotModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <form class="modal-content" novalidate data-success="Password reset link sent to your email" data-reset-on-success>
+        <div class="modal-header">
+          <h2 class="modal-title" id="forgotModalTitle"><span class="title-icon tone-blue"><i class="bi bi-key" aria-hidden="true"></i></span>Reset password</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-muted">Enter the email linked to your account and we will send you a reset link.</p>
+          <label for="forgotEmail" class="form-label">Email address *</label>
+          <input type="email" class="form-control" id="forgotEmail" name="email" required placeholder="name@maxdental.in">
+          <div class="invalid-feedback">Enter a valid email address.</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-send" aria-hidden="true"></i>Send reset link</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

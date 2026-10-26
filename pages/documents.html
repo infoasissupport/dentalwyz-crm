@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dentalwyz dental clinic management — patient documents, X-rays, prescriptions and consent forms.">
+  <title>Documents | Dentalwyz</title>
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/responsive.css" rel="stylesheet">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app-shell">
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar offcanvas-lg offcanvas-start" id="appSidebar" tabindex="-1" aria-label="Sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-header">
+          <a href="dashboard.html" class="brand" aria-label="Dentalwyz home">
+            <img src="../assets/images/logo.svg" alt="" class="brand-logo" width="40" height="40">
+            <span class="brand-text">dental<span>wyz</span></span>
+          </a>
+          <button type="button" class="btn-close d-lg-none" data-bs-dismiss="offcanvas" data-bs-target="#appSidebar" aria-label="Close menu"></button>
+        </div>
+        <nav class="sidebar-nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="dashboard.html"><i class="bi bi-house-door" aria-hidden="true"></i><span>Dashboard</span></a></li>
+            <li><a class="nav-link" href="appointments.html"><i class="bi bi-calendar3" aria-hidden="true"></i><span>Appointments</span></a></li>
+            <li><a class="nav-link" href="patients.html"><i class="bi bi-people" aria-hidden="true"></i><span>Patients</span></a></li>
+            <li><a class="nav-link" href="doctors.html"><i class="bi bi-person-badge" aria-hidden="true"></i><span>Doctors</span></a></li>
+            <li><a class="nav-link active" aria-current="page" href="documents.html"><i class="bi bi-folder2-open" aria-hidden="true"></i><span>Documents</span></a></li>
+            <li><a class="nav-link" href="invoices.html"><i class="bi bi-file-earmark-text" aria-hidden="true"></i><span>Invoices</span></a></li>
+            <li><a class="nav-link" href="payments.html"><i class="bi bi-credit-card-2-front" aria-hidden="true"></i><span>Payments</span></a></li>
+            <li><a class="nav-link" href="transactions.html"><i class="bi bi-arrow-left-right" aria-hidden="true"></i><span>Transactions</span></a></li>
+            <li><a class="nav-link" href="treatment.html"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i><span>Treatment</span></a></li>
+            <li><a class="nav-link" href="lab.html"><i class="bi bi-eyedropper" aria-hidden="true"></i><span>Lab</span></a></li>
+            <li><a class="nav-link" href="pharmacy.html"><i class="bi bi-capsule" aria-hidden="true"></i><span>Pharmacy</span></a></li>
+            <li><a class="nav-link" href="inventory.html"><i class="bi bi-box-seam" aria-hidden="true"></i><span>Inventory</span></a></li>
+            <li><a class="nav-link" href="reports.html"><i class="bi bi-bar-chart-line" aria-hidden="true"></i><span>Reports</span></a></li>
+          </ul>
+          <hr class="sidebar-divider">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="settings.html"><i class="bi bi-gear" aria-hidden="true"></i><span>Settings</span></a></li>
+            <li><a class="nav-link" href="help-support.html"><i class="bi bi-question-circle" aria-hidden="true"></i><span>Help &amp; Support</span></a></li>
+          </ul>
+        </nav>
+        <div class="sidebar-wave" aria-hidden="true"></div>
+      </div>
+    </aside>
+
+    <div class="main">
+      <!-- ============ TOP HEADER ============ -->
+      <header class="topbar">
+        <button type="button" class="icon-btn d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#appSidebar" aria-controls="appSidebar" aria-label="Open menu"><i class="bi bi-list" aria-hidden="true"></i></button>
+        <button type="button" class="icon-btn d-none d-lg-inline-flex" data-action="sidebar-collapse" aria-expanded="true" aria-label="Collapse sidebar"><i class="bi bi-layout-sidebar" aria-hidden="true"></i></button>
+
+        <form class="topbar-search" id="globalSearchForm" role="search">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <label for="globalSearch" class="visually-hidden">Search patient, appointment, invoice</label>
+          <input type="search" class="form-control" id="globalSearch" placeholder="Search patient, appointment, invoice..." autocomplete="off">
+        </form>
+
+        <div class="topbar-actions">
+          <button type="button" class="icon-btn d-md-none" data-action="toggle-search" aria-expanded="false" aria-label="Toggle search"><i class="bi bi-search" aria-hidden="true"></i></button>
+
+          <button type="button" class="topbar-chip date-chip" id="headerDate" aria-label="Choose date">
+            <i class="bi bi-calendar3 chip-icon" aria-hidden="true"></i>
+            <span class="chip-text">
+              <span class="chip-title" data-current-date>01 Oct 2026</span>
+              <span class="chip-sub" data-current-day>Thursday</span>
+            </span>
+            <input type="date" id="headerDatePicker" class="date-picker-input" tabindex="-1" aria-hidden="true">
+          </button>
+
+          <div class="dropdown">
+            <button type="button" class="icon-btn" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" aria-label="Notifications">
+              <i class="bi bi-bell" aria-hidden="true"></i><span class="notif-dot" aria-hidden="true" data-notif-dot hidden></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end notif-menu">
+              <div class="notif-menu-header">
+                <strong>Notifications <span class="badge-soft tone-blue ms-1"><span data-stat="notifications" data-stat-where="unread=yes">0</span> new</span></strong>
+                <button type="button" class="btn btn-link btn-sm p-0" data-action="mark-all-read">Mark all read</button>
+              </div>
+              <ul class="notif-list" id="notifList" data-collection="notifications" data-limit="8">
+                <template data-template>
+                  <li class="notif-item" data-record data-bind-data-unread="{unread}" tabindex="0" role="link"><span class="avatar avatar-sm" data-tone-from="icon"><i class="bi" data-bind-class="bi {icon}" aria-hidden="true"></i></span><div><p data-field="text"></p><time data-derive="ago"></time></div></li>
+                </template>
+              </ul>
+              <p class="notif-empty" data-empty-for="#notifList">No notifications yet. New appointments, patients, invoices and payments show up here.</p>
+              <div class="notif-menu-footer"><a href="settings.html#pane-notifications" class="panel-link">Notification settings</a></div>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button type="button" class="topbar-chip branch-chip" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Switch branch">
+              <img src="../assets/images/clinic.svg" alt="" class="chip-img" width="36" height="36">
+              <span class="chip-text">
+                <span class="chip-title" data-current-branch>ABC Clinic</span>
+                <span class="chip-sub" data-current-location>Calicut</span>
+              </span>
+              <i class="bi bi-chevron-down small" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end branch-menu" data-collection="branches" data-where="status=Active" data-sort="name">
+              <li><h6 class="dropdown-header">Switch branch</h6></li>
+              <template data-template><li data-record><a class="dropdown-item" href="#" data-bind-data-branch="{name}" data-bind-data-branch-location="{location}"><i class="bi bi-hospital" aria-hidden="true"></i><span data-field="name"></span> <small class="text-muted" data-field="location"></small><i class="bi bi-check2" aria-hidden="true"></i></a></li></template>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="settings.html#pane-branch"><i class="bi bi-sliders" aria-hidden="true"></i>Manage branches</a></li>
+            </ul>
+          </div>
+
+          <div class="dropdown">
+            <button type="button" class="topbar-chip profile-chip" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+              <span class="avatar avatar-sm tone-blue" data-setting-initials="pfName">MD</span>
+              <span class="chip-text d-none d-xl-block">
+                <span class="chip-title" data-setting-text="pfName">Dr. Max D'Souza</span>
+                <span class="chip-sub">Administrator</span>
+              </span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><h6 class="dropdown-header">Signed in as admin</h6></li>
+              <li><a class="dropdown-item" href="settings.html#pane-profile"><i class="bi bi-person-circle" aria-hidden="true"></i>My profile</a></li>
+              <li><a class="dropdown-item" href="settings.html#pane-clinic"><i class="bi bi-gear" aria-hidden="true"></i>Account settings</a></li>
+              <li><a class="dropdown-item" href="settings.html#pane-notifications"><i class="bi bi-bell" aria-hidden="true"></i>Notification settings</a></li>
+              <li><a class="dropdown-item" href="help-support.html"><i class="bi bi-life-preserver" aria-hidden="true"></i>Help &amp; Support</a></li>
+              <li><a class="dropdown-item" href="#" data-action="reset-demo"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Reset demo data</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="../index.html" data-action="logout"><i class="bi bi-box-arrow-right" aria-hidden="true"></i>Log out</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- ============ PAGE CONTENT ============ -->
+      <main class="content" id="main-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Documents</h1>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Documents</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="page-actions">
+            <button type="button" class="btn btn-light" data-action="export-csv" data-target="#documentTable" data-filename="dentalwyz-documents.csv"><i class="bi bi-filetype-csv" aria-hidden="true"></i>Export CSV</button>
+            <button type="button" class="btn btn-light" data-action="print"><i class="bi bi-printer" aria-hidden="true"></i>Print</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#documentModal"><i class="bi bi-cloud-arrow-up" aria-hidden="true"></i>Upload Document</button>
+          </div>
+        </div>
+
+        <!-- Stat cards -->
+        <section class="stats-grid mb-3" aria-label="Document summary">
+          <article class="stat-card">
+              <span class="stat-icon tone-blue"><i class="bi bi-folder2-open" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">Total documents</p>
+                <p class="stat-value" data-stat="documents">0</p>
+                <div class="stat-meta"><span class="text-muted fw-medium"><span data-stat="documents" data-stat-where="date=this-month">0</span> added this month</span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="30" width="8" height="16" rx="2" class="fill-blue" opacity=".2"/><rect x="14" y="22" width="8" height="24" rx="2" class="fill-blue" opacity=".3"/><rect x="26" y="14" width="8" height="32" rx="2" class="fill-blue" opacity=".45"/><rect x="38" y="6" width="8" height="40" rx="2" class="fill-blue" opacity=".6"/></svg>
+            </article>
+          <article class="stat-card">
+              <span class="stat-icon tone-purple"><i class="bi bi-file-earmark-image" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">X-Rays</p>
+                <p class="stat-value" data-stat="documents" data-stat-where="category=X-Ray">0</p>
+                <div class="stat-meta"><span class="text-muted fw-medium">OPG, IOPA, CBCT</span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="30" width="8" height="16" rx="2" class="fill-purple" opacity=".2"/><rect x="14" y="22" width="8" height="24" rx="2" class="fill-purple" opacity=".3"/><rect x="26" y="14" width="8" height="32" rx="2" class="fill-purple" opacity=".45"/><rect x="38" y="6" width="8" height="40" rx="2" class="fill-purple" opacity=".6"/></svg>
+            </article>
+          <article class="stat-card">
+              <span class="stat-icon tone-green"><i class="bi bi-file-earmark-medical" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">Prescriptions</p>
+                <p class="stat-value" data-stat="documents" data-stat-where="category=Prescription">0</p>
+                <div class="stat-meta"><span class="text-muted fw-medium"><span data-stat="documents" data-stat-where="category=Prescription;date=this-week">0</span> this week</span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="30" width="8" height="16" rx="2" class="fill-green" opacity=".2"/><rect x="14" y="22" width="8" height="24" rx="2" class="fill-green" opacity=".3"/><rect x="26" y="14" width="8" height="32" rx="2" class="fill-green" opacity=".45"/><rect x="38" y="6" width="8" height="40" rx="2" class="fill-green" opacity=".6"/></svg>
+            </article>
+          <article class="stat-card">
+              <span class="stat-icon tone-amber"><i class="bi bi-hdd-stack" aria-hidden="true"></i></span>
+              <div class="stat-body flex-grow-1">
+                <p class="stat-label">Consent &amp; insurance</p>
+                <p class="stat-value" data-stat="documents" data-stat-where="category=Consent Form|Insurance">0</p>
+                <div class="stat-meta"><span class="text-muted fw-medium"><span data-stat="documents" data-stat-where="category=Lab Report">0</span> lab reports</span></div>
+              </div>
+            </article>
+        </section>
+
+        <!-- Document library -->
+        <section class="card-panel" aria-labelledby="documentsTitle">
+          <div class="panel-header">
+            <h2 class="panel-title" id="documentsTitle"><i class="bi bi-folder2-open" aria-hidden="true"></i>Patient Documents <span class="count">(<span data-count-for="#documentTable">0</span>)</span></h2>
+            <div class="panel-tools">
+              <div class="search-box">
+                <i class="bi bi-search" aria-hidden="true"></i>
+                <label for="documentSearch" class="visually-hidden">Search documents</label>
+                <input type="search" id="documentSearch" class="form-control form-control-sm" placeholder="Search file or patient..." data-search-target="#documentTable">
+              </div>
+              <label for="documentUploaderFilter" class="visually-hidden">Filter by uploaded by</label>
+              <select data-options="doctors" id="documentUploaderFilter" class="form-select form-select-sm filter-select" data-filter-target="#documentTable" data-filter-field="uploadedby">
+                <option value="all">All uploaders</option><option>Reception</option></select>
+              <button type="button" class="btn btn-sm btn-light" data-action="reset-filters" data-target="#documentTable"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Reset</button>
+            </div>
+          </div>
+          <div class="d-flex flex-wrap gap-2 mb-3" role="group" aria-label="Filter by category" data-filter-group>
+              <button type="button" class="btn btn-sm btn-light btn-filter active" aria-pressed="true" data-filter-target="#documentTable" data-filter-field="category" data-filter-value="all">All</button>
+              <button type="button" class="btn btn-sm btn-light btn-filter" aria-pressed="false" data-filter-target="#documentTable" data-filter-field="category" data-filter-value="X-Ray"><i class="bi bi-file-earmark-image" aria-hidden="true"></i>X-Ray</button>
+              <button type="button" class="btn btn-sm btn-light btn-filter" aria-pressed="false" data-filter-target="#documentTable" data-filter-field="category" data-filter-value="Prescription"><i class="bi bi-file-earmark-medical" aria-hidden="true"></i>Prescription</button>
+              <button type="button" class="btn btn-sm btn-light btn-filter" aria-pressed="false" data-filter-target="#documentTable" data-filter-field="category" data-filter-value="Consent Form"><i class="bi bi-file-earmark-check" aria-hidden="true"></i>Consent Form</button>
+              <button type="button" class="btn btn-sm btn-light btn-filter" aria-pressed="false" data-filter-target="#documentTable" data-filter-field="category" data-filter-value="Lab Report"><i class="bi bi-file-earmark-bar-graph" aria-hidden="true"></i>Lab Report</button>
+              <button type="button" class="btn btn-sm btn-light btn-filter" aria-pressed="false" data-filter-target="#documentTable" data-filter-field="category" data-filter-value="Insurance"><i class="bi bi-file-earmark-lock" aria-hidden="true"></i>Insurance</button>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-app table-hover" id="documentTable" data-list data-collection="documents" data-sort="-date" data-notify="Document uploaded: {name} for {patient}" data-notify-icon="bi-cloud-arrow-up">
+              <thead>
+                <tr><th scope="col">File</th><th scope="col">Patient</th><th scope="col">Category</th><th scope="col">Uploaded by</th><th scope="col">Date</th><th scope="col" class="text-center action-col" data-no-export>Actions</th></tr>
+              </thead>
+              <tbody>
+                <template data-template>
+                  <tr data-record>
+                  <td><div class="person"><span class="file-icon" data-tone-from="category"><i class="bi bi-file-earmark-text" aria-hidden="true"></i></span><div><span class="person-name" data-field="name" data-primary></span><span class="person-sub" data-field="size" data-default="Just uploaded"></span></div><span class="badge-soft tone-green" data-new-only hidden>New</span></div>
+                    <span data-field="notes" hidden></span><span data-field="file" hidden></span></td>
+                  <td><div class="person"><span class="avatar avatar-sm" data-avatar="patient" data-tone-from="patient"></span><span data-field="patient"></span></div></td>
+                  <td><span class="badge-soft tone-blue" data-field="category"></span></td>
+                  <td data-field="uploadedby"></td>
+                  <td data-field="date"></td>
+                  <td class="text-center action-col">
+                    <div class="action-group">
+                      <button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#viewDocumentModal" aria-label="Preview document"><i class="bi bi-eye" aria-hidden="true"></i></button>
+                      <button type="button" class="btn-icon" data-action="download" data-bind-data-filename="{name}.txt" aria-label="Download document"><i class="bi bi-download" aria-hidden="true"></i></button>
+                      <button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#documentModal" data-mode="edit" aria-label="Edit document details"><i class="bi bi-pencil" aria-hidden="true"></i></button>
+                      <div class="dropdown">
+                        <button type="button" class="btn-icon neutral" data-bs-toggle="dropdown" aria-expanded="false" aria-label="More actions"><i class="bi bi-three-dots" aria-hidden="true"></i></button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                          <li><h6 class="dropdown-header">Share</h6></li>
+                          <li><a class="dropdown-item" href="#" data-toast="Shared on WhatsApp" data-bind-data-toast="{name} shared with {patient} on WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i>Share on WhatsApp</a></li>
+                          <li><a class="dropdown-item" href="#" data-toast="Emailed" data-bind-data-toast="{name} emailed to {patient}"><i class="bi bi-envelope" aria-hidden="true"></i>Email to patient</a></li>
+                          <li><a class="dropdown-item" href="lab.html" data-bind-href="lab.html?find={patient}"><i class="bi bi-eyedropper" aria-hidden="true"></i>Patient's lab orders</a></li>
+                          <li><a class="dropdown-item" href="patients.html" data-bind-href="patients.html?find={patient}"><i class="bi bi-person-vcard" aria-hidden="true"></i>Patient profile</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash3" aria-hidden="true"></i>Delete document</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+          <div class="empty-state" data-empty-for="#documentTable" hidden><i class="bi bi-folder-x" aria-hidden="true"></i>No documents match your search or filters.</div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- ============ MODALS ============ -->
+
+  <!-- Upload / edit document -->
+  <div class="modal fade" id="documentModal" tabindex="-1" aria-labelledby="documentModalTitle" aria-hidden="true" data-edit-title="Edit Document Details">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <form class="modal-content" novalidate data-add-to="#documentTable" data-success="Document uploaded successfully" data-success-edit="Document details updated">
+        <div class="modal-header">
+          <h2 class="modal-title" id="documentModalTitle"><span class="title-icon tone-blue"><i class="bi bi-cloud-arrow-up" aria-hidden="true"></i></span><span data-modal-title>Upload Document</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label class="dropzone mb-3" data-dropzone>
+            <i class="bi bi-cloud-arrow-up" aria-hidden="true"></i>
+            <span class="fw-semibold" data-file-label>Drag &amp; drop files here, or click to browse</span>
+            <span class="form-text">JPG, PNG, PDF, DICOM or ZIP · up to 25 MB</span>
+            <input type="file" id="docFile" accept=".jpg,.jpeg,.png,.pdf,.dcm,.zip" data-fill-name="name" data-store-file aria-label="Choose a file to upload">
+          </label>
+          <input type="hidden" name="size"><input type="hidden" name="file">
+          <p class="form-section-title">Document details</p>
+          <div class="grid-12">
+            <div class="span-6"><label for="docName" class="form-label">Document name *</label><input type="text" class="form-control" id="docName" name="name" required placeholder="e.g. OPG Full Mouth X-Ray"><div class="invalid-feedback">Document name is required.</div></div>
+            <div class="span-6"><label for="docPatient" class="form-label">Patient *</label><select class="form-select" id="docPatient" name="patient" required data-options="patients" data-option-field="name"><option value="">Select patient</option></select><div class="invalid-feedback">Select a patient.</div></div>
+            <div class="span-4"><label for="docCategory" class="form-label">Category *</label><select class="form-select" id="docCategory" name="category" required><option value="">Select category</option><option>X-Ray</option><option>Prescription</option><option>Consent Form</option><option>Lab Report</option><option>Insurance</option><option>Referral</option><option>Clinical Photo</option></select><div class="invalid-feedback">Choose a category.</div></div>
+            <div class="span-4"><label for="docUploader" class="form-label">Uploaded by</label><select class="form-select" id="docUploader" name="uploadedby" data-options="doctors"><option>Reception</option></select></div>
+            <div class="span-4"><label for="docDate" class="form-label">Date *</label><input type="date" class="form-control" id="docDate" name="date" required data-default-days="0"><div class="invalid-feedback">Pick a date.</div></div>
+            <div><label for="docNotes" class="form-label">Notes</label><textarea class="form-control" id="docNotes" name="notes" rows="2" placeholder="Findings, tooth numbers, remarks"></textarea></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check2" aria-hidden="true"></i>Save Document</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Preview document -->
+  <div class="modal fade" id="viewDocumentModal" tabindex="-1" aria-labelledby="viewDocumentTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="viewDocumentTitle"><span class="title-icon tone-blue"><i class="bi bi-file-earmark-text" aria-hidden="true"></i></span>Document Preview</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="grid-2">
+            <div class="doc-preview" data-file-preview>
+                <div class="doc-preview-file" data-file-view hidden></div>
+                <div class="doc-preview-empty" data-file-empty>
+                  <i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+                  <strong data-field="name">Document</strong>
+                  <span class="small" data-field="size">—</span>
+                  <span class="small-xs">Sample record — the original scan is kept in the clinic archive. Files you upload here open in this preview.</span>
+                </div>
+              </div>
+            <dl class="detail-list">
+                <div class="span-2"><dt>Patient</dt><dd data-field="patient">—</dd></div>
+                <div><dt>Category</dt><dd data-field="category">—</dd></div>
+                <div><dt>Date</dt><dd data-field="date">—</dd></div>
+                <div class="span-2"><dt>Uploaded by</dt><dd data-field="uploadedby">—</dd></div>
+                <div class="span-2"><dt>Notes</dt><dd data-field="notes">—</dd></div>
+              </dl>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-toast="Shared on WhatsApp" data-bind-data-toast="{name} shared with {patient} on WhatsApp"><i class="bi bi-share" aria-hidden="true"></i>Share</button>
+          <button type="button" class="btn btn-light" data-action="print"><i class="bi bi-printer" aria-hidden="true"></i>Print</button>
+          <button type="button" class="btn btn-light" data-action="download"><i class="bi bi-download" aria-hidden="true"></i>Download</button>
+          <button type="button" class="btn btn-primary" data-switch-modal="#documentModal" data-mode="edit"><i class="bi bi-pencil" aria-hidden="true"></i>Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete confirmation -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content text-center">
+        <div class="modal-body p-4">
+          <span class="confirm-icon tone-red"><i class="bi bi-trash3" aria-hidden="true"></i></span>
+          <h2 class="h5" id="deleteModalTitle">Delete document?</h2>
+          <p class="text-muted mb-0">The file <strong data-record-label>this document</strong> will be permanently removed from the patient&#39;s records.</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Keep it</button>
+          <button type="button" class="btn btn-danger" data-action="confirm-delete" data-success="Document deleted">Yes, delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/demo-data.js"></script>
+  <script src="../assets/js/script.js"></script>
+</body>
+</html>

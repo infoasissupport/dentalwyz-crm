@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dentalwyz dental clinic management — treatment plans, session progress and procedure catalogue.">
+  <title>Treatment | Dentalwyz</title>
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/responsive.css" rel="stylesheet">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app-shell">
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar offcanvas-lg offcanvas-start" id="appSidebar" tabindex="-1" aria-label="Sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-header">
+          <a href="dashboard.html" class="brand" aria-label="Dentalwyz home">
+            <img src="../assets/images/logo.svg" alt="" class="brand-logo" width="40" height="40">
+            <span class="brand-text">dental<span>wyz</span></span>
+          </a>
+          <button type="button" class="btn-close d-lg-none" data-bs-dismiss="offcanvas" data-bs-target="#appSidebar" aria-label="Close menu"></button>
+        </div>
+        <nav class="sidebar-nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="dashboard.html"><i class="bi bi-house-door" aria-hidden="true"></i><span>Dashboard</span></a></li>
+            <li><a class="nav-link" href="appointments.html"><i class="bi bi-calendar3" aria-hidden="true"></i><span>Appointments</span></a></li>
+            <li><a class="nav-link" href="patients.html"><i class="bi bi-people" aria-hidden="true"></i><span>Patients</span></a></li>
+            <li><a class="nav-link" href="doctors.html"><i class="bi bi-person-badge" aria-hidden="true"></i><span>Doctors</span></a></li>
+            <li><a class="nav-link" href="documents.html"><i class="bi bi-folder2-open" aria-hidden="true"></i><span>Documents</span></a></li>
+            <li><a class="nav-link" href="invoices.html"><i class="bi bi-file-earmark-text" aria-hidden="true"></i><span>Invoices</span></a></li>
+            <li><a class="nav-link" href="payments.html"><i class="bi bi-credit-card-2-front" aria-hidden="true"></i><span>Payments</span></a></li>
+            <li><a class="nav-link" href="transactions.html"><i class="bi bi-arrow-left-right" aria-hidden="true"></i><span>Transactions</span></a></li>
+            <li><a class="nav-link active" aria-current="page" href="treatment.html"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i><span>Treatment</span></a></li>
+            <li><a class="nav-link" href="lab.html"><i class="bi bi-eyedropper" aria-hidden="true"></i><span>Lab</span></a></li>
+            <li><a class="nav-link" href="pharmacy.html"><i class="bi bi-capsule" aria-hidden="true"></i><span>Pharmacy</span></a></li>
+            <li><a class="nav-link" href="inventory.html"><i class="bi bi-box-seam" aria-hidden="true"></i><span>Inventory</span></a></li>
+            <li><a class="nav-link" href="reports.html"><i class="bi bi-bar-chart-line" aria-hidden="true"></i><span>Reports</span></a></li>
+          </ul>
+          <hr class="sidebar-divider">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="settings.html"><i class="bi bi-gear" aria-hidden="true"></i><span>Settings</span></a></li>
+            <li><a class="nav-link" href="help-support.html"><i class="bi bi-question-circle" aria-hidden="true"></i><span>Help &amp; Support</span></a></li>
+          </ul>
+        </nav>
+        <div class="sidebar-wave" aria-hidden="true"></div>
+      </div>
+    </aside>
+
+    <div class="main">
+      <!-- ============ TOP HEADER ============ -->
+      <header class="topbar">
+        <button type="button" class="icon-btn d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#appSidebar" aria-controls="appSidebar" aria-label="Open menu"><i class="bi bi-list" aria-hidden="true"></i></button>
+        <button type="button" class="icon-btn d-none d-lg-inline-flex" data-action="sidebar-collapse" aria-expanded="true" aria-label="Collapse sidebar"><i class="bi bi-layout-sidebar" aria-hidden="true"></i></button>
+
+        <form class="topbar-search" id="globalSearchForm" role="search">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <label for="globalSearch" class="visually-hidden">Search patient, appointment, invoice</label>
+          <input type="search" class="form-control" id="globalSearch" placeholder="Search patient, appointment, invoice..." autocomplete="off">
+        </form>
+
+        <div class="topbar-actions">
+          <button type="button" class="icon-btn d-md-none" data-action="toggle-search" aria-expanded="false" aria-label="Toggle search"><i class="bi bi-search" aria-hidden="true"></i></button>
+
+          <button type="button" class="topbar-chip date-chip" id="headerDate" aria-label="Choose date">
+            <i class="bi bi-calendar3 chip-icon" aria-hidden="true"></i>
+            <span class="chip-text">
+              <span class="chip-title" data-current-date>01 Oct 2026</span>
+              <span class="chip-sub" data-current-day>Thursday</span>
+            </span>
+            <input type="date" id="headerDatePicker" class="date-picker-input" tabindex="-1" aria-hidden="true">
+          </button>
+
+          <div class="dropdown">
+            <button type="button" class="icon-btn" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" aria-label="Notifications">
+              <i class="bi bi-bell" aria-hidden="true"></i><span class="notif-dot" aria-hidden="true" data-notif-dot hidden></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end notif-menu">
+              <div class="notif-menu-header">
+                <strong>Notifications <span class="badge-soft tone-blue ms-1"><span data-stat="notifications" data-stat-where="unread=yes">0</span> new</span></strong>
+                <button type="button" class="btn btn-link btn-sm p-0" data-action="mark-all-read">Mark all read</button>
+              </div>
+              <ul class="notif-list" id="notifList" data-collection="notifications" data-limit="8">
+                <template data-template>
+                  <li class="notif-item" data-record data-bind-data-unread="{unread}" tabindex="0" role="link"><span class="avatar avatar-sm" data-tone-from="icon"><i class="bi" data-bind-class="bi {icon}" aria-hidden="true"></i></span><div><p data-field="text"></p><time data-derive="ago"></time></div></li>
+                </template>
+              </ul>
+              <p class="notif-empty" data-empty-for="#notifList">No notifications yet. New appointments, patients, invoices and payments show up here.</p>
+              <div class="notif-menu-footer"><a href="settings.html#pane-notifications" class="panel-link">Notification settings</a></div>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button type="button" class="topbar-chip branch-chip" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Switch branch">
+              <img src="../assets/images/clinic.svg" alt="" class="chip-img" width="36" height="36">
+              <span class="chip-text">
+                <span class="chip-title" data-current-branch>ABC Clinic</span>
+                <span class="chip-sub" data-current-location>Calicut</span>
+              </span>
+              <i class="bi bi-chevron-down small" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end branch-menu" data-collection="branches" data-where="status=Active" data-sort="name">
+              <li><h6 class="dropdown-header">Switch branch</h6></li>
+              <template data-template><li data-record><a class="dropdown-item" href="#" data-bind-data-branch="{name}" data-bind-data-branch-location="{location}"><i class="bi bi-hospital" aria-hidden="true"></i><span data-field="name"></span> <small class="text-muted" data-field="location"></small><i class="bi bi-check2" aria-hidden="true"></i></a></li></template>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="settings.html#pane-branch"><i class="bi bi-sliders" aria-hidden="true"></i>Manage branches</a></li>
+            </ul>
+          </div>
+
+          <div class="dropdown">
+            <button type="button" class="topbar-chip profile-chip" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+              <span class="avatar avatar-sm tone-blue" data-setting-initials="pfName">MD</span>
+              <span class="chip-text d-none d-xl-block">
+                <span class="chip-title" data-setting-text="pfName">Dr. Max D'Souza</span>
+                <span class="chip-sub">Administrator</span>
+              </span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><h6 class="dropdown-header">Signed in as admin</h6></li>
+              <li><a class="dropdown-item" href="settings.html#pane-profile"><i class="bi bi-person-circle" aria-hidden="true"></i>My profile</a></li>
+              <li><a class="dropdown-item" href="settings.html#pane-clinic"><i class="bi bi-gear" aria-hidden="true"></i>Account settings</a></li>
+              <li><a class="dropdown-item" href="settings.html#pane-notifications"><i class="bi bi-bell" aria-hidden="true"></i>Notification settings</a></li>
+              <li><a class="dropdown-item" href="help-support.html"><i class="bi bi-life-preserver" aria-hidden="true"></i>Help &amp; Support</a></li>
+              <li><a class="dropdown-item" href="#" data-action="reset-demo"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Reset demo data</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="../index.html" data-action="logout"><i class="bi bi-box-arrow-right" aria-hidden="true"></i>Log out</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- ============ PAGE CONTENT ============ -->
+      <main class="content" id="main-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Treatment</h1>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Treatment</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="page-actions">
+            <button type="button" class="btn btn-light" data-action="export-csv" data-target="#plansTable" data-filename="dentalwyz-treatment-plans.csv"><i class="bi bi-filetype-csv" aria-hidden="true"></i>Export CSV</button>
+            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#procedureModal"><i class="bi bi-journal-plus" aria-hidden="true"></i>Add Procedure</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#planModal"><i class="bi bi-plus-circle" aria-hidden="true"></i>New Treatment Plan</button>
+          </div>
+        </div>
+        <section class="stats-grid mb-3" aria-label="Treatment summary">
+          <article class="stat-card">
+              <span class="stat-icon tone-blue"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">Active plans</p>
+                <p class="stat-value" data-stat="plans" data-stat-where="status=In Progress|Planned">0</p>
+                <div class="stat-meta"><span class="text-muted fw-medium"><span data-stat="plans" data-stat-where="status=Planned">0</span> planned · <span data-stat="plans" data-stat-where="status=On Hold">0</span> on hold</span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="30" width="8" height="16" rx="2" class="fill-blue" opacity=".2"/><rect x="14" y="22" width="8" height="24" rx="2" class="fill-blue" opacity=".3"/><rect x="26" y="16" width="8" height="30" rx="2" class="fill-blue" opacity=".4"/><rect x="38" y="8" width="8" height="38" rx="2" class="fill-blue" opacity=".55"/></svg>
+            </article>
+          <article class="stat-card">
+              <span class="stat-icon tone-green"><i class="bi bi-check2-circle" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">Visits completed this month</p>
+                <p class="stat-value" data-stat="appointments" data-stat-where="date=this-month;status=Completed">0</p>
+                <div class="stat-meta"><span class="text-muted fw-medium"><span data-stat="plans" data-stat-where="status=Completed" data-stat-suffix=" plan| plans">0</span> completed</span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="30" width="8" height="16" rx="2" class="fill-green" opacity=".2"/><rect x="14" y="22" width="8" height="24" rx="2" class="fill-green" opacity=".3"/><rect x="26" y="16" width="8" height="30" rx="2" class="fill-green" opacity=".4"/><rect x="38" y="8" width="8" height="38" rx="2" class="fill-green" opacity=".55"/></svg>
+            </article>
+          <article class="stat-card">
+              <span class="stat-icon tone-purple"><i class="bi bi-activity" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">Procedures today</p>
+                <p class="stat-value" data-stat="appointments" data-stat-where="date=today;status!=Cancelled|No Show">0</p>
+                <div class="stat-meta"><span class="text-muted fw-medium"><span data-stat="doctors" data-stat-where="status=Available" data-stat-suffix=" doctor| doctors">0</span> on duty</span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="30" width="8" height="16" rx="2" class="fill-purple" opacity=".2"/><rect x="14" y="22" width="8" height="24" rx="2" class="fill-purple" opacity=".3"/><rect x="26" y="16" width="8" height="30" rx="2" class="fill-purple" opacity=".4"/><rect x="38" y="8" width="8" height="38" rx="2" class="fill-purple" opacity=".55"/></svg>
+            </article>
+          <article class="stat-card">
+              <span class="stat-icon tone-amber"><i class="bi bi-currency-rupee" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">Treatment revenue</p>
+                <p class="stat-value" data-stat="transactions" data-stat-where="type=Income;category=Treatment;date=this-month" data-stat-fn="sum" data-stat-field="amount" data-format="currency">0</p>
+                <div class="stat-meta"><span class="text-muted fw-medium">this month · last month <span data-stat="transactions" data-stat-where="type=Income;category=Treatment;date=last-month" data-stat-fn="sum" data-stat-field="amount" data-format="lakh">0</span></span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="30" width="8" height="16" rx="2" class="fill-amber" opacity=".2"/><rect x="14" y="22" width="8" height="24" rx="2" class="fill-amber" opacity=".3"/><rect x="26" y="16" width="8" height="30" rx="2" class="fill-amber" opacity=".4"/><rect x="38" y="8" width="8" height="38" rx="2" class="fill-amber" opacity=".55"/></svg>
+            </article>
+        </section>
+        <ul class="nav nav-tabs-app mb-3" id="treatmentTabs" role="tablist">
+          <li class="nav-item" role="presentation"><button class="nav-link active" id="plansTab" data-bs-toggle="tab" data-bs-target="#plansPane" type="button" role="tab" aria-controls="plansPane" aria-selected="true"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i>Treatment Plans</button></li>
+          <li class="nav-item" role="presentation"><button class="nav-link" id="catalogueTab" data-bs-toggle="tab" data-bs-target="#cataloguePane" type="button" role="tab" aria-controls="cataloguePane" aria-selected="false"><i class="bi bi-journal-medical" aria-hidden="true"></i>Procedure Catalogue</button></li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="plansPane" role="tabpanel" aria-labelledby="plansTab" tabindex="0">
+            <section class="card-panel" aria-labelledby="plansTitle">
+              <div class="panel-header">
+                <h2 class="panel-title" id="plansTitle"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i>Treatment Plans <span class="count">(<span data-count-for="#plansTable">0</span>)</span></h2>
+                <div class="panel-tools">
+                      <div class="search-box">
+                        <i class="bi bi-search" aria-hidden="true"></i>
+                        <label for="planSearch" class="visually-hidden">Search treatment plans</label>
+                        <input type="search" id="planSearch" class="form-control form-control-sm" placeholder="Search patient, plan..." data-search-target="#plansTable">
+                      </div>
+                      <label for="planStatus" class="visually-hidden">Filter by status</label>
+                      <select id="planStatus" class="form-select form-select-sm filter-select" data-filter-target="#plansTable" data-filter-field="status"><option value="all">All status</option><option>Planned</option><option>In Progress</option><option>Completed</option><option>On Hold</option></select>
+                      <label for="planDoctor" class="visually-hidden">Filter by doctor</label>
+                      <select data-options="doctors" id="planDoctor" class="form-select form-select-sm filter-select" data-filter-target="#plansTable" data-filter-field="doctor"><option value="all">All doctors</option></select>
+                      <button type="button" class="btn btn-sm btn-light" data-action="reset-filters" data-target="#plansTable"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Reset</button>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-app table-hover" id="plansTable" data-list data-collection="plans" data-sort="-date,-plan" data-notify="Treatment plan {plan} created for {patient}" data-notify-icon="bi-clipboard2-plus">
+                  <thead>
+                    <tr><th scope="col">Plan ID</th><th scope="col">Patient</th><th scope="col">Treatment / Tooth (FDI)</th><th scope="col">Doctor</th><th scope="col">Start date</th><th scope="col">Sessions</th><th scope="col" class="text-end">Cost</th><th scope="col">Status</th><th scope="col" class="text-center action-col" data-no-export>Actions</th></tr>
+                  </thead>
+                  <tbody>
+                        <template data-template>
+                          <tr data-record>
+                          <td><span class="fw-semibold" data-field="plan" data-seq="TP-2026-001"></span> <span class="badge-soft tone-green" data-new-only hidden>New</span></td>
+                          <td><div class="person"><span class="avatar" data-avatar="patient" data-tone-from="patient"></span><span class="person-name" data-field="patient" data-primary></span></div>
+                            <span data-field="phone" hidden></span><span data-field="notes" hidden></span></td>
+                          <td><span class="d-block fw-medium" data-field="treatment"></span><span class="person-sub">Tooth <span data-field="tooth"></span></span></td>
+                          <td data-field="doctor"></td>
+                          <td data-field="date"></td>
+                          <td><div class="small fw-semibold mb-1"><span data-field="done"></span> / <span data-field="sessions"></span></div>
+                            <div class="progress" role="progressbar" aria-label="Sessions completed" aria-valuenow="0" aria-valuemin="0" aria-valuemax="1"><div class="progress-bar" data-derive="progress" data-derive-from="done/sessions"></div></div></td>
+                          <td class="text-end fw-semibold" data-field="cost" data-format="currency"></td>
+                          <td><span class="badge-status" data-field="status"></span></td>
+                          <td class="text-center action-col">
+                            <div class="action-group">
+                              <button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#viewPlanModal" aria-label="View treatment plan"><i class="bi bi-eye" aria-hidden="true"></i></button>
+                              <button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#planModal" data-mode="edit" aria-label="Edit treatment plan"><i class="bi bi-pencil" aria-hidden="true"></i></button>
+                              <div class="dropdown">
+                                <button type="button" class="btn-icon neutral" data-bs-toggle="dropdown" aria-expanded="false" aria-label="More actions"><i class="bi bi-three-dots" aria-hidden="true"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                  <li><h6 class="dropdown-header">Change status</h6></li>
+                                  <li><a class="dropdown-item" href="#" data-set-status="In Progress"><i class="bi bi-play-circle" aria-hidden="true"></i>Start / resume</a></li>
+                                  <li><a class="dropdown-item" href="#" data-set-status="Completed"><i class="bi bi-check2-circle" aria-hidden="true"></i>Mark completed</a></li>
+                                  <li><a class="dropdown-item" href="#" data-set-status="On Hold"><i class="bi bi-pause-circle" aria-hidden="true"></i>Put on hold</a></li>
+                                  <li><a class="dropdown-item" href="#" data-increment="done" data-increment-max="sessions" data-progress-status="In Progress"><i class="bi bi-plus-circle" aria-hidden="true"></i>Record a session</a></li>
+                                  <li><a class="dropdown-item" href="appointments.html#appointmentModal" data-bind-href="appointments.html?prefill-name={patient}&amp;prefill-phone={phone}&amp;prefill-doctor={doctor}&amp;prefill-treatment={treatment}#appointmentModal"><i class="bi bi-calendar-plus" aria-hidden="true"></i>Book next session</a></li>
+                                  <li><a class="dropdown-item" href="#" data-toast="Reminder sent" data-bind-data-toast="Next-session reminder sent to {patient} ({phone}) via SMS &amp; WhatsApp"><i class="bi bi-send" aria-hidden="true"></i>Send reminder</a></li>
+                                  <li><a class="dropdown-item" href="invoices.html#invoiceModal" data-bind-href="invoices.html?prefill-patient={patient}&amp;prefill-doctor={doctor}&amp;prefill-treatment={treatment}#invoiceModal"><i class="bi bi-file-earmark-plus" aria-hidden="true"></i>Create invoice</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash3" aria-hidden="true"></i>Delete plan</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        </template>
+                      </tbody>
+                </table>
+              </div>
+              <div class="empty-state" data-empty-for="#plansTable" hidden><i class="bi bi-clipboard2-x" aria-hidden="true"></i>No treatment plans match your filters.
+                <div class="mt-3"><button type="button" class="btn btn-light btn-sm" data-action="reset-filters" data-target="#plansTable"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Clear filters</button></div></div>
+            </section>
+          </div>
+
+          <div class="tab-pane fade" id="cataloguePane" role="tabpanel" aria-labelledby="catalogueTab" tabindex="0">
+            <section class="card-panel" aria-labelledby="procTitle">
+              <div class="panel-header">
+                <h2 class="panel-title" id="procTitle"><i class="bi bi-journal-medical" aria-hidden="true"></i>Procedure Catalogue <span class="count">(<span data-count-for="#procTable">0</span>)</span></h2>
+                <div class="panel-tools">
+                      <div class="search-box">
+                        <i class="bi bi-search" aria-hidden="true"></i>
+                        <label for="procSearch" class="visually-hidden">Search procedures</label>
+                        <input type="search" id="procSearch" class="form-control form-control-sm" placeholder="Search procedure..." data-search-target="#procTable">
+                      </div>
+                      <label for="procCategory" class="visually-hidden">Filter by category</label>
+                      <select id="procCategory" class="form-select form-select-sm filter-select" data-filter-target="#procTable" data-filter-field="category"><option value="all">All categories</option><option>Diagnostic</option><option>Preventive</option><option>Restorative</option><option>Endodontics</option><option>Prosthodontics</option><option>Oral Surgery</option><option>Implantology</option><option>Orthodontics</option><option>Cosmetic</option></select>
+                      <button type="button" class="btn btn-sm btn-soft" data-bs-toggle="modal" data-bs-target="#procedureModal"><i class="bi bi-plus-lg" aria-hidden="true"></i>Add procedure</button>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-app table-hover" id="procTable" data-list data-collection="procedures" data-sort="code" data-notify="{procedure} added to the treatment catalogue" data-notify-icon="bi-journal-plus">
+                  <thead>
+                    <tr><th scope="col">Procedure</th><th scope="col">Category</th><th scope="col">Duration</th><th scope="col" class="text-end">Price</th><th scope="col" class="text-end">Done (30 days)</th><th scope="col" class="text-center action-col" data-no-export>Actions</th></tr>
+                  </thead>
+                  <tbody>
+                        <template data-template>
+                          <tr data-record>
+                          <td><span class="person-name" data-field="procedure" data-primary></span><span class="person-sub" data-field="code" data-seq="PRC-001"></span>
+                            <span data-field="description" hidden></span></td>
+                          <td><span class="badge-soft tone-blue" data-field="category"></span></td>
+                          <td data-field="duration"></td>
+                          <td class="text-end fw-semibold" data-field="price" data-format="currency"></td>
+                          <td class="text-end" data-field="done30" data-derive="agg" data-agg="appointments" data-agg-match="treatment=procedure" data-agg-where="status=Completed;date=last-30-days" data-default="0"></td>
+                          <td class="text-center action-col">
+                            <div class="action-group">
+                              <a class="btn-icon" href="appointments.html#appointmentModal" data-bind-href="appointments.html?prefill-treatment={procedure}#appointmentModal" data-bind-aria-label="Book {procedure}"><i class="bi bi-calendar-plus" aria-hidden="true"></i></a>
+                              <button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#procedureModal" data-mode="edit" aria-label="Edit procedure"><i class="bi bi-pencil" aria-hidden="true"></i></button>
+                              <button type="button" class="btn-icon danger" data-bs-toggle="modal" data-bs-target="#deleteProcedureModal" aria-label="Delete procedure"><i class="bi bi-trash3" aria-hidden="true"></i></button>
+                            </div>
+                          </td>
+                        </tr>
+                        </template>
+                      </tbody>
+                </table>
+              </div>
+              <div class="empty-state" data-empty-for="#procTable" hidden><i class="bi bi-journal-x" aria-hidden="true"></i>No procedures match your search.</div>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- ============ MODALS ============ -->
+
+  <!-- Add / Edit treatment plan -->
+  <div class="modal fade" id="planModal" tabindex="-1" aria-labelledby="planModalTitle" aria-hidden="true" data-edit-title="Edit Treatment Plan">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <form class="modal-content" novalidate data-add-to="#plansTable" data-success="Treatment plan created successfully" data-success-edit="Treatment plan updated successfully">
+        <div class="modal-header">
+          <h2 class="modal-title" id="planModalTitle"><span class="title-icon tone-blue"><i class="bi bi-clipboard2-plus" aria-hidden="true"></i></span><span data-modal-title>New Treatment Plan</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="form-section-title">Patient</p>
+          <div class="grid-3">
+            <div><label for="tpId" class="form-label">Plan ID *</label><input type="text" class="form-control" id="tpId" name="plan" readonly placeholder="Assigned on save"></div>
+            <div><label for="tpPatient" class="form-label">Patient name *</label><select class="form-select" id="tpPatient" name="patient" required data-options="patients" data-option-field="name" data-option-attr-phone="phone" data-option-attr-doctor="doctor" data-option-fill="phone:phone;doctor:doctor"><option value="">Select patient</option></select><div class="invalid-feedback">Patient name is required.</div></div>
+            <div><label for="tpPhone" class="form-label">Phone</label><input type="tel" class="form-control" id="tpPhone" name="phone" pattern="[0-9+\s\-]{8,}" placeholder="+91 98470 12345"><div class="invalid-feedback">Enter a valid phone number.</div></div>
+          </div>
+          <p class="form-section-title mt-4">Treatment</p>
+          <div class="grid-12">
+            <div class="span-6"><label for="tpTreatment" class="form-label">Treatment *</label><select class="form-select" id="tpTreatment" name="treatment" required data-options="procedures" data-option-field="procedure" data-option-attr-price="price" data-option-fill="price:cost"><option value="">Select treatment</option></select><div class="invalid-feedback">Choose a treatment.</div></div>
+            <div class="span-3"><label for="tpTooth" class="form-label">Tooth no. (FDI) *</label><input type="text" class="form-control" id="tpTooth" name="tooth" required placeholder="e.g. 36 or 11-21"><div class="invalid-feedback">Enter the tooth number.</div></div>
+            <div class="span-3"><label for="tpDoctor" class="form-label">Doctor *</label><select class="form-select" id="tpDoctor" name="doctor" required data-options="doctors"><option value="">Select doctor</option></select><div class="invalid-feedback">Choose a doctor.</div></div>
+            <div class="span-4"><label for="tpDate" class="form-label">Start date *</label><input type="date" class="form-control" id="tpDate" name="date" required data-default-days="0"><div class="invalid-feedback">Pick a start date.</div></div>
+            <div class="span-half span-2"><label for="tpDone" class="form-label">Done</label><input type="number" class="form-control" id="tpDone" name="done" min="0" max="50" value="0"></div>
+            <div class="span-half span-2"><label for="tpSessions" class="form-label">Sessions *</label><input type="number" class="form-control" id="tpSessions" name="sessions" required min="1" max="50" value="1"><div class="invalid-feedback">At least 1.</div></div>
+            <div class="span-4"><label for="tpCost" class="form-label">Cost (₹) *</label><div class="input-group has-validation"><span class="input-group-text">₹</span><input type="number" class="form-control" id="tpCost" name="cost" required min="0" step="0.01" placeholder="0"><div class="invalid-feedback">Enter the estimated cost.</div></div></div>
+            <div class="span-4"><label for="tpStatus" class="form-label">Status</label><select class="form-select" id="tpStatus" name="status"><option>Planned</option><option>In Progress</option><option>Completed</option><option>On Hold</option></select></div>
+            <div class="span-8"><label for="tpNotes" class="form-label">Clinical notes</label><input type="text" class="form-control" id="tpNotes" name="notes" placeholder="Diagnosis, materials, follow-up"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check2" aria-hidden="true"></i>Save Plan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Preview treatment plan -->
+  <div class="modal fade" id="viewPlanModal" tabindex="-1" aria-labelledby="viewPlanTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="viewPlanTitle"><span class="title-icon tone-blue"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i></span>Treatment Details</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="profile-head">
+            <span class="avatar avatar-lg tone-blue" data-avatar="patient">P</span>
+            <div>
+              <h3 data-field="patient">Patient</h3>
+              <p class="small text-muted mb-1"><span data-field="plan">—</span> · <span data-field="treatment">—</span></p>
+              <span class="badge-status" data-field="status">Planned</span>
+            </div>
+          </div>
+          <dl class="detail-list">
+            <div><dt>Tooth no. (FDI)</dt><dd data-field="tooth">—</dd></div>
+            <div><dt>Doctor</dt><dd data-field="doctor">—</dd></div>
+            <div><dt>Start date</dt><dd data-field="date">—</dd></div>
+            <div><dt>Sessions</dt><dd><span data-field="done">—</span> of <span data-field="sessions">—</span> completed</dd></div>
+            <div><dt>Estimated cost</dt><dd data-field="cost">—</dd></div>
+            <div><dt>Phone</dt><dd data-field="phone">—</dd></div>
+            <div class="span-2"><dt>Clinical notes</dt><dd data-field="notes">—</dd></div>
+          </dl>
+          <div data-related-wrap>
+            <p class="form-section-title mt-4">Visits for this treatment</p>
+            <ul class="timeline" data-related="appointments" data-related-match="phone=phone;treatment=treatment" data-related-sort="date,time">
+              <template data-template><li class="timeline-item"><span class="timeline-time" data-field="date"></span><div class="person"><div><span class="person-name"><span data-field="doctor"></span> · <span data-field="time"></span></span><span class="person-sub"><span data-field="complaint" data-default=""></span> <span data-field="notes" data-default=""></span></span></div></div><span class="badge-status" data-field="status"></span></li></template>
+            </ul>
+            <p class="text-muted small mb-0" data-related-empty hidden>No visits booked for this treatment yet.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="appointments.html#appointmentModal" class="btn btn-light" data-bind-href="appointments.html?prefill-name={patient}&amp;prefill-phone={phone}&amp;prefill-doctor={doctor}&amp;prefill-treatment={treatment}#appointmentModal"><i class="bi bi-calendar-plus" aria-hidden="true"></i>Book session</a>
+          <button type="button" class="btn btn-light" data-increment="done" data-increment-max="sessions" data-progress-status="In Progress"><i class="bi bi-plus-circle" aria-hidden="true"></i>Record session</button>
+          <a href="invoices.html#invoiceModal" class="btn btn-light" data-bind-href="invoices.html?prefill-patient={patient}&amp;prefill-doctor={doctor}&amp;prefill-treatment={treatment}#invoiceModal"><i class="bi bi-file-earmark-plus" aria-hidden="true"></i>Create invoice</a>
+          <button type="button" class="btn btn-light" data-action="print"><i class="bi bi-printer" aria-hidden="true"></i>Print</button>
+          <button type="button" class="btn btn-light" data-set-status="Completed" data-close-modal><i class="bi bi-check2-circle" aria-hidden="true"></i>Mark completed</button>
+          <button type="button" class="btn btn-primary" data-switch-modal="#planModal" data-mode="edit"><i class="bi bi-pencil" aria-hidden="true"></i>Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit procedure -->
+  <div class="modal fade" id="procedureModal" tabindex="-1" aria-labelledby="procedureModalTitle" aria-hidden="true" data-edit-title="Edit Procedure">
+    <div class="modal-dialog modal-dialog-centered">
+      <form class="modal-content" novalidate data-add-to="#procTable" data-success="Procedure added to catalogue" data-success-edit="Procedure updated successfully">
+        <div class="modal-header">
+          <h2 class="modal-title" id="procedureModalTitle"><span class="title-icon tone-purple"><i class="bi bi-journal-plus" aria-hidden="true"></i></span><span data-modal-title>Add Procedure</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="grid-12">
+            <div class="span-8"><label for="prName" class="form-label">Procedure name *</label><input type="text" class="form-control" id="prName" name="procedure" required placeholder="e.g. Pulpotomy"><div class="invalid-feedback">Procedure name is required.</div></div>
+            <div class="span-4"><label for="prCode" class="form-label">Code *</label><input type="text" class="form-control" id="prCode" name="code" readonly placeholder="Auto"></div>
+            <div class="span-6"><label for="prCategory" class="form-label">Category *</label><select class="form-select" id="prCategory" name="category" required><option value="">Select category</option><option>Diagnostic</option><option>Preventive</option><option>Restorative</option><option>Endodontics</option><option>Prosthodontics</option><option>Oral Surgery</option><option>Implantology</option><option>Orthodontics</option><option>Cosmetic</option></select><div class="invalid-feedback">Choose a category.</div></div>
+            <div class="span-6"><label for="prDuration" class="form-label">Duration *</label><select class="form-select" id="prDuration" name="duration" required><option value="">Select duration</option><option>10 min</option><option>15 min</option><option>30 min</option><option>45 min</option><option>60 min</option><option>90 min</option><option>120 min</option></select><div class="invalid-feedback">Choose a duration.</div></div>
+            <div class="span-6"><label for="prPrice" class="form-label">Price (₹) *</label><div class="input-group has-validation"><span class="input-group-text">₹</span><input type="number" class="form-control" id="prPrice" name="price" required min="0" step="0.01" placeholder="0"><div class="invalid-feedback">Enter a price.</div></div></div>
+            <div><label for="prDesc" class="form-label">Description</label><textarea class="form-control" id="prDesc" name="description" rows="2" placeholder="What the procedure includes"></textarea></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check2" aria-hidden="true"></i>Save Procedure</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete treatment plan -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content text-center">
+        <div class="modal-body p-4">
+          <span class="confirm-icon tone-red"><i class="bi bi-trash3" aria-hidden="true"></i></span>
+          <h2 class="h5" id="deleteModalTitle">Delete treatment plan?</h2>
+          <p class="text-muted mb-0">The treatment plan for <strong data-record-label>this patient</strong> will be permanently removed.</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Keep it</button>
+          <button type="button" class="btn btn-danger" data-action="confirm-delete" data-success="Treatment plan deleted">Yes, delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete procedure -->
+  <div class="modal fade" id="deleteProcedureModal" tabindex="-1" aria-labelledby="deleteProcedureModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content text-center">
+        <div class="modal-body p-4">
+          <span class="confirm-icon tone-red"><i class="bi bi-trash3" aria-hidden="true"></i></span>
+          <h2 class="h5" id="deleteProcedureModalTitle">Remove procedure?</h2>
+          <p class="text-muted mb-0"><strong data-record-label>This procedure</strong> will be removed from the catalogue. Existing plans and appointments are not affected; it just stops appearing in the booking and invoice lists.</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Keep it</button>
+          <button type="button" class="btn btn-danger" data-action="confirm-delete" data-success="Procedure removed">Yes, remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/demo-data.js"></script>
+  <script src="../assets/js/script.js"></script>
+</body>
+</html>

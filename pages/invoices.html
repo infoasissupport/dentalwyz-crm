@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dentalwyz dental clinic management — create, track and manage patient invoices.">
+  <title>Invoices | Dentalwyz</title>
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/responsive.css" rel="stylesheet">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app-shell">
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar offcanvas-lg offcanvas-start" id="appSidebar" tabindex="-1" aria-label="Sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-header">
+          <a href="dashboard.html" class="brand" aria-label="Dentalwyz home">
+            <img src="../assets/images/logo.svg" alt="" class="brand-logo" width="40" height="40">
+            <span class="brand-text">dental<span>wyz</span></span>
+          </a>
+          <button type="button" class="btn-close d-lg-none" data-bs-dismiss="offcanvas" data-bs-target="#appSidebar" aria-label="Close menu"></button>
+        </div>
+        <nav class="sidebar-nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="dashboard.html"><i class="bi bi-house-door" aria-hidden="true"></i><span>Dashboard</span></a></li>
+            <li><a class="nav-link" href="appointments.html"><i class="bi bi-calendar3" aria-hidden="true"></i><span>Appointments</span></a></li>
+            <li><a class="nav-link" href="patients.html"><i class="bi bi-people" aria-hidden="true"></i><span>Patients</span></a></li>
+            <li><a class="nav-link" href="doctors.html"><i class="bi bi-person-badge" aria-hidden="true"></i><span>Doctors</span></a></li>
+            <li><a class="nav-link" href="documents.html"><i class="bi bi-folder2-open" aria-hidden="true"></i><span>Documents</span></a></li>
+            <li><a class="nav-link active" aria-current="page" href="invoices.html"><i class="bi bi-file-earmark-text" aria-hidden="true"></i><span>Invoices</span></a></li>
+            <li><a class="nav-link" href="payments.html"><i class="bi bi-credit-card-2-front" aria-hidden="true"></i><span>Payments</span></a></li>
+            <li><a class="nav-link" href="transactions.html"><i class="bi bi-arrow-left-right" aria-hidden="true"></i><span>Transactions</span></a></li>
+            <li><a class="nav-link" href="treatment.html"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i><span>Treatment</span></a></li>
+            <li><a class="nav-link" href="lab.html"><i class="bi bi-eyedropper" aria-hidden="true"></i><span>Lab</span></a></li>
+            <li><a class="nav-link" href="pharmacy.html"><i class="bi bi-capsule" aria-hidden="true"></i><span>Pharmacy</span></a></li>
+            <li><a class="nav-link" href="inventory.html"><i class="bi bi-box-seam" aria-hidden="true"></i><span>Inventory</span></a></li>
+            <li><a class="nav-link" href="reports.html"><i class="bi bi-bar-chart-line" aria-hidden="true"></i><span>Reports</span></a></li>
+          </ul>
+          <hr class="sidebar-divider">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="settings.html"><i class="bi bi-gear" aria-hidden="true"></i><span>Settings</span></a></li>
+            <li><a class="nav-link" href="help-support.html"><i class="bi bi-question-circle" aria-hidden="true"></i><span>Help &amp; Support</span></a></li>
+          </ul>
+        </nav>
+        <div class="sidebar-wave" aria-hidden="true"></div>
+      </div>
+    </aside>
+
+    <div class="main">
+      <!-- ============ TOP HEADER ============ -->
+      <header class="topbar">
+        <button type="button" class="icon-btn d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#appSidebar" aria-controls="appSidebar" aria-label="Open menu"><i class="bi bi-list" aria-hidden="true"></i></button>
+        <button type="button" class="icon-btn d-none d-lg-inline-flex" data-action="sidebar-collapse" aria-expanded="true" aria-label="Collapse sidebar"><i class="bi bi-layout-sidebar" aria-hidden="true"></i></button>
+
+        <form class="topbar-search" id="globalSearchForm" role="search">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <label for="globalSearch" class="visually-hidden">Search patient, appointment, invoice</label>
+          <input type="search" class="form-control" id="globalSearch" placeholder="Search patient, appointment, invoice..." autocomplete="off">
+        </form>
+
+        <div class="topbar-actions">
+          <button type="button" class="icon-btn d-md-none" data-action="toggle-search" aria-expanded="false" aria-label="Toggle search"><i class="bi bi-search" aria-hidden="true"></i></button>
+
+          <button type="button" class="topbar-chip date-chip" id="headerDate" aria-label="Choose date">
+            <i class="bi bi-calendar3 chip-icon" aria-hidden="true"></i>
+            <span class="chip-text">
+              <span class="chip-title" data-current-date>01 Oct 2026</span>
+              <span class="chip-sub" data-current-day>Thursday</span>
+            </span>
+            <input type="date" id="headerDatePicker" class="date-picker-input" tabindex="-1" aria-hidden="true">
+          </button>
+
+          <div class="dropdown">
+            <button type="button" class="icon-btn" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" aria-label="Notifications">
+              <i class="bi bi-bell" aria-hidden="true"></i><span class="notif-dot" aria-hidden="true" data-notif-dot hidden></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end notif-menu">
+              <div class="notif-menu-header">
+                <strong>Notifications <span class="badge-soft tone-blue ms-1"><span data-stat="notifications" data-stat-where="unread=yes">0</span> new</span></strong>
+                <button type="button" class="btn btn-link btn-sm p-0" data-action="mark-all-read">Mark all read</button>
+              </div>
+              <ul class="notif-list" id="notifList" data-collection="notifications" data-limit="8">
+                <template data-template>
+                  <li class="notif-item" data-record data-bind-data-unread="{unread}" tabindex="0" role="link"><span class="avatar avatar-sm" data-tone-from="icon"><i class="bi" data-bind-class="bi {icon}" aria-hidden="true"></i></span><div><p data-field="text"></p><time data-derive="ago"></time></div></li>
+                </template>
+              </ul>
+              <p class="notif-empty" data-empty-for="#notifList">No notifications yet. New appointments, patients, invoices and payments show up here.</p>
+              <div class="notif-menu-footer"><a href="settings.html#pane-notifications" class="panel-link">Notification settings</a></div>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button type="button" class="topbar-chip branch-chip" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Switch branch">
+              <img src="../assets/images/clinic.svg" alt="" class="chip-img" width="36" height="36">
+              <span class="chip-text">
+                <span class="chip-title" data-current-branch>ABC Clinic</span>
+                <span class="chip-sub" data-current-location>Calicut</span>
+              </span>
+              <i class="bi bi-chevron-down small" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end branch-menu" data-collection="branches" data-where="status=Active" data-sort="name">
+              <li><h6 class="dropdown-header">Switch branch</h6></li>
+              <template data-template><li data-record><a class="dropdown-item" href="#" data-bind-data-branch="{name}" data-bind-data-branch-location="{location}"><i class="bi bi-hospital" aria-hidden="true"></i><span data-field="name"></span> <small class="text-muted" data-field="location"></small><i class="bi bi-check2" aria-hidden="true"></i></a></li></template>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="settings.html#pane-branch"><i class="bi bi-sliders" aria-hidden="true"></i>Manage branches</a></li>
+            </ul>
+          </div>
+
+          <div class="dropdown">
+            <button type="button" class="topbar-chip profile-chip" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+              <span class="avatar avatar-sm tone-blue" data-setting-initials="pfName">MD</span>
+              <span class="chip-text d-none d-xl-block">
+                <span class="chip-title" data-setting-text="pfName">Dr. Max D'Souza</span>
+                <span class="chip-sub">Administrator</span>
+              </span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><h6 class="dropdown-header">Signed in as admin</h6></li>
+              <li><a class="dropdown-item" href="settings.html#pane-profile"><i class="bi bi-person-circle" aria-hidden="true"></i>My profile</a></li>
+              <li><a class="dropdown-item" href="settings.html#pane-clinic"><i class="bi bi-gear" aria-hidden="true"></i>Account settings</a></li>
+              <li><a class="dropdown-item" href="settings.html#pane-notifications"><i class="bi bi-bell" aria-hidden="true"></i>Notification settings</a></li>
+              <li><a class="dropdown-item" href="help-support.html"><i class="bi bi-life-preserver" aria-hidden="true"></i>Help &amp; Support</a></li>
+              <li><a class="dropdown-item" href="#" data-action="reset-demo"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Reset demo data</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="../index.html" data-action="logout"><i class="bi bi-box-arrow-right" aria-hidden="true"></i>Log out</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- ============ PAGE CONTENT ============ -->
+      <main class="content" id="main-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Invoices</h1>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                <li class="breadcrumb-item">Billing</li>
+                <li class="breadcrumb-item active" aria-current="page">Invoices</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="page-actions">
+            <button type="button" class="btn btn-light" data-action="export-csv" data-target="#invoiceTable" data-filename="dentalwyz-invoices.csv"><i class="bi bi-filetype-csv" aria-hidden="true"></i>Export CSV</button>
+            <a href="payments.html" class="btn btn-light"><i class="bi bi-credit-card-2-front" aria-hidden="true"></i>Payments</a>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#invoiceModal"><i class="bi bi-plus-circle" aria-hidden="true"></i>Create Invoice</button>
+          </div>
+        </div>
+
+        <!-- Stat cards -->
+        <section class="stats-grid mb-3" aria-label="Billing summary">
+          <article class="stat-card">
+              <span class="stat-icon tone-blue"><i class="bi bi-receipt" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">Total invoiced</p>
+                <p class="stat-value" data-stat="invoices" data-stat-where="date=this-month;status!=Cancelled|Draft" data-stat-fn="sum" data-stat-field="amount" data-format="currency">0</p>
+                <div class="stat-meta"><span class="text-muted fw-medium"><span data-stat="invoices" data-stat-where="date=this-month;status!=Cancelled|Draft" data-stat-suffix=" invoice| invoices">0</span> this month</span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="30" width="8" height="16" rx="2" class="fill-blue" opacity=".2"/><rect x="14" y="22" width="8" height="24" rx="2" class="fill-blue" opacity=".3"/><rect x="26" y="14" width="8" height="32" rx="2" class="fill-blue" opacity=".45"/><rect x="38" y="6" width="8" height="40" rx="2" class="fill-blue" opacity=".6"/></svg>
+            </article>
+          <article class="stat-card">
+              <span class="stat-icon tone-green"><i class="bi bi-check2-circle" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">Collected</p>
+                <p class="stat-value" data-stat="invoices" data-stat-where="date=this-month" data-stat-fn="sum" data-stat-field="paid" data-format="currency">0</p>
+                <div class="stat-meta"><span class="text-muted fw-medium">collected this month</span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="30" width="8" height="16" rx="2" class="fill-green" opacity=".2"/><rect x="14" y="22" width="8" height="24" rx="2" class="fill-green" opacity=".3"/><rect x="26" y="14" width="8" height="32" rx="2" class="fill-green" opacity=".45"/><rect x="38" y="6" width="8" height="40" rx="2" class="fill-green" opacity=".6"/></svg>
+            </article>
+          <article class="stat-card">
+              <span class="stat-icon tone-amber"><i class="bi bi-hourglass-split" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">Outstanding</p>
+                <p class="stat-value" data-stat="invoices" data-stat-where="status=Pending|Partially Paid" data-stat-fn="sum" data-stat-field="balance" data-format="currency">0</p>
+                <div class="stat-meta"><span class="text-muted fw-medium"><span data-stat="invoices" data-stat-where="status=Pending|Partially Paid" data-stat-suffix=" invoice| invoices">0</span> incl. partial</span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="30" width="8" height="16" rx="2" class="fill-amber" opacity=".2"/><rect x="14" y="22" width="8" height="24" rx="2" class="fill-amber" opacity=".3"/><rect x="26" y="14" width="8" height="32" rx="2" class="fill-amber" opacity=".45"/><rect x="38" y="6" width="8" height="40" rx="2" class="fill-amber" opacity=".6"/></svg>
+            </article>
+          <article class="stat-card">
+              <span class="stat-icon tone-red"><i class="bi bi-exclamation-octagon" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">Overdue</p>
+                <p class="stat-value" data-stat="invoices" data-stat-where="status=Overdue" data-stat-fn="sum" data-stat-field="balance" data-format="currency">0</p>
+                <div class="stat-meta"><span class="text-danger fw-medium"><span data-stat="invoices" data-stat-where="status=Overdue" data-stat-suffix=" invoice| invoices">0</span> past due date</span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="30" width="8" height="16" rx="2" class="fill-red" opacity=".2"/><rect x="14" y="22" width="8" height="24" rx="2" class="fill-red" opacity=".3"/><rect x="26" y="14" width="8" height="32" rx="2" class="fill-red" opacity=".45"/><rect x="38" y="6" width="8" height="40" rx="2" class="fill-red" opacity=".6"/></svg>
+            </article>
+        </section>
+
+        <!-- Invoice list -->
+        <section class="card-panel" aria-labelledby="invoicesTitle">
+          <div class="panel-header">
+            <h2 class="panel-title" id="invoicesTitle"><i class="bi bi-file-earmark-text" aria-hidden="true"></i>All Invoices <span class="count">(<span data-count-for="#invoiceTable">0</span>)</span></h2>
+            <div class="panel-tools">
+              <div class="search-box">
+                <i class="bi bi-search" aria-hidden="true"></i>
+                <label for="invoiceSearch" class="visually-hidden">Search invoices</label>
+                <input type="search" id="invoiceSearch" class="form-control form-control-sm" placeholder="Search invoice or patient..." data-search-target="#invoiceTable">
+              </div>
+              <label for="invoiceStatusFilter" class="visually-hidden">Filter by status</label>
+              <select id="invoiceStatusFilter" class="form-select form-select-sm filter-select" data-filter-target="#invoiceTable" data-filter-field="status">
+                <option value="all">All status</option>
+                <option>Paid</option>
+                <option>Pending</option>
+                <option>Partially Paid</option>
+                <option>Overdue</option>
+                <option>Draft</option>
+                <option>Cancelled</option>
+              </select>
+              <label for="invoiceDoctorFilter" class="visually-hidden">Filter by doctor</label>
+              <select data-options="doctors" id="invoiceDoctorFilter" class="form-select form-select-sm filter-select" data-filter-target="#invoiceTable" data-filter-field="doctor">
+                <option value="all">All doctors</option>
+              </select>
+              <label for="invoicePeriodFilter" class="visually-hidden">Filter by period</label>
+              <select id="invoicePeriodFilter" class="form-select form-select-sm filter-select" data-filter-target="#invoiceTable" data-filter-field="date">
+                <option value="all">Any date</option><option value="today">Today</option><option value="this-week">This week</option><option value="this-month">This month</option><option value="last-month">Last month</option><option value="last-30-days">Last 30 days</option>
+              </select>
+              <button type="button" class="btn btn-sm btn-light" data-action="reset-filters" data-target="#invoiceTable"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Reset</button>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-app table-hover" id="invoiceTable" data-list data-collection="invoices" data-join="patients:patient=name" data-sort="-date,-invoice" data-notify="Invoice {invoice} created for {patient} ({amount})" data-notify-icon="bi-receipt">
+              <thead>
+                <tr><th scope="col">Invoice #</th><th scope="col">Patient</th><th scope="col">Date</th><th scope="col">Due date</th><th scope="col">Treatment</th><th scope="col">Amount</th><th scope="col">Balance</th><th scope="col">Status</th><th scope="col" class="text-center action-col" data-no-export>Actions</th></tr>
+              </thead>
+              <tbody>
+                <template data-template>
+                  <tr data-record>
+                    <td><span class="fw-semibold" data-field="invoice" data-seq="INV-1001" data-primary></span> <span class="badge-soft tone-green" data-new-only hidden>New</span></td>
+                    <td><div class="person"><span class="avatar avatar-sm" data-avatar="patient" data-tone-from="patient"></span><div><span class="person-name" data-field="patient"></span><span class="person-sub" data-field="doctor"></span></div></div>
+                      <span hidden><span data-field="phone"></span><span data-field="items"></span><span data-field="subtotal" data-default="₹0"></span><span data-field="discount" data-format="currency" data-default="₹0"></span><span data-field="tax" data-default="₹0"></span><span data-field="paid" data-default="₹0"></span><span data-field="notes"></span></span></td>
+                    <td data-field="date"></td>
+                    <td data-field="due"></td>
+                    <td data-field="treatment"></td>
+                    <td class="fw-semibold" data-field="amount" data-format="currency"></td>
+                    <td data-field="balance" data-default="₹0"></td>
+                    <td><span class="badge-status" data-field="status" data-default="Pending"></span></td>
+                    <td class="text-center action-col">
+                      <div class="action-group">
+                        <button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#viewInvoiceModal" aria-label="Preview invoice"><i class="bi bi-eye" aria-hidden="true"></i></button>
+                        <button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#invoiceModal" data-mode="edit" aria-label="Edit invoice"><i class="bi bi-pencil" aria-hidden="true"></i></button>
+                        <div class="dropdown">
+                          <button type="button" class="btn-icon neutral" data-bs-toggle="dropdown" aria-expanded="false" aria-label="More actions"><i class="bi bi-three-dots" aria-hidden="true"></i></button>
+                          <ul class="dropdown-menu dropdown-menu-end">
+                            <li><h6 class="dropdown-header">Payment</h6></li>
+                            <li><a class="dropdown-item" href="#" data-set-status="Paid"><i class="bi bi-check2-circle" aria-hidden="true"></i>Mark as paid (cash)</a></li>
+                            <li><a class="dropdown-item" href="payments.html#paymentModal" data-bind-href="payments.html?prefill-patient={patient}&amp;prefill-invoice={invoice}&amp;prefill-amount={balance}#paymentModal"><i class="bi bi-currency-rupee" aria-hidden="true"></i>Record payment</a></li>
+                            <li><a class="dropdown-item" href="#" data-toast="Payment reminder sent" data-bind-data-toast="Payment reminder for {invoice} ({balance} due) sent to {patient} via SMS &amp; WhatsApp"><i class="bi bi-send" aria-hidden="true"></i>Send reminder</a></li>
+                            <li><a class="dropdown-item" href="#" data-action="download" data-bind-data-filename="{invoice}.txt"><i class="bi bi-download" aria-hidden="true"></i>Download</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-warning" href="#" data-set-status="Cancelled" data-toast-type="warning"><i class="bi bi-x-circle" aria-hidden="true"></i>Cancel invoice</a></li>
+                            <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash3" aria-hidden="true"></i>Delete invoice</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+          <div class="empty-state" data-empty-for="#invoiceTable" hidden><i class="bi bi-receipt" aria-hidden="true"></i>No invoices match your search or filters.</div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- ============ MODALS ============ -->
+
+  <!-- Create / edit invoice -->
+  <div class="modal fade" id="invoiceModal" tabindex="-1" aria-labelledby="invoiceModalTitle" aria-hidden="true" data-edit-title="Edit Invoice">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+      <form class="modal-content" novalidate data-add-to="#invoiceTable" data-success="Invoice created successfully" data-success-edit="Invoice updated successfully">
+        <div class="modal-header">
+          <h2 class="modal-title" id="invoiceModalTitle"><span class="title-icon tone-purple"><i class="bi bi-file-earmark-plus" aria-hidden="true"></i></span><span data-modal-title>Create Invoice</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="form-section-title">Invoice details</p>
+          <p class="form-text mt-0">Paid / balance and the status update automatically when payments are recorded.</p>
+          <div class="grid-12">
+            <div class="span-3"><label for="invNumber" class="form-label">Invoice # *</label><input type="text" class="form-control" id="invNumber" name="invoice" readonly placeholder="Assigned on save"></div>
+            <div class="span-5"><label for="invPatient" class="form-label">Patient *</label><select class="form-select" id="invPatient" name="patient" required data-options="patients" data-option-field="name"><option value="">Select patient</option></select><div class="invalid-feedback">Select a patient.</div></div>
+            <div class="span-4"><label for="invDoctor" class="form-label">Doctor *</label><select class="form-select" id="invDoctor" name="doctor" required data-options="doctors"><option value="">Select doctor</option></select><div class="invalid-feedback">Choose a doctor.</div></div>
+            <div class="span-3"><label for="invDate" class="form-label">Invoice date *</label><input type="date" class="form-control" id="invDate" name="date" required data-default-days="0"><div class="invalid-feedback">Pick the invoice date.</div></div>
+            <div class="span-3"><label for="invDue" class="form-label">Due date *</label><input type="date" class="form-control" id="invDue" name="due" required data-default-days="7"><div class="invalid-feedback">Pick a due date.</div></div>
+            <div class="span-4"><label for="invTreatment" class="form-label">Treatment summary *</label><input type="text" class="form-control" id="invTreatment" name="treatment" required placeholder="e.g. Root Canal — Sitting 1"><div class="invalid-feedback">Add a short treatment summary.</div></div>
+            <div class="span-2"><label for="invStatus" class="form-label">Status</label><select class="form-select" id="invStatus" name="status"><option>Pending</option><option>Paid</option><option>Partially Paid</option><option>Overdue</option><option>Draft</option><option>Cancelled</option></select></div>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-between mt-4 mb-2">
+            <p class="form-section-title m-0">Line items</p>
+            <button type="button" class="btn btn-sm btn-soft" data-action="add-line" data-target="#invoiceLines"><i class="bi bi-plus-lg" aria-hidden="true"></i>Add item</button>
+          </div>
+          <div class="table-responsive" data-visible-rows="all">
+            <table class="table table-app line-items-table">
+              <thead>
+                <tr><th scope="col">Treatment / item</th><th scope="col">Qty</th><th scope="col">Unit price (₹)</th><th scope="col" class="text-end">Total</th><th scope="col"><span class="visually-hidden">Remove</span></th></tr>
+              </thead>
+              <tbody data-line-items id="invoiceLines">
+                <tr data-line>
+                  <td><select class="form-select form-select-sm" data-line-product aria-label="Treatment or item" data-options="procedures" data-option-field="procedure" data-option-attr-price="price" data-options-empty="off"><option value="">Select item</option><option data-price="250">Digital X-ray (IOPA)</option><option data-price="150">Medicines</option><option data-price="500">Lab charges</option></select></td>
+                  <td><input type="number" class="form-control form-control-sm" data-qty value="1" min="1" aria-label="Quantity"></td>
+                  <td><input type="number" class="form-control form-control-sm" data-price value="" min="0" step="0.01" placeholder="0" aria-label="Unit price"></td>
+                  <td class="text-end fw-semibold" data-line-total>₹0</td>
+                  <td class="text-end"><button type="button" class="btn-icon danger" data-action="remove-line" aria-label="Remove item"><i class="bi bi-x-lg" aria-hidden="true"></i></button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="grid-2 mt-1">
+            <div>
+              <label for="invNotes" class="form-label">Notes to patient</label>
+              <textarea class="form-control" id="invNotes" name="notes" rows="3" placeholder="Payment terms, next visit, warranty details">Payment due within 7 days. UPI: maxdental@okaxis</textarea>
+            </div>
+            <div class="totals-box">
+                <div class="row-line"><span>Subtotal</span><strong data-subtotal data-value-for="subtotal">₹0</strong></div>
+                <div class="row-line"><label for="invDiscount" class="m-0">Discount (₹)</label><input type="number" class="form-control form-control-sm w-pct-35" id="invDiscount" name="discount" data-discount value="0" min="0"></div>
+                <div class="row-line"><label class="m-0 d-flex align-items-center gap-2" for="invGst"><input class="form-check-input mt-0" type="checkbox" id="invGst" data-tax-toggle> GST (18%)</label><strong data-tax data-tax-rate="18" data-value-for="tax">₹0</strong></div>
+                <div class="row-line grand"><label for="invAmount" class="m-0">Grand total (₹)</label><input type="number" class="form-control form-control-sm w-pct-40 text-end fw-bold" id="invAmount" name="amount" readonly data-grand-total value="0" min="1" required><div class="invalid-feedback">Add at least one item with a price.</div></div>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-light" data-submit-status="Draft" data-success="Invoice saved as draft"><i class="bi bi-save" aria-hidden="true"></i>Save draft</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check2" aria-hidden="true"></i>Save Invoice</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Invoice preview -->
+  <div class="modal fade" id="viewInvoiceModal" tabindex="-1" aria-labelledby="viewInvoiceTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="viewInvoiceTitle"><span class="title-icon tone-purple"><i class="bi bi-receipt" aria-hidden="true"></i></span>Invoice <span data-field="invoice">INV-000</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <article class="invoice-doc">
+            <header class="doc-head">
+              <div class="d-flex align-items-start gap-3">
+                <img src="../assets/images/logo.svg" alt="Max Dental Studio logo" width="48" height="48">
+                <div>
+                  <h3 class="h5 mb-1">Max Dental Studio</h3>
+                  <p class="small text-muted mb-0">ABC Clinic, 2nd Floor, Mavoor Road<br>Calicut, Kerala 673004<br>+91 495 272 4455 · billing@maxdental.in<br>GSTIN: 32ABCDE1234F1Z5</p>
+                </div>
+              </div>
+              <div class="text-md-end">
+                <p class="doc-title">INVOICE</p>
+                <p class="small mb-0"><strong>No:</strong> <span data-field="invoice">INV-000</span></p>
+                <p class="small mb-0"><strong>Date:</strong> <span data-field="date">—</span></p>
+                <p class="small mb-1"><strong>Due:</strong> <span data-field="due">—</span></p>
+                <span class="badge-status" data-field="status">Pending</span>
+              </div>
+            </header>
+            <div class="split-grid mb-3">
+              <div>
+                <p class="form-section-title m-0">Bill to</p>
+                <p class="fw-semibold mb-0" data-field="patient">Patient</p>
+                <p class="small text-muted mb-0" data-field="phone">—</p>
+              </div>
+              <div class="text-sm-end">
+                <p class="form-section-title m-0">Treating doctor</p>
+                <p class="fw-semibold mb-0" data-field="doctor">—</p>
+                <p class="small text-muted mb-0">Max Dental Studio, ABC Clinic</p>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-app table-compact">
+                <thead><tr><th scope="col">#</th><th scope="col">Description</th><th scope="col">Qty</th><th scope="col" class="text-end">Rate</th><th scope="col" class="text-end">Amount</th></tr></thead>
+                <tbody data-lines-from="items" data-lines-fallback="treatment">
+                  <template><tr><td data-line-n></td><td data-line-name></td><td data-line-qty></td><td class="text-end" data-line-price></td><td class="text-end" data-line-amount></td></tr></template>
+                </tbody>
+              </table>
+            </div>
+            <div class="totals mt-3">
+              <div><span>Subtotal</span><span data-field="subtotal">₹0</span></div>
+              <div><span>Discount</span><span data-field="discount">₹0</span></div>
+              <div><span>GST</span><span data-field="tax">₹0</span></div>
+              <div class="grand"><span>Total</span><span data-field="amount">₹0</span></div>
+              <div><span>Paid</span><span class="text-success" data-field="paid">₹0</span></div>
+              <div class="grand"><span>Balance due</span><span data-field="balance">₹0</span></div>
+            </div>
+            <p class="small mt-3 mb-1" data-field="notes"></p>
+            <p class="small text-muted mt-0 mb-0">Thank you for choosing Max Dental Studio. Pay by cash, card or UPI (maxdental@okaxis). This is a computer-generated invoice.</p>
+          </article>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-action="print"><i class="bi bi-printer" aria-hidden="true"></i>Print</button>
+          <button type="button" class="btn btn-light" data-action="download"><i class="bi bi-download" aria-hidden="true"></i>Download</button>
+          <button type="button" class="btn btn-light" data-set-status="Paid"><i class="bi bi-check2-circle" aria-hidden="true"></i>Mark as paid</button>
+          <a href="payments.html#paymentModal" class="btn btn-soft" data-bind-href="payments.html?prefill-patient={patient}&amp;prefill-invoice={invoice}&amp;prefill-amount={balance}#paymentModal"><i class="bi bi-currency-rupee" aria-hidden="true"></i>Record payment</a>
+          <button type="button" class="btn btn-primary" data-switch-modal="#invoiceModal" data-mode="edit"><i class="bi bi-pencil" aria-hidden="true"></i>Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete confirmation -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content text-center">
+        <div class="modal-body p-4">
+          <span class="confirm-icon tone-red"><i class="bi bi-trash3" aria-hidden="true"></i></span>
+          <h2 class="h5" id="deleteModalTitle">Delete invoice?</h2>
+          <p class="text-muted mb-0">Invoice <strong data-record-label>this invoice</strong> will be permanently removed. Linked payments stay in the payments log. To keep a record, use <em>Cancel invoice</em> instead.</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Keep it</button>
+          <button type="button" class="btn btn-danger" data-action="confirm-delete" data-success="Invoice deleted">Yes, delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/demo-data.js"></script>
+  <script src="../assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dentalwyz dental clinic management — inventory of consumables, instruments and equipment.">
+  <title>Inventory | Dentalwyz</title>
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/responsive.css" rel="stylesheet">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app-shell">
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar offcanvas-lg offcanvas-start" id="appSidebar" tabindex="-1" aria-label="Sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-header">
+          <a href="dashboard.html" class="brand" aria-label="Dentalwyz home">
+            <img src="../assets/images/logo.svg" alt="" class="brand-logo" width="40" height="40">
+            <span class="brand-text">dental<span>wyz</span></span>
+          </a>
+          <button type="button" class="btn-close d-lg-none" data-bs-dismiss="offcanvas" data-bs-target="#appSidebar" aria-label="Close menu"></button>
+        </div>
+        <nav class="sidebar-nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="dashboard.html"><i class="bi bi-house-door" aria-hidden="true"></i><span>Dashboard</span></a></li>
+            <li><a class="nav-link" href="appointments.html"><i class="bi bi-calendar3" aria-hidden="true"></i><span>Appointments</span></a></li>
+            <li><a class="nav-link" href="patients.html"><i class="bi bi-people" aria-hidden="true"></i><span>Patients</span></a></li>
+            <li><a class="nav-link" href="doctors.html"><i class="bi bi-person-badge" aria-hidden="true"></i><span>Doctors</span></a></li>
+            <li><a class="nav-link" href="documents.html"><i class="bi bi-folder2-open" aria-hidden="true"></i><span>Documents</span></a></li>
+            <li><a class="nav-link" href="invoices.html"><i class="bi bi-file-earmark-text" aria-hidden="true"></i><span>Invoices</span></a></li>
+            <li><a class="nav-link" href="payments.html"><i class="bi bi-credit-card-2-front" aria-hidden="true"></i><span>Payments</span></a></li>
+            <li><a class="nav-link" href="transactions.html"><i class="bi bi-arrow-left-right" aria-hidden="true"></i><span>Transactions</span></a></li>
+            <li><a class="nav-link" href="treatment.html"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i><span>Treatment</span></a></li>
+            <li><a class="nav-link" href="lab.html"><i class="bi bi-eyedropper" aria-hidden="true"></i><span>Lab</span></a></li>
+            <li><a class="nav-link" href="pharmacy.html"><i class="bi bi-capsule" aria-hidden="true"></i><span>Pharmacy</span></a></li>
+            <li><a class="nav-link active" aria-current="page" href="inventory.html"><i class="bi bi-box-seam" aria-hidden="true"></i><span>Inventory</span></a></li>
+            <li><a class="nav-link" href="reports.html"><i class="bi bi-bar-chart-line" aria-hidden="true"></i><span>Reports</span></a></li>
+          </ul>
+          <hr class="sidebar-divider">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="settings.html"><i class="bi bi-gear" aria-hidden="true"></i><span>Settings</span></a></li>
+            <li><a class="nav-link" href="help-support.html"><i class="bi bi-question-circle" aria-hidden="true"></i><span>Help &amp; Support</span></a></li>
+          </ul>
+        </nav>
+        <div class="sidebar-wave" aria-hidden="true"></div>
+      </div>
+    </aside>
+
+    <div class="main">
+      <!-- ============ TOP HEADER ============ -->
+      <header class="topbar">
+        <button type="button" class="icon-btn d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#appSidebar" aria-controls="appSidebar" aria-label="Open menu"><i class="bi bi-list" aria-hidden="true"></i></button>
+        <button type="button" class="icon-btn d-none d-lg-inline-flex" data-action="sidebar-collapse" aria-expanded="true" aria-label="Collapse sidebar"><i class="bi bi-layout-sidebar" aria-hidden="true"></i></button>
+
+        <form class="topbar-search" id="globalSearchForm" role="search">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <label for="globalSearch" class="visually-hidden">Search patient, appointment, invoice</label>
+          <input type="search" class="form-control" id="globalSearch" placeholder="Search patient, appointment, invoice..." autocomplete="off">
+        </form>
+
+        <div class="topbar-actions">
+          <button type="button" class="icon-btn d-md-none" data-action="toggle-search" aria-expanded="false" aria-label="Toggle search"><i class="bi bi-search" aria-hidden="true"></i></button>
+
+          <button type="button" class="topbar-chip date-chip" id="headerDate" aria-label="Choose date">
+            <i class="bi bi-calendar3 chip-icon" aria-hidden="true"></i>
+            <span class="chip-text">
+              <span class="chip-title" data-current-date>01 Oct 2026</span>
+              <span class="chip-sub" data-current-day>Thursday</span>
+            </span>
+            <input type="date" id="headerDatePicker" class="date-picker-input" tabindex="-1" aria-hidden="true">
+          </button>
+
+          <div class="dropdown">
+            <button type="button" class="icon-btn" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" aria-label="Notifications">
+              <i class="bi bi-bell" aria-hidden="true"></i><span class="notif-dot" aria-hidden="true" data-notif-dot hidden></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end notif-menu">
+              <div class="notif-menu-header">
+                <strong>Notifications <span class="badge-soft tone-blue ms-1"><span data-stat="notifications" data-stat-where="unread=yes">0</span> new</span></strong>
+                <button type="button" class="btn btn-link btn-sm p-0" data-action="mark-all-read">Mark all read</button>
+              </div>
+              <ul class="notif-list" id="notifList" data-collection="notifications" data-limit="8">
+                <template data-template>
+                  <li class="notif-item" data-record data-bind-data-unread="{unread}" tabindex="0" role="link"><span class="avatar avatar-sm" data-tone-from="icon"><i class="bi" data-bind-class="bi {icon}" aria-hidden="true"></i></span><div><p data-field="text"></p><time data-derive="ago"></time></div></li>
+                </template>
+              </ul>
+              <p class="notif-empty" data-empty-for="#notifList">No notifications yet. New appointments, patients, invoices and payments show up here.</p>
+              <div class="notif-menu-footer"><a href="settings.html#pane-notifications" class="panel-link">Notification settings</a></div>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button type="button" class="topbar-chip branch-chip" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Switch branch">
+              <img src="../assets/images/clinic.svg" alt="" class="chip-img" width="36" height="36">
+              <span class="chip-text">
+                <span class="chip-title" data-current-branch>ABC Clinic</span>
+                <span class="chip-sub" data-current-location>Calicut</span>
+              </span>
+              <i class="bi bi-chevron-down small" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end branch-menu" data-collection="branches" data-where="status=Active" data-sort="name">
+              <li><h6 class="dropdown-header">Switch branch</h6></li>
+              <template data-template><li data-record><a class="dropdown-item" href="#" data-bind-data-branch="{name}" data-bind-data-branch-location="{location}"><i class="bi bi-hospital" aria-hidden="true"></i><span data-field="name"></span> <small class="text-muted" data-field="location"></small><i class="bi bi-check2" aria-hidden="true"></i></a></li></template>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="settings.html#pane-branch"><i class="bi bi-sliders" aria-hidden="true"></i>Manage branches</a></li>
+            </ul>
+          </div>
+
+          <div class="dropdown">
+            <button type="button" class="topbar-chip profile-chip" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+              <span class="avatar avatar-sm tone-blue" data-setting-initials="pfName">MD</span>
+              <span class="chip-text d-none d-xl-block">
+                <span class="chip-title" data-setting-text="pfName">Dr. Max D'Souza</span>
+                <span class="chip-sub">Administrator</span>
+              </span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><h6 class="dropdown-header">Signed in as admin</h6></li>
+              <li><a class="dropdown-item" href="settings.html#pane-profile"><i class="bi bi-person-circle" aria-hidden="true"></i>My profile</a></li>
+              <li><a class="dropdown-item" href="settings.html#pane-clinic"><i class="bi bi-gear" aria-hidden="true"></i>Account settings</a></li>
+              <li><a class="dropdown-item" href="settings.html#pane-notifications"><i class="bi bi-bell" aria-hidden="true"></i>Notification settings</a></li>
+              <li><a class="dropdown-item" href="help-support.html"><i class="bi bi-life-preserver" aria-hidden="true"></i>Help &amp; Support</a></li>
+              <li><a class="dropdown-item" href="#" data-action="reset-demo"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Reset demo data</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="../index.html" data-action="logout"><i class="bi bi-box-arrow-right" aria-hidden="true"></i>Log out</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- ============ PAGE CONTENT ============ -->
+      <main class="content" id="main-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Inventory</h1>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Inventory</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="page-actions">
+            <button type="button" class="btn btn-light" data-action="export-csv" data-target="#inventoryTable" data-filename="dentalwyz-inventory.csv"><i class="bi bi-filetype-csv" aria-hidden="true"></i>Export CSV</button>
+            <button type="button" class="btn btn-soft" data-bs-toggle="modal" data-bs-target="#purchaseOrderModal"><i class="bi bi-cart-plus" aria-hidden="true"></i>Purchase Order</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#itemModal"><i class="bi bi-plus-circle" aria-hidden="true"></i>Add Item</button>
+          </div>
+        </div>
+
+        <section class="stats-grid mb-3" aria-label="Inventory at a glance">
+          <article class="stat-card">
+              <span class="stat-icon tone-blue"><i class="bi bi-box-seam" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">Total Items</p>
+                <p class="stat-value" data-stat="inventory">0</p>
+                <div class="stat-meta"><span class="text-muted fw-medium"><span data-stat="inventory" data-stat-where="updated=this-week">0</span> updated this week</span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="30" width="8" height="16" rx="2" class="fill-blue" opacity=".2"/><rect x="14" y="22" width="8" height="24" rx="2" class="fill-blue" opacity=".3"/><rect x="26" y="16" width="8" height="30" rx="2" class="fill-blue" opacity=".4"/><rect x="38" y="8" width="8" height="38" rx="2" class="fill-blue" opacity=".55"/></svg>
+            </article>
+          <article class="stat-card">
+              <span class="stat-icon tone-amber"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">Low Stock</p>
+                <p class="stat-value" data-stat="inventory" data-stat-where="status=Low Stock">0</p>
+                <div class="stat-meta"><span class="text-muted fw-medium">at or below reorder level</span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="32" width="8" height="14" rx="2" class="fill-amber" opacity=".2"/><rect x="14" y="24" width="8" height="22" rx="2" class="fill-amber" opacity=".3"/><rect x="26" y="14" width="8" height="32" rx="2" class="fill-amber" opacity=".45"/><rect x="38" y="6" width="8" height="40" rx="2" class="fill-amber" opacity=".6"/></svg>
+            </article>
+          <article class="stat-card">
+              <span class="stat-icon tone-red"><i class="bi bi-slash-circle" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">Out of Stock</p>
+                <p class="stat-value" data-stat="inventory" data-stat-where="status=Out of Stock">0</p>
+                <div class="stat-meta"><span class="text-danger fw-medium">Reorder now</span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="28" width="8" height="18" rx="2" class="fill-amber" opacity=".25"/><rect x="14" y="20" width="8" height="26" rx="2" class="fill-amber" opacity=".35"/><rect x="26" y="12" width="8" height="34" rx="2" class="fill-amber" opacity=".45"/><rect x="38" y="4" width="8" height="42" rx="2" class="fill-amber" opacity=".6"/></svg>
+            </article>
+          <article class="stat-card">
+              <span class="stat-icon tone-green"><i class="bi bi-currency-rupee" aria-hidden="true"></i></span>
+              <div class="stat-body">
+                <p class="stat-label">Inventory Value</p>
+                <p class="stat-value" data-stat="inventory" data-stat-fn="sum" data-stat-field="value" data-format="currency">0</p>
+                <div class="stat-meta"><span class="text-muted fw-medium">at cost price</span></div>
+              </div>
+              <svg class="stat-bars" viewBox="0 0 56 46" aria-hidden="true"><rect x="2" y="26" width="8" height="20" rx="2" class="fill-green" opacity=".2"/><rect x="14" y="18" width="8" height="28" rx="2" class="fill-green" opacity=".3"/><rect x="26" y="10" width="8" height="36" rx="2" class="fill-green" opacity=".4"/><rect x="38" y="4" width="8" height="42" rx="2" class="fill-green" opacity=".55"/></svg>
+            </article>
+        </section>
+
+        <div class="stack">
+          <section class="card-panel" aria-labelledby="inventoryTitle">
+              <div class="panel-header">
+                <h2 class="panel-title" id="inventoryTitle"><i class="bi bi-box-seam" aria-hidden="true"></i>Stock Items <span class="count">(<span data-count-for="#inventoryTable">0</span>)</span></h2>
+                <div class="panel-tools">
+                  <div class="search-box">
+                    <i class="bi bi-search" aria-hidden="true"></i>
+                    <label for="inventorySearch" class="visually-hidden">Search items</label>
+                    <input type="search" id="inventorySearch" class="form-control form-control-sm" placeholder="Search item, supplier..." data-search-target="#inventoryTable">
+                  </div>
+                  <label for="inventoryCategoryFilter" class="visually-hidden">Filter by category</label>
+                  <select id="inventoryCategoryFilter" class="form-select form-select-sm filter-select" data-filter-target="#inventoryTable" data-filter-field="category">
+                    <option value="all">All categories</option>
+                    <option>Consumables</option><option>Instruments</option><option>Equipment</option><option>Sterilisation</option><option>Impression Materials</option><option>Orthodontic</option>
+                  </select>
+                  <label for="inventoryStatusFilter" class="visually-hidden">Filter by stock status</label>
+                  <select id="inventoryStatusFilter" class="form-select form-select-sm filter-select" data-filter-target="#inventoryTable" data-filter-field="status">
+                    <option value="all">All status</option>
+                    <option>In Stock</option><option>Low Stock</option><option>Out of Stock</option>
+                  </select>
+                  <button type="button" class="btn btn-light btn-sm" data-action="reset-filters" data-target="#inventoryTable"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Reset</button>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-app table-hover" id="inventoryTable" data-list aria-labelledby="inventoryTitle" data-collection="inventory" data-sort="name" data-notify="{name} added to inventory" data-notify-icon="bi-box-seam">
+                  <thead>
+                    <tr><th scope="col">Item Code</th><th scope="col">Item</th><th scope="col">Category</th><th scope="col">Quantity &amp; Stock Level</th><th scope="col">Reorder Lvl</th><th scope="col">Unit Cost</th><th scope="col">Status</th><th scope="col">Updated</th><th scope="col" class="text-center action-col" data-no-export>Actions</th></tr>
+                  </thead>
+                  <tbody>
+                      <template data-template>
+                        <tr data-record>
+                        <td class="fw-semibold" data-field="code" data-seq="INV-2001"></td>
+                        <td><div class="person"><span class="file-icon" data-tone-from="category"><i class="bi bi-box2" aria-hidden="true"></i></span><div><span class="person-name" data-field="name" data-primary></span><span class="person-sub" data-field="supplier"></span></div><span class="badge-soft tone-green" data-new-only hidden>New</span></div>
+                          <span data-field="location" hidden></span><span data-field="value" hidden></span><span data-field="branch" hidden></span></td>
+                        <td data-field="category"></td>
+                        <td class="cell-wrap"><div class="d-flex justify-content-between mb-1"><span><span class="fw-semibold" data-field="quantity"></span> <span class="text-muted small" data-field="unit"></span></span><span class="small text-muted" data-derive="pct" data-derive-from="quantity/reorder"></span></div><div class="progress" role="progressbar" data-bind-aria-label="Stock level of {name} against its reorder level" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar" data-derive="progress" data-derive-from="quantity/reorder"></div></div></td>
+                        <td data-field="reorder"></td>
+                        <td data-field="cost" data-format="currency"></td>
+                        <td><span class="badge-status" data-field="status"></span></td>
+                        <td data-field="updated"></td>
+                        <td class="text-center action-col">
+                          <div class="action-group">
+                            <button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#viewItemModal" aria-label="View item"><i class="bi bi-eye" aria-hidden="true"></i></button>
+                            <button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#itemModal" data-mode="edit" aria-label="Edit item"><i class="bi bi-pencil" aria-hidden="true"></i></button>
+                            <div class="dropdown">
+                              <button type="button" class="btn-icon neutral" data-bs-toggle="dropdown" aria-expanded="false" aria-label="More actions"><i class="bi bi-three-dots" aria-hidden="true"></i></button>
+                              <ul class="dropdown-menu dropdown-menu-end">
+                                <li><h6 class="dropdown-header">Stock</h6></li>
+                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#receiveModal" data-mode="edit"><i class="bi bi-box-arrow-in-down" aria-hidden="true"></i>Receive stock</a></li>
+                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#useModal" data-mode="edit"><i class="bi bi-box-arrow-up" aria-hidden="true"></i>Use / issue</a></li>
+                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#purchaseOrderModal" data-bind-data-prefill-supplier="{supplier}" data-bind-data-prefill-item="{name}"><i class="bi bi-cart-plus" aria-hidden="true"></i>Reorder (purchase order)</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash3" aria-hidden="true"></i>Delete item</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      </template>
+                    </tbody>
+                </table>
+              </div>
+              <div class="empty-state" data-empty-for="#inventoryTable" hidden><i class="bi bi-box-seam" aria-hidden="true"></i>No items match your search or filters.</div>
+            </section>
+
+          <section class="card-panel" aria-labelledby="alertsTitle">
+              <div class="panel-header">
+                <h2 class="panel-title bar" id="alertsTitle">Low Stock Alerts</h2>
+                <div class="panel-tools"><span class="badge-soft tone-red"><span data-stat="inventory" data-stat-where="status=Low Stock|Out of Stock" data-stat-suffix=" item needs| items need">0</span> attention</span><button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#purchaseOrderModal"><i class="bi bi-cart-plus" aria-hidden="true"></i>Create Purchase Order</button></div>
+              </div>
+              <ul class="cards-grid list-unstyled mb-0" id="lowStockList" data-collection="inventory" data-where="status=Low Stock|Out of Stock" data-sort="quantity">
+                <template data-template>
+                  <li data-record><div class="info-tile d-flex align-items-center gap-2">
+                      <span class="file-icon stock-alert-icon"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i></span>
+                      <div class="flex-grow-1"><span class="person-name" data-field="name"></span><span class="person-sub"><span data-field="quantity"></span> <span data-field="unit"></span> left · reorder at <span data-field="reorder"></span></span><span data-field="supplier" hidden></span><span class="badge-status d-none" data-field="status"></span></div>
+                      <button type="button" class="btn btn-soft btn-sm" data-bs-toggle="modal" data-bs-target="#purchaseOrderModal" data-bind-data-prefill-supplier="{supplier}" data-bind-data-prefill-item="{name}" data-bind-aria-label="Reorder {name} from {supplier}">Reorder</button>
+                  </div></li>
+                </template>
+              </ul>
+              <p class="empty-state py-3 mb-0" data-empty-for="#lowStockList" hidden><i class="bi bi-check2-circle" aria-hidden="true"></i>Everything is above its reorder level.</p>
+            </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- ============ MODALS ============ -->
+
+  <!-- Add / Edit item -->
+  <div class="modal fade" id="itemModal" tabindex="-1" aria-labelledby="itemModalTitle" aria-hidden="true" data-edit-title="Edit Item">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <form class="modal-content" novalidate data-add-to="#inventoryTable" data-success="Item added to inventory" data-success-edit="Item details updated">
+        <div class="modal-header">
+          <h2 class="modal-title" id="itemModalTitle"><span class="title-icon tone-blue"><i class="bi bi-box-seam" aria-hidden="true"></i></span><span data-modal-title>Add Item</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="form-section-title">Item details</p>
+          <div class="grid-12">
+            <div class="span-4"><label for="itemCode" class="form-label">Item code *</label><input type="text" class="form-control" id="itemCode" name="code" readonly placeholder="Assigned on save"></div>
+            <div class="span-8"><label for="itemName" class="form-label">Item name *</label><input type="text" class="form-control" id="itemName" name="name" required placeholder="e.g. Nitrile Gloves (M)"><div class="invalid-feedback">Item name is required.</div></div>
+            <div class="span-6"><label for="itemSupplier" class="form-label">Supplier *</label><select class="form-select" id="itemSupplier" name="supplier" required><option value="">Select supplier</option><option>MedSafe Supplies</option><option>3M ESPE India</option><option>Zhermack Dental</option><option>Mani Inc. Distributors</option><option>Unicotton Medical</option><option>Prime Dental Products</option><option>SteriPack India</option><option>Septodont India</option><option>Ortho Organizers India</option><option>Woodpecker India</option></select><div class="invalid-feedback">Choose a supplier.</div></div>
+            <div class="span-6"><label for="itemCategory" class="form-label">Category *</label><select class="form-select" id="itemCategory" name="category" required><option value="">Select category</option><option>Consumables</option><option>Instruments</option><option>Equipment</option><option>Sterilisation</option><option>Impression Materials</option><option>Orthodontic</option></select><div class="invalid-feedback">Choose a category.</div></div>
+          </div>
+          <p class="form-section-title mt-4">Stock</p>
+          <div class="grid-12">
+            <div class="span-half span-3"><label for="itemQty" class="form-label">Quantity *</label><input type="number" class="form-control" id="itemQty" name="quantity" required min="0"><div class="invalid-feedback">Enter quantity.</div></div>
+            <div class="span-half span-3"><label for="itemUnit" class="form-label">Unit</label><select class="form-select" id="itemUnit" name="unit"><option>boxes</option><option>packs</option><option>pcs</option><option>syringes</option><option>kits</option><option>sets</option><option>units</option></select></div>
+            <div class="span-half span-3"><label for="itemReorder" class="form-label">Reorder level *</label><input type="number" class="form-control" id="itemReorder" name="reorder" required min="0"><div class="invalid-feedback">Enter reorder level.</div></div>
+            <div class="span-half span-3"><label for="itemCost" class="form-label">Unit cost (₹) *</label><input type="number" class="form-control" id="itemCost" name="cost" required min="0" step="0.01"><div class="invalid-feedback">Enter unit cost.</div></div>
+            <div class="span-4"><label for="itemStatus" class="form-label">Status</label><select class="form-select" id="itemStatus" name="status" disabled aria-describedby="itemStatusHelp"><option>In Stock</option><option>Low Stock</option><option>Out of Stock</option></select><div class="form-text" id="itemStatusHelp">Set automatically from quantity and reorder level.</div></div>
+            <div class="span-4"><label for="itemUpdated" class="form-label">Last updated *</label><input type="date" class="form-control" id="itemUpdated" name="updated" data-default-days="0"><div class="invalid-feedback">Pick a date.</div></div>
+            <div class="span-4"><label for="itemBranch" class="form-label">Branch</label><select class="form-select" id="itemBranch" name="branch"><option>ABC Clinic</option><option>Branch 2</option><option>Branch 3</option></select></div>
+            <div><label for="itemLocation" class="form-label">Storage location</label><input type="text" class="form-control" id="itemLocation" name="location" placeholder="e.g. Store Room A · Rack 2"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check2" aria-hidden="true"></i>Save Item</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Preview item -->
+  <div class="modal fade" id="viewItemModal" tabindex="-1" aria-labelledby="viewItemTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="viewItemTitle"><span class="title-icon tone-blue"><i class="bi bi-box-seam" aria-hidden="true"></i></span>Item Details</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="profile-head">
+            <span class="avatar avatar-lg tone-blue" data-avatar="name">I</span>
+            <div><h3 data-field="name">Item</h3><p class="person-sub mb-1" data-field="supplier">—</p><span class="badge-status" data-field="status">In Stock</span></div>
+          </div>
+          <dl class="detail-list">
+            <div><dt>Item code</dt><dd data-field="code">—</dd></div>
+            <div><dt>Category</dt><dd data-field="category">—</dd></div>
+            <div><dt>Quantity</dt><dd><span data-field="quantity">—</span> <span data-field="unit">—</span></dd></div>
+            <div><dt>Reorder level</dt><dd data-field="reorder">—</dd></div>
+            <div><dt>Unit cost</dt><dd data-field="cost">—</dd></div>
+            <div><dt>Last updated</dt><dd data-field="updated">—</dd></div>
+            <div><dt>Branch</dt><dd data-field="branch">—</dd></div>
+            <div><dt>Location</dt><dd data-field="location">—</dd></div>
+          </dl>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-switch-modal="#receiveModal" data-mode="edit"><i class="bi bi-box-arrow-in-down" aria-hidden="true"></i>Receive stock</button>
+          <button type="button" class="btn btn-light" data-action="print"><i class="bi bi-printer" aria-hidden="true"></i>Print</button>
+          <button type="button" class="btn btn-primary" data-switch-modal="#itemModal" data-mode="edit"><i class="bi bi-pencil" aria-hidden="true"></i>Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Receive stock -->
+  <div class="modal fade" id="receiveModal" tabindex="-1" aria-labelledby="receiveTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <form class="modal-content" novalidate data-edit-form data-success-edit="Stock received and inventory updated">
+        <div class="modal-header">
+          <h2 class="modal-title" id="receiveTitle"><span class="title-icon tone-green"><i class="bi bi-box-arrow-in-down" aria-hidden="true"></i></span>Receive · <span data-field="name">Item</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="small text-muted">In stock: <strong><span data-field="quantity">—</span> <span data-field="unit">—</span></strong> · reorder at <span data-field="reorder">—</span> · supplier <span data-field="supplier">—</span></p>
+          <div class="grid-2">
+            <div><label for="rcvQty" class="form-label">Quantity received *</label><input type="number" class="form-control" id="rcvQty" name="quantity" required min="1" data-adjust="add" data-no-fill placeholder="e.g. 20"><div class="invalid-feedback">Enter at least 1.</div></div>
+            <div><label for="rcvCost" class="form-label">Unit cost (₹)</label><input type="number" class="form-control" id="rcvCost" name="cost" min="0" step="0.01"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check2" aria-hidden="true"></i>Add to stock</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Use / issue stock -->
+  <div class="modal fade" id="useModal" tabindex="-1" aria-labelledby="useTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <form class="modal-content" novalidate data-edit-form data-success-edit="Stock issued and inventory updated">
+        <div class="modal-header">
+          <h2 class="modal-title" id="useTitle"><span class="title-icon tone-amber"><i class="bi bi-box-arrow-up" aria-hidden="true"></i></span>Use / issue · <span data-field="name">Item</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="small text-muted">In stock: <strong><span data-field="quantity">—</span> <span data-field="unit">—</span></strong> at <span data-field="location">—</span></p>
+          <label for="useQty" class="form-label">Quantity used *</label><input type="number" class="form-control" id="useQty" name="quantity" required min="1" data-adjust="subtract" data-no-fill placeholder="e.g. 2"><div class="invalid-feedback">Enter at least 1.</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check2" aria-hidden="true"></i>Update stock</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Purchase order -->
+  <div class="modal fade" id="purchaseOrderModal" tabindex="-1" aria-labelledby="purchaseOrderTitle" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+      <form class="modal-content" novalidate data-success="Purchase order {po} sent to {supplier}" data-notify="Purchase order {po} sent to {supplier}" data-notify-icon="bi-cart-check">
+        <div class="modal-header">
+          <h2 class="modal-title" id="purchaseOrderTitle"><span class="title-icon tone-purple"><i class="bi bi-cart-plus" aria-hidden="true"></i></span>New Purchase Order</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="form-section-title">Order details</p>
+          <div class="grid-12">
+            <div class="span-3"><label for="poNumber" class="form-label">PO number</label><input type="text" class="form-control" id="poNumber" name="po" value="PO-0318" readonly data-counter="PO-0317"></div>
+            <div class="span-5"><label for="poSupplier" class="form-label">Supplier *</label><select class="form-select" id="poSupplier" name="supplier" required><option value="">Select supplier</option><option>MedSafe Supplies</option><option>3M ESPE India</option><option>Zhermack Dental</option><option>Mani Inc. Distributors</option><option>Unicotton Medical</option><option>Prime Dental Products</option><option>SteriPack India</option><option>Septodont India</option><option>Ortho Organizers India</option><option>Woodpecker India</option></select><div class="invalid-feedback">Choose a supplier.</div></div>
+            <div class="span-4"><label for="poBranch" class="form-label">Deliver to</label><select class="form-select" id="poBranch" name="branch" data-options="branches" data-options-where="status=Active"></select></div>
+            <div class="span-4"><label for="poExpected" class="form-label">Expected delivery *</label><input type="date" class="form-control" id="poExpected" name="expected" required data-default-days="5"><div class="invalid-feedback">Pick the expected delivery date.</div></div>
+            <div class="span-4"><label for="poPriority" class="form-label">Priority</label><select class="form-select" id="poPriority" name="priority"><option>Normal</option><option>Urgent</option></select></div>
+            <div class="span-4"><label for="poPayment" class="form-label">Payment terms</label><select class="form-select" id="poPayment" name="terms"><option>Net 30</option><option>Net 15</option><option>Advance</option><option>Cash on delivery</option></select></div>
+          </div>
+          <p class="form-section-title mt-4">Items</p>
+          <div class="table-responsive" data-visible-rows="all">
+            <table class="table table-app line-items-table">
+              <thead><tr><th scope="col">Item</th><th scope="col">Qty</th><th scope="col" class="text-end">Line total</th><th scope="col" class="text-center"><span class="visually-hidden">Remove</span></th></tr></thead>
+              <tbody id="poLines" data-line-items>
+                <tr data-line>
+                  <td><input type="number" class="d-none" data-price value="0" tabindex="-1" aria-hidden="true">
+                    <select class="form-select form-select-sm" data-line-product aria-label="Item" data-options="inventory" data-option-field="name" data-option-attr-price="cost" data-options-empty="off"><option value="">Select item</option></select></td>
+                  <td><input type="number" class="form-control form-control-sm" data-qty value="1" min="1" required aria-label="Quantity"></td>
+                  <td class="text-end fw-semibold" data-line-total>₹0</td>
+                  <td class="text-center"><button type="button" class="btn-icon danger" data-action="remove-line" aria-label="Remove line"><i class="bi bi-trash3" aria-hidden="true"></i></button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button type="button" class="btn btn-soft btn-sm mt-2" data-action="add-line" data-target="#poLines"><i class="bi bi-plus-lg" aria-hidden="true"></i>Add item</button>
+          <div class="grid-2 mt-1">
+            <div><label for="poNotes" class="form-label">Notes to supplier</label><textarea class="form-control" id="poNotes" name="notes" rows="3" placeholder="Delivery instructions, brand preferences..."></textarea></div>
+            <div class="totals-box">
+                <div class="row-line"><span>Subtotal</span><strong data-subtotal>₹0</strong></div>
+                <div class="row-line"><span>GST (18%)</span><span data-tax data-tax-rate="18">₹0</span></div>
+                <div class="row-line grand"><span>Order total</span><strong data-grand-total>₹0</strong></div>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-light" data-success="Purchase order {po} saved as draft"><i class="bi bi-save" aria-hidden="true"></i>Save Draft</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-send" aria-hidden="true"></i>Send Order</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete confirmation -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content text-center">
+        <div class="modal-body p-4">
+          <span class="confirm-icon tone-red"><i class="bi bi-trash3" aria-hidden="true"></i></span>
+          <h2 class="h5" id="deleteModalTitle">Delete this item?</h2>
+          <p class="text-muted mb-0"><strong data-record-label>This item</strong> will be permanently removed from the inventory.</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Keep it</button>
+          <button type="button" class="btn btn-danger" data-action="confirm-delete" data-success="Item deleted">Yes, delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/demo-data.js"></script>
+  <script src="../assets/js/script.js"></script>
+</body>
+</html>

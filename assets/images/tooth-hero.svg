@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 200" role="img" aria-label="Healthy tooth illustration">
+  <defs>
+    <linearGradient id="tooth" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".6" stop-color="#F1F6FD"/><stop offset="1" stop-color="#C9DCF3"/></linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0B5FE0"/><stop offset=".5" stop-color="#36A3FF"/><stop offset="1" stop-color="#0B5FE0"/></linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+  </defs>
+  <ellipse cx="130" cy="100" rx="110" ry="90" fill="url(#glow)"/>
+  <path d="M60 128c20-14 120-14 140 0" fill="none" stroke="url(#ring)" stroke-width="16" stroke-linecap="round" opacity=".55"/>
+  <path fill="url(#tooth)" stroke="#BFD5EF" stroke-width="2" d="M101 22c-20 0-34 15-34 36 0 17 6 29 11 45 5 17 7 38 16 48 4 4 9 4 13 1 4-4 6-10 7-16l5-22c2-7 4-11 11-11s9 4 11 11l5 22c1 6 3 12 7 16 4 3 9 3 13-1 9-10 11-31 16-48 5-16 11-28 11-45 0-21-14-36-34-36-11 0-17 5-29 5s-18-5-29-5Z"/>
+  <path d="M90 46c4-9 12-13 22-12" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+  <path d="M58 132c14 18 130 18 144 0" fill="none" stroke="url(#ring)" stroke-width="16" stroke-linecap="round"/>
+  <g fill="#1570EF">
+    <path d="M214 30l4 10 10 4-10 4-4 10-4-10-10-4 10-4z"/>
+    <path d="M40 60l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" opacity=".8"/>
+    <path d="M226 92l2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5z" opacity=".7"/>
+    <path d="M52 150l2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5z" opacity=".6"/>
+  </g>
+</svg>

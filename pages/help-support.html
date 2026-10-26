@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dentalwyz dental clinic management — help topics, FAQs, support tickets and contact.">
+  <title>Help &amp; Support | Dentalwyz</title>
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/responsive.css" rel="stylesheet">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app-shell">
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar offcanvas-lg offcanvas-start" id="appSidebar" tabindex="-1" aria-label="Sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-header">
+          <a href="dashboard.html" class="brand" aria-label="Dentalwyz home">
+            <img src="../assets/images/logo.svg" alt="" class="brand-logo" width="40" height="40">
+            <span class="brand-text">dental<span>wyz</span></span>
+          </a>
+          <button type="button" class="btn-close d-lg-none" data-bs-dismiss="offcanvas" data-bs-target="#appSidebar" aria-label="Close menu"></button>
+        </div>
+        <nav class="sidebar-nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="dashboard.html"><i class="bi bi-house-door" aria-hidden="true"></i><span>Dashboard</span></a></li>
+            <li><a class="nav-link" href="appointments.html"><i class="bi bi-calendar3" aria-hidden="true"></i><span>Appointments</span></a></li>
+            <li><a class="nav-link" href="patients.html"><i class="bi bi-people" aria-hidden="true"></i><span>Patients</span></a></li>
+            <li><a class="nav-link" href="doctors.html"><i class="bi bi-person-badge" aria-hidden="true"></i><span>Doctors</span></a></li>
+            <li><a class="nav-link" href="documents.html"><i class="bi bi-folder2-open" aria-hidden="true"></i><span>Documents</span></a></li>
+            <li><a class="nav-link" href="invoices.html"><i class="bi bi-file-earmark-text" aria-hidden="true"></i><span>Invoices</span></a></li>
+            <li><a class="nav-link" href="payments.html"><i class="bi bi-credit-card-2-front" aria-hidden="true"></i><span>Payments</span></a></li>
+            <li><a class="nav-link" href="transactions.html"><i class="bi bi-arrow-left-right" aria-hidden="true"></i><span>Transactions</span></a></li>
+            <li><a class="nav-link" href="treatment.html"><i class="bi bi-clipboard2-pulse" aria-hidden="true"></i><span>Treatment</span></a></li>
+            <li><a class="nav-link" href="lab.html"><i class="bi bi-eyedropper" aria-hidden="true"></i><span>Lab</span></a></li>
+            <li><a class="nav-link" href="pharmacy.html"><i class="bi bi-capsule" aria-hidden="true"></i><span>Pharmacy</span></a></li>
+            <li><a class="nav-link" href="inventory.html"><i class="bi bi-box-seam" aria-hidden="true"></i><span>Inventory</span></a></li>
+            <li><a class="nav-link" href="reports.html"><i class="bi bi-bar-chart-line" aria-hidden="true"></i><span>Reports</span></a></li>
+          </ul>
+          <hr class="sidebar-divider">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="settings.html"><i class="bi bi-gear" aria-hidden="true"></i><span>Settings</span></a></li>
+            <li><a class="nav-link active" aria-current="page" href="help-support.html"><i class="bi bi-question-circle" aria-hidden="true"></i><span>Help &amp; Support</span></a></li>
+          </ul>
+        </nav>
+        <div class="sidebar-wave" aria-hidden="true"></div>
+      </div>
+    </aside>
+
+    <div class="main">
+      <!-- ============ TOP HEADER ============ -->
+      <header class="topbar">
+        <button type="button" class="icon-btn d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#appSidebar" aria-controls="appSidebar" aria-label="Open menu"><i class="bi bi-list" aria-hidden="true"></i></button>
+        <button type="button" class="icon-btn d-none d-lg-inline-flex" data-action="sidebar-collapse" aria-expanded="true" aria-label="Collapse sidebar"><i class="bi bi-layout-sidebar" aria-hidden="true"></i></button>
+
+        <form class="topbar-search" id="globalSearchForm" role="search">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <label for="globalSearch" class="visually-hidden">Search patient, appointment, invoice</label>
+          <input type="search" class="form-control" id="globalSearch" placeholder="Search patient, appointment, invoice..." autocomplete="off">
+        </form>
+
+        <div class="topbar-actions">
+          <button type="button" class="icon-btn d-md-none" data-action="toggle-search" aria-expanded="false" aria-label="Toggle search"><i class="bi bi-search" aria-hidden="true"></i></button>
+
+          <button type="button" class="topbar-chip date-chip" id="headerDate" aria-label="Choose date">
+            <i class="bi bi-calendar3 chip-icon" aria-hidden="true"></i>
+            <span class="chip-text">
+              <span class="chip-title" data-current-date>01 Oct 2026</span>
+              <span class="chip-sub" data-current-day>Thursday</span>
+            </span>
+            <input type="date" id="headerDatePicker" class="date-picker-input" tabindex="-1" aria-hidden="true">
+          </button>
+
+          <div class="dropdown">
+            <button type="button" class="icon-btn" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" aria-label="Notifications">
+              <i class="bi bi-bell" aria-hidden="true"></i><span class="notif-dot" aria-hidden="true" data-notif-dot hidden></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end notif-menu">
+              <div class="notif-menu-header">
+                <strong>Notifications <span class="badge-soft tone-blue ms-1"><span data-stat="notifications" data-stat-where="unread=yes">0</span> new</span></strong>
+                <button type="button" class="btn btn-link btn-sm p-0" data-action="mark-all-read">Mark all read</button>
+              </div>
+              <ul class="notif-list" id="notifList" data-collection="notifications" data-limit="8">
+                <template data-template>
+                  <li class="notif-item" data-record data-bind-data-unread="{unread}" tabindex="0" role="link"><span class="avatar avatar-sm" data-tone-from="icon"><i class="bi" data-bind-class="bi {icon}" aria-hidden="true"></i></span><div><p data-field="text"></p><time data-derive="ago"></time></div></li>
+                </template>
+              </ul>
+              <p class="notif-empty" data-empty-for="#notifList">No notifications yet. New appointments, patients, invoices and payments show up here.</p>
+              <div class="notif-menu-footer"><a href="settings.html#pane-notifications" class="panel-link">Notification settings</a></div>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button type="button" class="topbar-chip branch-chip" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Switch branch">
+              <img src="../assets/images/clinic.svg" alt="" class="chip-img" width="36" height="36">
+              <span class="chip-text">
+                <span class="chip-title" data-current-branch>ABC Clinic</span>
+                <span class="chip-sub" data-current-location>Calicut</span>
+              </span>
+              <i class="bi bi-chevron-down small" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end branch-menu" data-collection="branches" data-where="status=Active" data-sort="name">
+              <li><h6 class="dropdown-header">Switch branch</h6></li>
+              <template data-template><li data-record><a class="dropdown-item" href="#" data-bind-data-branch="{name}" data-bind-data-branch-location="{location}"><i class="bi bi-hospital" aria-hidden="true"></i><span data-field="name"></span> <small class="text-muted" data-field="location"></small><i class="bi bi-check2" aria-hidden="true"></i></a></li></template>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="settings.html#pane-branch"><i class="bi bi-sliders" aria-hidden="true"></i>Manage branches</a></li>
+            </ul>
+          </div>
+
+          <div class="dropdown">
+            <button type="button" class="topbar-chip profile-chip" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+              <span class="avatar avatar-sm tone-blue" data-setting-initials="pfName">MD</span>
+              <span class="chip-text d-none d-xl-block">
+                <span class="chip-title" data-setting-text="pfName">Dr. Max D'Souza</span>
+                <span class="chip-sub">Administrator</span>
+              </span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><h6 class="dropdown-header">Signed in as admin</h6></li>
+              <li><a class="dropdown-item" href="settings.html#pane-profile"><i class="bi bi-person-circle" aria-hidden="true"></i>My profile</a></li>
+              <li><a class="dropdown-item" href="settings.html#pane-clinic"><i class="bi bi-gear" aria-hidden="true"></i>Account settings</a></li>
+              <li><a class="dropdown-item" href="settings.html#pane-notifications"><i class="bi bi-bell" aria-hidden="true"></i>Notification settings</a></li>
+              <li><a class="dropdown-item" href="help-support.html"><i class="bi bi-life-preserver" aria-hidden="true"></i>Help &amp; Support</a></li>
+              <li><a class="dropdown-item" href="#" data-action="reset-demo"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Reset demo data</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="../index.html" data-action="logout"><i class="bi bi-box-arrow-right" aria-hidden="true"></i>Log out</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- ============ PAGE CONTENT ============ -->
+      <main class="content" id="main-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Help &amp; Support</h1>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Help &amp; Support</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="page-actions">
+            <a href="tel:+914951234567" class="btn btn-light"><i class="bi bi-telephone" aria-hidden="true"></i>Call support</a>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ticketModal"><i class="bi bi-plus-circle" aria-hidden="true"></i>New Ticket</button>
+          </div>
+        </div>
+
+        <!-- Help topics -->
+        <section class="stats-grid mb-3" aria-label="Help topics">
+          <article class="card-panel help-card">
+              <span class="stat-icon tone-blue"><i class="bi bi-rocket-takeoff" aria-hidden="true"></i></span>
+              <h2 class="h6">Getting started</h2>
+              <p class="text-muted small">Set up your clinic profile, branches, staff logins and working hours in a few minutes.</p>
+              <a href="settings.html" class="btn btn-soft btn-sm">Open settings</a>
+            </article>
+          <article class="card-panel help-card">
+              <span class="stat-icon tone-green"><i class="bi bi-calendar-check" aria-hidden="true"></i></span>
+              <h2 class="h6">Appointments &amp; scheduling</h2>
+              <p class="text-muted small">Book, reschedule and check in patients, and manage each doctor's daily slots.</p>
+              <a href="appointments.html" class="btn btn-soft btn-sm">Go to appointments</a>
+            </article>
+          <article class="card-panel help-card">
+              <span class="stat-icon tone-purple"><i class="bi bi-receipt" aria-hidden="true"></i></span>
+              <h2 class="h6">Billing &amp; payments</h2>
+              <p class="text-muted small">Create GST invoices, record part payments and print receipts for patients.</p>
+              <a href="invoices.html" class="btn btn-soft btn-sm">Go to invoices</a>
+            </article>
+          <article class="card-panel help-card">
+              <span class="stat-icon tone-red"><i class="bi bi-play-btn" aria-hidden="true"></i></span>
+              <h2 class="h6">Video tutorials</h2>
+              <p class="text-muted small">Short walkthroughs of everyday tasks, in English and Malayalam.</p>
+              <a class="btn btn-soft btn-sm" href="#faqTitle">Browse the guides</a>
+            </article>
+        </section>
+
+        <div class="layout-split mb-3">
+          <!-- FAQ -->
+          <section class="card-panel" aria-labelledby="faqTitle">
+              <div class="panel-header">
+                <h2 class="panel-title" id="faqTitle"><i class="bi bi-question-circle" aria-hidden="true"></i>Frequently asked questions <span class="count">(<span data-count-for="#faqList">10</span>)</span></h2>
+                <div class="panel-tools">
+                  <div class="search-box">
+                    <i class="bi bi-search" aria-hidden="true"></i>
+                    <label for="faqSearch" class="visually-hidden">Search FAQs</label>
+                    <input type="search" id="faqSearch" class="form-control form-control-sm" placeholder="Search FAQs..." data-search-target="#faqList">
+                  </div>
+                </div>
+              </div>
+              <div class="accordion accordion-app" id="faqList" data-list>
+                <div class="accordion-item" data-record>
+                  <h3 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1"><span data-field="question" data-primary>How do I switch between branches?</span></button></h3>
+                  <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqList">
+                    <div class="accordion-body">Click the branch chip in the top header (it shows the current branch, e.g. ABC Clinic · Calicut) and choose Branch 2 or Branch 3. Appointments, billing and stock switch to that branch. Your choice is remembered on this browser. Admins can set the default branch under Settings → Branch settings.</div>
+                  </div>
+                </div>
+                <div class="accordion-item" data-record>
+                  <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2"><span data-field="question" data-primary>How do I book an appointment for a patient?</span></button></h3>
+                  <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqList">
+                    <div class="accordion-body">Use <strong>Add Appointment</strong> on the dashboard or the Appointments page. Enter the patient's name and phone, pick the date, time slot and doctor, then save. Existing patients are matched by phone number, and an SMS/WhatsApp confirmation is sent if enabled.</div>
+                  </div>
+                </div>
+                <div class="accordion-item" data-record>
+                  <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3"><span data-field="question" data-primary>How do I create and send an invoice?</span></button></h3>
+                  <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqList">
+                    <div class="accordion-body">Open Invoices → <strong>Create Invoice</strong>, select the patient and add treatments as line items. Totals, discount and GST are calculated automatically. After saving you can print the invoice, download it, or share it on WhatsApp from the invoice preview.</div>
+                  </div>
+                </div>
+                <div class="accordion-item" data-record>
+                  <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4"><span data-field="question" data-primary>How is GST applied on invoices?</span></button></h3>
+                  <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqList">
+                    <div class="accordion-body">Healthcare services by a clinical establishment are generally exempt, so treatments are billed at 0%. Taxable items such as cosmetic procedures, retail products or pharmacy items use the GST rate set on the item. Your GSTIN (e.g. 32ABCDE1234F1Z5) is printed on every invoice from Settings → Clinic settings.</div>
+                  </div>
+                </div>
+                <div class="accordion-item" data-record>
+                  <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5"><span data-field="question" data-primary>Why is my invoice or prescription not printing correctly?</span></button></h3>
+                  <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqList">
+                    <div class="accordion-body">Use the <strong>Print</strong> button inside the preview, which prints only the document. In the browser print dialog choose A4 paper, set margins to Default and turn off "Headers and footers". For thermal receipt printers select the 80&nbsp;mm paper size.</div>
+                  </div>
+                </div>
+                <div class="accordion-item" data-record>
+                  <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6" aria-expanded="false" aria-controls="faq6"><span data-field="question" data-primary>Is my clinic data backed up?</span></button></h3>
+                  <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqList">
+                    <div class="accordion-body">Yes. Data is backed up automatically every night at 2:00 AM IST and kept for 30 days on servers hosted in India. Admins can also export patients, invoices and reports to CSV at any time from the respective pages.</div>
+                  </div>
+                </div>
+                <div class="accordion-item" data-record>
+                  <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7" aria-expanded="false" aria-controls="faq7"><span data-field="question" data-primary>How do I add a new doctor or staff login?</span></button></h3>
+                  <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqList">
+                    <div class="accordion-body">Go to Settings → User settings → <strong>Add user</strong>. Enter the name, email and phone, choose a role (Admin, Doctor, Receptionist or Accountant) and a branch. The user receives an email invite to set a password. Module access for each role is controlled in the Roles &amp; permissions table.</div>
+                  </div>
+                </div>
+                <div class="accordion-item" data-record>
+                  <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8" aria-expanded="false" aria-controls="faq8"><span data-field="question" data-primary>How do I turn SMS or WhatsApp reminders on or off?</span></button></h3>
+                  <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqList">
+                    <div class="accordion-body">Open Settings → Notification settings. Each message type has its own switch for SMS, WhatsApp and Email, and you can choose when reminders go out (1 to 48 hours before the appointment). SMS credits are shown at the top of that section.</div>
+                  </div>
+                </div>
+                <div class="accordion-item" data-record>
+                  <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9" aria-expanded="false" aria-controls="faq9"><span data-field="question" data-primary>How do I track crowns and other lab work?</span></button></h3>
+                  <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqList">
+                    <div class="accordion-body">On the Lab page create a lab case for the patient with the work type, shade, lab name and due date. Update the status as it moves from Sent to Lab → In Transit → Ready → Delivered. You will be notified when a case is due or marked ready.</div>
+                  </div>
+                </div>
+                <div class="accordion-item" data-record>
+                  <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10" aria-expanded="false" aria-controls="faq10"><span data-field="question" data-primary>How do low stock alerts work?</span></button></h3>
+                  <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqList">
+                    <div class="accordion-body">Each inventory item has a reorder level. When stock falls to or below it, the item shows a Low Stock badge, appears in the header notifications and, if enabled, an email alert is sent. Update the quantity when a new purchase arrives to clear the alert.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="empty-state" data-empty-for="#faqList" hidden><i class="bi bi-search" aria-hidden="true"></i>No FAQs match your search. Try another word or raise a ticket.</div>
+            </section>
+
+          <!-- Contact -->
+          <div class="side-stack">
+              <section class="card-panel" aria-labelledby="contactInfoTitle">
+                  <div class="panel-header">
+                    <h2 class="panel-title" id="contactInfoTitle"><i class="bi bi-headset" aria-hidden="true"></i>Contact support</h2>
+                    <span class="badge-soft tone-green"><i class="bi bi-check-circle-fill" aria-hidden="true"></i>All systems operational</span>
+                  </div>
+                  <ul class="entity-meta mt-0">
+                    <li><i class="bi bi-telephone" aria-hidden="true"></i><a href="tel:+914951234567">+91 495 123 4567</a></li>
+                    <li><i class="bi bi-envelope" aria-hidden="true"></i><a href="mailto:support@dentalwyz.com">support@dentalwyz.com</a></li>
+                    <li><i class="bi bi-whatsapp" aria-hidden="true"></i><a href="https://wa.me/914951234567" target="_blank" rel="noopener">WhatsApp +91 495 123 4567</a></li>
+                    <li><i class="bi bi-clock" aria-hidden="true"></i>Mon – Sat, 8:00 AM – 9:00 PM IST</li>
+                    <li><i class="bi bi-lightning-charge" aria-hidden="true"></i>Average first reply: under 4 working hours</li>
+                  </ul>
+                  <div class="info-tile">
+                    <span class="label">Your plan</span>
+                    <span class="value">Dentalwyz Pro · 3 branches · renews 15 Jan 2027</span>
+                  </div>
+                </section>
+              <section class="card-panel" aria-labelledby="contactFormTitle">
+                  <div class="panel-header">
+                    <h2 class="panel-title" id="contactFormTitle"><i class="bi bi-chat-left-text" aria-hidden="true"></i>Send us a message</h2>
+                  </div>
+                  <form novalidate data-success="Message sent. Our team will reply within 4 working hours." data-reset-on-success>
+                    <div class="grid-12">
+                      <div class="span-sm-half"><label for="ctName" class="form-label">Name *</label><input type="text" class="form-control" id="ctName" name="name" required value="Dr. Max D'Souza"><div class="invalid-feedback">Name is required.</div></div>
+                      <div class="span-sm-half"><label for="ctEmail" class="form-label">Email *</label><input type="email" class="form-control" id="ctEmail" name="email" required value="admin@maxdental.in"><div class="invalid-feedback">Enter a valid email address.</div></div>
+                      <div class="span-sm-half"><label for="ctPhone" class="form-label">Phone</label><input type="tel" class="form-control" id="ctPhone" name="phone" pattern="[0-9+\s\-]{8,}" value="+91 98470 10001"><div class="invalid-feedback">Enter a valid phone number.</div></div>
+                      <div class="span-sm-half"><label for="ctTopic" class="form-label">Topic *</label><select class="form-select" id="ctTopic" name="topic" required><option value="">Select topic</option><option>General question</option><option>Billing &amp; subscription</option><option>Technical issue</option><option>Training request</option><option>Feature suggestion</option></select><div class="invalid-feedback">Choose a topic.</div></div>
+                      <div><label for="ctMessage" class="form-label">Message *</label><textarea class="form-control" id="ctMessage" name="message" rows="4" required minlength="10" placeholder="Tell us how we can help"></textarea><div class="invalid-feedback">Please write at least 10 characters.</div></div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-3">
+                      <button type="submit" class="btn btn-primary"><i class="bi bi-send" aria-hidden="true"></i>Send message</button>
+                    </div>
+                  </form>
+                </section>
+            </div>
+        </div>
+
+        <!-- Support tickets -->
+        <section class="card-panel" aria-labelledby="ticketTitle">
+          <div class="panel-header">
+            <h2 class="panel-title" id="ticketTitle"><i class="bi bi-ticket-detailed" aria-hidden="true"></i>Support tickets <span class="count">(<span data-count-for="#ticketTable">0</span>)</span></h2>
+            <div class="panel-tools">
+              <div class="search-box">
+                <i class="bi bi-search" aria-hidden="true"></i>
+                <label for="ticketSearch" class="visually-hidden">Search tickets</label>
+                <input type="search" id="ticketSearch" class="form-control form-control-sm" placeholder="Search tickets..." data-search-target="#ticketTable">
+              </div>
+              <label for="ticketFilter" class="visually-hidden">Filter by status</label>
+              <select id="ticketFilter" class="form-select form-select-sm filter-select" data-filter-target="#ticketTable" data-filter-field="status">
+                <option value="all">All status</option>
+                <option>Open</option>
+                <option>In Progress</option>
+                <option>Resolved</option>
+                <option>Closed</option>
+              </select>
+              <button type="button" class="btn btn-light btn-sm" data-action="export-csv" data-target="#ticketTable" data-filename="support-tickets.csv"><i class="bi bi-download" aria-hidden="true"></i>Export</button>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-app table-hover" id="ticketTable" data-list data-collection="tickets" data-sort="-date,-ticket" data-notify="Support ticket {ticket} raised: {subject}" data-notify-icon="bi-ticket-detailed">
+              <thead>
+                <tr><th scope="col">Ticket ID</th><th scope="col">Subject</th><th scope="col">Category</th><th scope="col">Priority</th><th scope="col">Created</th><th scope="col">Status</th><th scope="col" class="text-center action-col" data-no-export>Action</th></tr>
+              </thead>
+              <tbody>
+                <template data-template>
+                  <tr data-record>
+                  <td class="fw-semibold" data-field="ticket" data-seq="TKT-1001" data-default="TKT-1049"><div data-field-html="thread" data-empty="" hidden></div></td>
+                  <td class="cell-wrap"><span class="person-name" data-field="subject" data-primary></span><span class="badge-soft tone-green" data-new-only hidden>New</span>
+                    <span data-field="description" hidden></span></td>
+                  <td data-field="category"></td>
+                  <td><span class="badge-status" data-field="priority"></span></td>
+                  <td data-field="date"></td>
+                  <td><span class="badge-status" data-field="status"></span></td>
+                  <td class="text-center action-col">
+                    <div class="action-group">
+                      <button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#viewTicketModal" aria-label="View ticket"><i class="bi bi-eye" aria-hidden="true"></i></button>
+                      <button type="button" class="btn-icon" data-bs-toggle="modal" data-bs-target="#ticketModal" data-mode="edit" aria-label="Edit ticket"><i class="bi bi-pencil" aria-hidden="true"></i></button>
+                      <div class="dropdown">
+                        <button type="button" class="btn-icon neutral" data-bs-toggle="dropdown" aria-expanded="false" aria-label="More actions"><i class="bi bi-three-dots" aria-hidden="true"></i></button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                          <li><h6 class="dropdown-header">Change status</h6></li>
+                          <li><a class="dropdown-item" href="#" data-set-status="In Progress"><i class="bi bi-hourglass-split" aria-hidden="true"></i>Mark in progress</a></li>
+                          <li><a class="dropdown-item" href="#" data-set-status="Resolved"><i class="bi bi-check2-circle" aria-hidden="true"></i>Mark resolved</a></li>
+                          <li><a class="dropdown-item" href="#" data-set-status="Closed"><i class="bi bi-archive" aria-hidden="true"></i>Close ticket</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash3" aria-hidden="true"></i>Delete ticket</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+          <div class="empty-state" data-empty-for="#ticketTable" hidden><i class="bi bi-ticket-perforated" aria-hidden="true"></i>No tickets match your search.</div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- ============ MODALS ============ -->
+
+  <!-- New / Edit ticket -->
+  <div class="modal fade" id="ticketModal" tabindex="-1" aria-labelledby="ticketModalTitle" aria-hidden="true" data-edit-title="Edit Ticket">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <form class="modal-content" novalidate data-add-to="#ticketTable" data-success="Ticket raised. Our support team will contact you shortly." data-success-edit="Ticket updated successfully">
+        <div class="modal-header">
+          <h2 class="modal-title" id="ticketModalTitle"><span class="title-icon tone-blue"><i class="bi bi-ticket-detailed" aria-hidden="true"></i></span><span data-modal-title>New Support Ticket</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="grid-12">
+            <div><label for="tkSubject" class="form-label">Subject *</label><input type="text" class="form-control" id="tkSubject" name="subject" required placeholder="Briefly describe the issue"><div class="invalid-feedback">Subject is required.</div></div>
+            <div class="span-6"><label for="tkCategory" class="form-label">Category *</label><select class="form-select" id="tkCategory" name="category" required><option value="">Select category</option><option>Appointments</option><option>Billing</option><option>Notifications</option><option>Inventory</option><option>Printing</option><option>Account &amp; access</option><option>Feature request</option><option>Other</option></select><div class="invalid-feedback">Choose a category.</div></div>
+            <div class="span-6"><label for="tkPriority" class="form-label">Priority *</label><select class="form-select" id="tkPriority" name="priority" required><option value="">Select priority</option><option>High</option><option>Medium</option><option>Low</option></select><div class="invalid-feedback">Choose a priority.</div></div>
+            <div class="span-6"><label for="tkDate" class="form-label">Date *</label><input type="date" class="form-control" id="tkDate" name="date" required data-default-days="0" value="2026-10-01"><div class="invalid-feedback">Pick a date.</div></div>
+            <div class="span-6"><label for="tkStatus" class="form-label">Status</label><select class="form-select" id="tkStatus" name="status"><option selected>Open</option><option>In Progress</option><option>Resolved</option><option>Closed</option></select></div>
+            <div><label for="tkDescription" class="form-label">Description *</label><textarea class="form-control" id="tkDescription" name="description" rows="4" required minlength="10" placeholder="Steps to reproduce, branch, screen and any error message"></textarea><div class="invalid-feedback">Please describe the issue (at least 10 characters).</div></div>
+            <div>
+              <label for="tkFile" class="form-label">Attachments</label>
+              <div class="dropzone" data-dropzone>
+                <i class="bi bi-paperclip" aria-hidden="true"></i>
+                <span class="fw-semibold" data-file-label>Drop screenshots here or click to browse</span>
+                <span class="form-text">PNG, JPG or PDF · up to 5 files, 10 MB each</span>
+                <input type="file" id="tkFile" multiple accept="image/png,image/jpeg,application/pdf">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-send" aria-hidden="true"></i>Submit Ticket</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Preview ticket -->
+  <div class="modal fade" id="viewTicketModal" tabindex="-1" aria-labelledby="viewTicketTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="viewTicketTitle"><span class="title-icon tone-blue"><i class="bi bi-ticket-detailed" aria-hidden="true"></i></span>Ticket <span data-field="ticket">TKT-0000</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="profile-head">
+            <span class="avatar avatar-lg tone-blue"><i class="bi bi-life-preserver" aria-hidden="true"></i></span>
+            <div><h3 data-field="subject">Ticket subject</h3><span class="badge-status" data-field="status">Open</span></div>
+          </div>
+          <dl class="detail-list mb-3">
+            <div><dt>Category</dt><dd data-field="category">—</dd></div>
+            <div><dt>Priority</dt><dd><span class="badge-status" data-field="priority">—</span></dd></div>
+            <div><dt>Created</dt><dd data-field="date">—</dd></div>
+            <div><dt>Raised by</dt><dd>Dr. Max D'Souza · ABC Clinic</dd></div>
+            <div class="span-2"><dt>Description</dt><dd data-field="description">—</dd></div>
+          </dl>
+          <p class="form-section-title">Conversation</p>
+          <ul class="list-unstyled d-grid gap-3 mb-0" data-field-html="thread"></ul>
+          <form class="mt-3" novalidate data-reply-to="thread" data-success="Reply sent to Dentalwyz support">
+            <label for="tkReply" class="form-label">Reply</label>
+            <textarea class="form-control" id="tkReply" name="reply" rows="2" required placeholder="Write a reply..."></textarea>
+            <div class="invalid-feedback">Write a reply before sending.</div>
+            <div class="d-flex justify-content-end mt-2">
+              <button type="submit" class="btn btn-soft btn-sm"><i class="bi bi-reply" aria-hidden="true"></i>Send reply</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-set-status="Resolved"><i class="bi bi-check2-circle" aria-hidden="true"></i>Mark resolved</button>
+          <button type="button" class="btn btn-light" data-action="print"><i class="bi bi-printer" aria-hidden="true"></i>Print</button>
+          <button type="button" class="btn btn-primary" data-switch-modal="#ticketModal" data-mode="edit"><i class="bi bi-pencil" aria-hidden="true"></i>Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete confirmation -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content text-center">
+        <div class="modal-body p-4">
+          <span class="confirm-icon tone-red"><i class="bi bi-trash3" aria-hidden="true"></i></span>
+          <h2 class="h5" id="deleteModalTitle">Delete ticket?</h2>
+          <p class="text-muted mb-0">The ticket <strong data-record-label>this ticket</strong> and its conversation will be permanently removed.</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Keep it</button>
+          <button type="button" class="btn btn-danger" data-action="confirm-delete" data-success="Ticket deleted">Yes, delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/demo-data.js"></script>
+  <script src="../assets/js/script.js"></script>
+</body>
+</html>
